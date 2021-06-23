@@ -1,0 +1,403 @@
+[11-Jun-2021 11:37:55 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 11:38:44 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 11:39:58 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 11:44:18 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 11:44:18 Europe/Berlin] PHP Fatal error:  Uncaught Twig\Error\SyntaxError: The block 'header' has already been defined line 7. in C:\xampp\htdocs\frameworkBudgetApp\App\Views\404.html:11
+Stack trace:
+#0 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(171): Twig\TokenParser\BlockTokenParser->parse(Object(Twig\Token))
+#1 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(84): Twig\Parser->subparse(NULL, false)
+#2 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#3 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#4 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#5 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', '404.html')
+#6 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('404.html')
+#7 C:\xampp\htdocs\frameworkBudgetApp\Core\View.php(51): Twig\Environment->render('404.html', Array)
+#8 C:\xampp\htdocs\frameworkBudgetApp\Core\Error.php(63): Core\View::renderTemplate('404.html')
+#9 [internal function]: Core\Error::exceptionHandler(Object(Exception))
+#10 {main}
+  thrown in C:\xampp\htdocs\frameworkBudgetApp\App\Views\404.html on line 11
+[11-Jun-2021 11:44:32 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 11:48:03 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 11:48:03 Europe/Berlin] PHP Fatal error:  Uncaught Twig\Error\SyntaxError: The block 'main' has already been defined line 6. in C:\xampp\htdocs\frameworkBudgetApp\App\Views\base+asides.html:12
+Stack trace:
+#0 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(171): Twig\TokenParser\BlockTokenParser->parse(Object(Twig\Token))
+#1 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\TokenParser\BlockTokenParser.php(47): Twig\Parser->subparse(Array, true)
+#2 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(171): Twig\TokenParser\BlockTokenParser->parse(Object(Twig\Token))
+#3 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(84): Twig\Parser->subparse(NULL, false)
+#4 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#5 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#6 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#7 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Template.php(322): Twig\Environment->loadTemplate('__TwigTemplate_...', 'base+asides.htm...', NULL)
+#8 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(358) : eval()'d code(43): Twig\Template->loadTemplate('base+asides.htm...', '404.html', 1)
+#9 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Template.php(394): __TwigTemplate_8d2e93788ebfad3b799bec509437b2f5d4d1a2b2707c723d83c8941e20c2d194->doDisplay(Array, Array)
+#10 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Template.php(367): Twig\Template->displayWithErrorHandling(Array, Array)
+#11 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Template.php(379): Twig\Template->display(Array)
+#12 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\TemplateWrapper.php(40): Twig\Template->render(Array, Array)
+#13 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(277): Twig\TemplateWrapper->render(Array)
+#14 C:\xampp\htdocs\frameworkBudgetApp\Core\View.php(51): Twig\Environment->render('404.html', Array)
+#15 C:\xampp\htdocs\frameworkBudgetApp\Core\Error.php(63): Core\View::renderTemplate('404.html')
+#16 [internal function]: Core\Error::exceptionHandler(Object(Exception))
+#17 {main}
+  thrown in C:\xampp\htdocs\frameworkBudgetApp\App\Views\base+asides.html on line 12
+[11-Jun-2021 12:02:28 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:04:22 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:12:23 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:12:25 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:12:32 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:13:46 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:14:21 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:14:37 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:14:51 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:18:57 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:19:07 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:19:21 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:26:22 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:27:12 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:27:40 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:27:52 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:32:18 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:32:53 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:39:49 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:40:17 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:50:20 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:51:25 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:51:28 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 12:52:38 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:04:15 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:05:04 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:05:53 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:09:35 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:09:51 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:10:50 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:14:26 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:15:34 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:17:07 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:17:15 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:17:59 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:18:56 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:20:21 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:21:02 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:22:29 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('products')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:53:47 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('css/index.css')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 15:56:21 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('ns/index.js')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 16:03:22 Europe/Berlin] Uncaught exception: 'Twig\Error\SyntaxError' with message 'A template that extends another one cannot include content outside Twig blocks. Did you forget to put the content inside a {% block %} tag?'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(342): Twig\Parser->filterBodyNodes(Object(Twig\Node\TextNode), false)
+#1 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(86): Twig\Parser->filterBodyNodes(Object(Twig\Node\Node))
+#2 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#3 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#4 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#5 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', 'Home/index.html')
+#6 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('Home/index.html')
+#7 C:\xampp\htdocs\frameworkBudgetApp\Core\View.php(51): Twig\Environment->render('Home/index.html', Array)
+#8 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(22): Core\View::renderTemplate('Home/index.html')
+#9 [internal function]: App\Controllers\Home->indexAction()
+#10 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#11 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#12 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('')
+#13 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\Views\Home\index.html' on line 2
+[11-Jun-2021 16:04:21 Europe/Berlin] Uncaught exception: 'Twig\Error\SyntaxError' with message 'A template that extends another one cannot include content outside Twig blocks. Did you forget to put the content inside a {% block %} tag?'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(342): Twig\Parser->filterBodyNodes(Object(Twig\Node\TextNode), false)
+#1 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(86): Twig\Parser->filterBodyNodes(Object(Twig\Node\Node))
+#2 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#3 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#4 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#5 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', 'Home/index.html')
+#6 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('Home/index.html')
+#7 C:\xampp\htdocs\frameworkBudgetApp\Core\View.php(51): Twig\Environment->render('Home/index.html', Array)
+#8 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(22): Core\View::renderTemplate('Home/index.html')
+#9 [internal function]: App\Controllers\Home->indexAction()
+#10 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#11 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#12 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('')
+#13 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\Views\Home\index.html' on line 2
+[11-Jun-2021 16:05:45 Europe/Berlin] Uncaught exception: 'Twig\Error\SyntaxError' with message 'A template that extends another one cannot include content outside Twig blocks. Did you forget to put the content inside a {% block %} tag?'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(342): Twig\Parser->filterBodyNodes(Object(Twig\Node\TextNode), false)
+#1 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(86): Twig\Parser->filterBodyNodes(Object(Twig\Node\Node))
+#2 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#3 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#4 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#5 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', 'Home/index.html')
+#6 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('Home/index.html')
+#7 C:\xampp\htdocs\frameworkBudgetApp\Core\View.php(51): Twig\Environment->render('Home/index.html', Array)
+#8 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(22): Core\View::renderTemplate('Home/index.html')
+#9 [internal function]: App\Controllers\Home->indexAction()
+#10 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#11 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#12 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('')
+#13 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\Views\Home\index.html' on line 2
+[11-Jun-2021 16:05:51 Europe/Berlin] Uncaught exception: 'Twig\Error\SyntaxError' with message 'A template that extends another one cannot include content outside Twig blocks. Did you forget to put the content inside a {% block %} tag?'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(342): Twig\Parser->filterBodyNodes(Object(Twig\Node\TextNode), false)
+#1 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(86): Twig\Parser->filterBodyNodes(Object(Twig\Node\Node))
+#2 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#3 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#4 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#5 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', 'Home/index.html')
+#6 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('Home/index.html')
+#7 C:\xampp\htdocs\frameworkBudgetApp\Core\View.php(51): Twig\Environment->render('Home/index.html', Array)
+#8 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(22): Core\View::renderTemplate('Home/index.html')
+#9 [internal function]: App\Controllers\Home->indexAction()
+#10 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#11 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#12 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('')
+#13 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\Views\Home\index.html' on line 2
+[11-Jun-2021 16:05:58 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('product')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[11-Jun-2021 16:06:08 Europe/Berlin] Uncaught exception: 'Twig\Error\SyntaxError' with message 'A template that extends another one cannot include content outside Twig blocks. Did you forget to put the content inside a {% block %} tag?'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(342): Twig\Parser->filterBodyNodes(Object(Twig\Node\TextNode), false)
+#1 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(86): Twig\Parser->filterBodyNodes(Object(Twig\Node\Node))
+#2 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#3 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#4 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#5 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', 'Home/index.html')
+#6 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('Home/index.html')
+#7 C:\xampp\htdocs\frameworkBudgetApp\Core\View.php(51): Twig\Environment->render('Home/index.html', Array)
+#8 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(22): Core\View::renderTemplate('Home/index.html')
+#9 [internal function]: App\Controllers\Home->indexAction()
+#10 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#11 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#12 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('')
+#13 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\Views\Home\index.html' on line 2
+[11-Jun-2021 16:07:59 Europe/Berlin] Uncaught exception: 'Twig\Error\SyntaxError' with message 'A template that extends another one cannot include content outside Twig blocks. Did you forget to put the content inside a {% block %} tag?'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(342): Twig\Parser->filterBodyNodes(Object(Twig\Node\TextNode), false)
+#1 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(86): Twig\Parser->filterBodyNodes(Object(Twig\Node\Node))
+#2 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#3 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#4 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#5 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', 'Home/index.html')
+#6 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('Home/index.html')
+#7 C:\xampp\htdocs\frameworkBudgetApp\Core\View.php(51): Twig\Environment->render('Home/index.html', Array)
+#8 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(22): Core\View::renderTemplate('Home/index.html')
+#9 [internal function]: App\Controllers\Home->indexAction()
+#10 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#11 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#12 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('')
+#13 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\Views\Home\index.html' on line 2
+[11-Jun-2021 16:08:36 Europe/Berlin] Uncaught exception: 'Twig\Error\SyntaxError' with message 'A template that extends another one cannot include content outside Twig blocks. Did you forget to put the content inside a {% block %} tag?'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(342): Twig\Parser->filterBodyNodes(Object(Twig\Node\TextNode), false)
+#1 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(86): Twig\Parser->filterBodyNodes(Object(Twig\Node\Node))
+#2 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#3 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#4 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#5 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', 'Home/index.html')
+#6 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('Home/index.html')
+#7 C:\xampp\htdocs\frameworkBudgetApp\Core\View.php(51): Twig\Environment->render('Home/index.html', Array)
+#8 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(22): Core\View::renderTemplate('Home/index.html')
+#9 [internal function]: App\Controllers\Home->indexAction()
+#10 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#11 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#12 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('')
+#13 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\Views\Home\index.html' on line 2
+[11-Jun-2021 16:09:13 Europe/Berlin] Uncaught exception: 'Twig\Error\SyntaxError' with message 'A template that extends another one cannot include content outside Twig blocks. Did you forget to put the content inside a {% block %} tag?'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(342): Twig\Parser->filterBodyNodes(Object(Twig\Node\TextNode), false)
+#1 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(86): Twig\Parser->filterBodyNodes(Object(Twig\Node\Node))
+#2 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#3 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#4 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#5 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', 'Home/index.html')
+#6 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('Home/index.html')
+#7 C:\xampp\htdocs\frameworkBudgetApp\Core\View.php(51): Twig\Environment->render('Home/index.html', Array)
+#8 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(22): Core\View::renderTemplate('Home/index.html')
+#9 [internal function]: App\Controllers\Home->indexAction()
+#10 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#11 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#12 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('')
+#13 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\Views\Home\index.html' on line 2
+[11-Jun-2021 16:11:16 Europe/Berlin] Uncaught exception: 'Twig\Error\SyntaxError' with message 'A template that extends another one cannot include content outside Twig blocks. Did you forget to put the content inside a {% block %} tag?'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(342): Twig\Parser->filterBodyNodes(Object(Twig\Node\TextNode), false)
+#1 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(86): Twig\Parser->filterBodyNodes(Object(Twig\Node\Node))
+#2 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#3 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#4 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#5 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', 'Home/index.html')
+#6 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('Home/index.html')
+#7 C:\xampp\htdocs\frameworkBudgetApp\Core\View.php(51): Twig\Environment->render('Home/index.html', Array)
+#8 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(22): Core\View::renderTemplate('Home/index.html')
+#9 [internal function]: App\Controllers\Home->indexAction()
+#10 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#11 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#12 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('')
+#13 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\Views\Home\index.html' on line 2
+[11-Jun-2021 16:30:49 Europe/Berlin] Uncaught exception: 'Twig\Error\SyntaxError' with message 'A template that extends another one cannot include content outside Twig blocks. Did you forget to put the content inside a {% block %} tag?'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(342): Twig\Parser->filterBodyNodes(Object(Twig\Node\TextNode), false)
+#1 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(86): Twig\Parser->filterBodyNodes(Object(Twig\Node\Node))
+#2 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#3 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#4 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#5 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', 'Home/index.html')
+#6 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('Home/index.html')
+#7 C:\xampp\htdocs\frameworkBudgetApp\Core\View.php(51): Twig\Environment->render('Home/index.html', Array)
+#8 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(22): Core\View::renderTemplate('Home/index.html')
+#9 [internal function]: App\Controllers\Home->indexAction()
+#10 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#11 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#12 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('')
+#13 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\Views\Home\index.html' on line 2
+[11-Jun-2021 16:30:53 Europe/Berlin] Uncaught exception: 'Twig\Error\SyntaxError' with message 'A template that extends another one cannot include content outside Twig blocks. Did you forget to put the content inside a {% block %} tag?'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(342): Twig\Parser->filterBodyNodes(Object(Twig\Node\TextNode), false)
+#1 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Parser.php(86): Twig\Parser->filterBodyNodes(Object(Twig\Node\Node))
+#2 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#3 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#4 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#5 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate('__TwigTemplate_...', 'Home/index.html')
+#6 C:\xampp\htdocs\frameworkBudgetApp\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('Home/index.html')
+#7 C:\xampp\htdocs\frameworkBudgetApp\Core\View.php(51): Twig\Environment->render('Home/index.html', Array)
+#8 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(22): Core\View::renderTemplate('Home/index.html')
+#9 [internal function]: App\Controllers\Home->indexAction()
+#10 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#11 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#12 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('')
+#13 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\Views\Home\index.html' on line 2

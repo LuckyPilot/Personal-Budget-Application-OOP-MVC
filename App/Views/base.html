@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title> {% block title %}Personal Budget!{% endblock %}</title>
+		<meta name="description" content="Your private personal budget application." />
+		<meta name="keywords" content="money, budget, personal, savings, incomes, expense" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+		<link href="/css/base.css" rel="stylesheet" />
+		<link href="/css/fontello.css" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+		{% block stylesheets %}{% endblock %}
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous" defer></script>
+		{% block scripts %}{% endblock %}
+		
+	</head>
+		
+	<body>
+		
+		<div class="container-fluid text-center">
+		
+			<!-- SECTION HEADER -->
+			{% block header %}{% endblock %}
+			
+			<!-- SECTION MAIN -->
+			<main class="row">
+				{% block leftaside %}{% endblock %}
+				{% block main %}{% endblock %}
+				{% block rightaside %}{% endblock %}
+			</main>
+			
+			<!-- SECTION FOOTER -->
+			<footer class="row ownShadow bg-lightgreen mt-2">
+			
+				<address class="col-md-4 my-auto d-flex justify-content-center">
+					<p class="m-0 py-1">If you see any mistakes, please: <a href="mailto:personalbudget@onet.com" class="btn btn-success" role="button"><i class="icon-paper-plane"></i> Write to us </a></p>
+					<span class="d-none d-md-block border-right border-success px-2"></span>
+				</address>
+				
+				<div class="col-md-8 my-auto">
+					<p class="font-weight-bold m-0 py-1"> &copy;Application only for personal use. For commercial use please contact with admin.&copy;</p>
+				</div>
+				
+				<!-- SECTION MODALS -->
+				{% block modals %}{% endblock %}
+				
+			</footer>
+			
+		</div>
+		
+	</body>
+	
+</html>

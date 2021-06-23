@@ -1,0 +1,49 @@
+/* GENERAL SETTINGS */
+*:root {
+	font-size: 2.5vmin;
+}
+
+body {
+	background-image: url("../img/background.png");
+	font-family: 'Lato', sans-serif;
+	overflow-y: scroll;
+}
+
+.error {
+	color: red;
+	display: block;
+}
+
+.ownShadow {
+	-webkit-box-shadow: 0px 4px 26px 9px rgba(19, 116, 13, 0.64);
+	-moz-box-shadow:  0px 4px 26px 9px rgba(19, 116, 13, 0.64);
+	box-shadow: 0px 4px 26px 9px rgba(19, 116, 13, 0.64);
+}
+
+.bg-lightgreen {
+	background-color: lightgreen;
+}
+
+.btn-success {
+	color: black;
+}
+
+/* HEADER SETTINGS */
+header {
+	min-height: 5rem;
+}
+
+h1, h3 {
+	letter-spacing: 0.1rem;
+	text-shadow: 4px 4px 10px rgb(60, 179, 113);
+}
+
+/* FOOTER SETTINGS */
+footer {
+	min-height: 3rem;
+}
+
+address a:hover {
+	border: 2px inset green;
+	color: black;
+}

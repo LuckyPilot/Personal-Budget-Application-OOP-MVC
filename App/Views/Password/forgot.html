@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Page not found
+{% endblock %}
+
+{% block stylesheets %}
+	<link href="/css/password.css" rel="stylesheet" />
+{% endblock %}
+
+{% block header %}
+	<header class="row ownShadow bg-lightgreen mb-2">
+		<h1 class="col-sm-12 my-auto font-weight-bold p-1">Reset your password</i></h1>
+	</header>
+{% endblock %}
+
+{% block leftaside %}
+	<!-- SECTION LEFT ADVERTISEMENT -->
+	<aside class="d-none d-sm-block col-sm-3 px-0 my-auto">
+		<img src="/img/add.png" alt="Advertisement" class="img-responsive float-left" style="max-width: 100%; height: auto;" />
+	</aside>
+{% endblock %}
+
+{% block main %}
+	<!-- SECTION MAIN -->
+	<section class="col-sm-6 my-auto px-1">
+		<h4 class="mt-2"> Insert your email to reset password: </h4>
+		<form class="mx-auto ownShadow bg-lightgreen" action="/ResetPassword/requestPasswordReset" method="post">
+			<div class="form-group">
+				<label>
+					<input class="form-control" type="email" name="userEmail" placeholder="E-mail" required />
+				</label>
+				<button type="submit" class="btn btn-success btn-lg mt-0 ml-2"><i class="icon-ccw"></i>Reset</button>
+			</div>
+		</form>
+	</section>
+{% endblock %}
+
+{% block rightaside %}
+	<!-- SECTIOn RIGHT ADVERTISEMENT-->
+	<aside class="d-none d-sm-block col-sm-3 px-0 my-auto">
+		<img src="/img/add.png" alt="Advertisement" class="img-responsive float-right" style="max-width: 100%; height: auto;" />
+	</aside>
+{% endblock %}
+
+{% block modals %}
+
+<!-- Modal confirms that reset password link was sent-->
+	<div class="modal" id="passwordResetSuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center">Email with link to reset password page was sent. Please check your email and follow instructions. Thank you.</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<form class="p-0" method="get" action="/ResetPassword/backToLoginPage">
+						<button type="submit" class="btn btn-success mt-0" >Come back to log in page.</button>
+					</form>
+				 </div>
+			</div>
+		</div>
+	</div>
+	{% if modalController['passwordResetSuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#passwordResetSuccess").modal("show");} );</script>
+	{% endif %}	
+	
+	<!-- Modal inform that user with this email doesn't exist-->
+	<div class="modal" id="passwordResetFail">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center">User with this email don't exist!!!<h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<button type="button" class="btn btn-success mt-0" data-dismiss="modal" >Come back to log in page.</button>
+				 </div>
+			</div>
+		</div>
+	</div>
+	{% if modalController['passwordResetFail'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#passwordResetFail").modal("show");} );</script>
+	{% endif %}	
+	
+{% endblock %}

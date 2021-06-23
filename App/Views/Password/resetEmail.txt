@@ -1,0 +1,6 @@
+Personal Budget Application 
+
+Password reset
+Please click on the below link to reset your password:
+
+{{ resetURL }}

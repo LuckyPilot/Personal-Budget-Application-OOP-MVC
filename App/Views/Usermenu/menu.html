@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Personal Budget!
+{% endblock %}
+
+{% block stylesheets %}
+	<link href="/css/menu.css" rel="stylesheet" />
+{% endblock %}
+
+{% block scripts %}
+	<script src="/js/menu.js" defer></script>
+{% endblock %}
+
+{% block header %}
+	<header class="row sticky-top py-2 py-md-0 ownShadow bg-lightgreen mb-2">
+				
+		<div class="col-1 col-md-2"></div>
+		<h1 class="col-10 col-md-8 my-auto font-weight-bold p-1"><i class="icon-news"></i> MAIN MENU <i class="icon-news"></i></h1>
+		
+		<!-- SEKCJA PANELU UZYTKOWNIKA -->
+		<nav class="col-1 col-md-2 p-0 d-flex flex-row-reverse">
+			<button type="button" class="d-block btn btn-success dropdown-toogle mt-0 h-100" data-toggle="dropdown">
+				<h6 class="m-0 d-none d-md-block"><i class="icon-user"></i>USER PANEL</h6>
+				<i class="d-block d-md-none material-icons">format_align_justify</i>
+			</button>
+			<div class="dropdown-menu dropdown-menu-right bg-success w-inherit" role="menu">
+				<a href="#" class="dropdown-item"><i class="icon-cog-outline"></i>Settings</a>
+				<a href="/Menu/logOut" class="dropdown-item"><i class="icon-logout"></i>Log out</a>
+			</div>
+		</nav>
+		
+	</header>
+{% endblock %}
+	
+{% block leftaside %}
+	<!-- SECTION LEFT ADVERTISEMENT -->
+	<aside class="d-none d-lg-block col-lg-2 px-0 my-auto">
+		<img src="/img/add.png" alt="Advertisement" class="img-responsive float-left" style="max-width: 100%; height: auto;" />
+	</aside>
+{% endblock %}
+
+{% block main %}
+	<section class="col-md-8">
+				
+	<!-- SECTION OF ADDING INCOMES -->
+	<button id="option0" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="" data-target="#insertion0">
+		<i class="icon-down-big"></i>
+		<h3 class="font-weight-bold mb-0 p-3"><i class="icon-plus-outline"></i>ADD INCOME</h3>
+		<i class="icon-down-big"></i>
+	</button>
+	<div id="insertion0" class="collapse formular p-3 ownShadow bg-lightgreen">
+		<form action="addIncome.php" method="post">
+			<div class="my-2">
+				<label><i class="icon-money"></i> Enter amount: <input type="number" name="amount" min="0" step="0.01" required /></label>
+			</div>
+			<div class="my-2">
+				<label><i class="icon-calendar"></i> Enter date: <input  type="date" id="incomeDate" name="date" required /></label>
+			</div>
+			<div class="my-2">
+				<fieldset class="d-flex flex-wrap justify-content-center p-2">
+					<legend><i class="icon-book"></i>  Category: </legend>
+					{% for category in userData.incomesCategory %}
+						{% if loop.first %}
+							<div class="custom-control custom-radio custom-control-inline">
+							<input id="{{ category['name'] }}" type="radio" class="custom-control-input" name="incomeCategory" value="{{ category['name'] }}" checked />
+							<label class="custom-control-label" for="{{ category['name'] }}">{{ category['name'] }}</label>
+							</div>
+						{% else %}
+							<div class="custom-control custom-radio custom-control-inline">
+							<input id="{{ category['name'] }}" type="radio" class="custom-control-input" name="incomeCategory" value="{{ category['name'] }}" />
+							<label class="custom-control-label" for="{{ category['name'] }}">{{ category['name'] }}</label>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</fieldset>
+			</div>
+			<div class="my-2">
+				<label><i class="icon-comment"></i>Comment (optional max. 42 chars): <textarea name="comment" maxlength="42"></textarea>
+				</label>
+			</div>
+			
+			<div class="my-2">
+				<button type="submit" class="btn bg-success my-2 font-weight-bold"><i class="icon-ok"></i> Add income </button>
+			</div>
+		</form>
+	</div>
+	
+	<!-- SECTION OF ADDING EXPENSES -->
+	<button id="option1" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" 
+	aria-expanded="" data-target="#insertion1">
+		<i class="icon-down-big"></i>
+		<h3 class="font-weight-bold mb-0 p-3"><i class="icon-minus-outline"></i> ADD EXPENSE </h3>
+		<i class="icon-down-big"></i>
+	</button>
+	<div id="insertion1" class="collapse formular p-3 ownShadow bg-lightgreen">
+		<form action="addExpense.php" method="post">
+			<div class="my-2">
+				<label><i class="icon-money"></i> Enter amount: <input type="number" name="amount" min="0" step="0.01" required /></label>
+			</div>
+			<div class="my-2">
+				<label><i class="icon-calendar"></i> Enter date: <input  type="date" id="expenseDate" name="date" required /></label>
+			</div>
+			<div class="my-2">
+				<fieldset class="d-flex flex-wrap justify-content-center p-2">
+					<legend><i class="icon-book"></i>  Payment method: </legend>
+					{% for method in userData.paymentMethods %}
+						{% if loop.first %}
+							<div class="custom-control custom-radio custom-control-inline">
+							<input id="{{ method['name'] }}" type="radio" class="custom-control-input" name="paymentCategory" value="{{ method['name'] }}" checked />
+							<label class="custom-control-label" for="{{ method['name'] }}">{{ method['name'] }}</label>
+							</div>
+						{% else %}
+							<div class="custom-control custom-radio custom-control-inline">
+							<input id="{{ method['name'] }}" type="radio" class="custom-control-input" name="paymentCategory" value="{{ method['name'] }}" />
+							<label class="custom-control-label" for="{{ method['name'] }}">{{ method['name'] }}</label>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</fieldset>
+			</div>
+			<div class="my-2">
+				<fieldset class="d-flex flex-wrap justify-content-center p-2">
+					<legend><i class="icon-book"></i>  Category: </legend>
+					{% for category in userData.expensesCategory %}
+						{% if loop.first %}
+							<div class="custom-control custom-radio custom-control-inline">
+							<input id="{{ category['name'] }}" type="radio" class="custom-control-input" name="expenseCategory" value="{{ category['name'] }}" checked />
+							<label class="custom-control-label" for="{{ category['name'] }}">{{ category['name'] }}</label>
+							</div>
+						{% else %}
+							<div class="custom-control custom-radio custom-control-inline">
+							<input id="{{ category['name'] }}" type="radio" class="custom-control-input" name="expenseCategory" value="{{ category['name'] }}" />
+							<label class="custom-control-label" for="{{ category['name'] }}">{{ category['name'] }}</label>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</fieldset>
+			</div>
+			<div class="my-2">
+				<label><i class="icon-comment"></i>Comment (optional max. 42 chars): <textarea name="comment" maxlength="42"></textarea>
+				</label>
+			</div>
+			<div class="my-2">
+				<button type="submit" class="btn bg-success my-2 font-weight-bold"><i class="icon-ok"></i> Add expense </button>
+			</div>
+		</form>
+	</div>
+	
+	<!-- SECTION OF CREATING OVERVIEW/BALANCE -->
+	<button id="option2" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse"
+	aria-expanded="" data-target="#insertion2">
+		<i class="icon-down-big" ></i>
+		<h3 class="font-weight-bold mb-0 p-3"><i class="icon-th-list-outline"></i> CREATE BALANCE </h3>
+		<i class="icon-down-big"></i>
+	</button>
+	<div id="insertion2" class="collapse formular p-3 ownShadow bg-lightgreen">
+		<form action="makeBalance.php" name="overviewForm" method="post" target="_blank">
+			<div class="my-2">
+				<label for="period"><i class="icon-list-alt"></i> Choose period: </label> 
+				<select id="period" name="period">
+					<option value="currentMonth" selected>Current month</option>
+					<option value="previousMonth">Previous month</option>
+					<option value="currentYear">Current year</option>
+					<option value="ownPeriod">Own period</option>
+				</select>
+			</div>
+			<div id="dataSelection">
+				<label class="d-block"><i class="icon-calendar"></i> Enter initial date: <input type="date" name="begDate" id="begDate" value="" disabled required /></label>
+				<label class="d-block"> and final date: <input type="date" name="endDate" id="endDate" value="" disabled required /></label>
+			</div>
+			<div class="my-2">
+				<button type="submit" class="btn bg-success my-2 font-weight-bold"><i class="icon-ok"></i> Show balance </button>
+			</div>
+		</form>
+	</div>
+	
+	<!-- SECTION OF DELETING INCOMES/EXPENSES -->
+	<button id="option3" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" data-target="#insertion3">
+		<i class="icon-down-big"></i>
+		<h3 class="font-weight-bold mb-0 p-3"><i class="icon-cancel-outline"></i> DELETE INCOME/EXPENSE </h3>
+		<i class="icon-down-big"></i>
+	</button>
+	<div id="insertion3" class="collapse formular p-3 ownShadow bg-lightgreen">
+		
+	</div>
+	
+</section>
+{% endblock %}
+
+{% block rightaside %}
+	<!-- SECTION RIGHT ADDVERTISEMENT -->
+	<aside class="d-none d-md-block col-md-2 px-0 my-auto">
+		<img src="/img/add.png" alt="Advertisement" class="img-responsive float-right" style="max-width: 100%; height: auto;" />
+	</aside>
+{% endblock %}
+
+{% block modals %}
+	<!-- SECTION FLASH MODAL WINDOWS -->
+	<!-- Modal welcomes logged in user -->
+	<div class="modal" id="logInSuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center">Hello {{ session['userName'] }} ! Welcome in free budget application:)</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<button type="button" class="btn btn-success" data-dismiss="modal">Click to begin!</button>
+				 </div>
+			</div>
+		</div>
+	</div>
+	{% if modalController['logInSuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#logInSuccess").modal("show");} );</script>
+	{% endif %}	
+	
+	<!-- Modal confirms that adding income was successful -->
+	<div class="modal" id="addIncomeSuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center">Income was added sueccessfully!</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<button type="button" class="btn btn-success" data-dismiss="modal">Click to make another operation.</button>
+				 </div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- <script>document.addEventListener( "DOMContentLoaded" ,function() {$("#addIncomeSuccess").modal("show");} );</script> -->
+	
+	<!-- Modal confirms that adding expense was successful -->
+	<div class="modal" id="addExpenseSuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center">Expense was added sueccessfully!</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<button type="button" class="btn btn-success" data-dismiss="modal">Click to make another operation.</button>
+				 </div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- <script>document.addEventListener( "DOMContentLoaded" ,function() {$("#addExpenseSuccess").modal("show");} );</script> -->
+	
+{% endblock %}

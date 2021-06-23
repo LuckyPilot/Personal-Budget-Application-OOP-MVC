@@ -1,0 +1,8 @@
+[10-Jun-2021 18:30:58 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('product')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130
+[10-Jun-2021 20:57:13 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(32): Core\Router->dispatch('HNAP1/')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php' on line 130

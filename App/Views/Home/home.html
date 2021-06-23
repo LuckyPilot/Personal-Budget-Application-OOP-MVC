@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Personal Budget!
+{% endblock %}
+
+{% block stylesheets %}
+	<link href="/css/home.css" rel="stylesheet" />
+{% endblock %}
+
+{% block scripts %}
+	<script src="https://www.google.com/recaptcha/api.js?hl=en" async defer></script>
+{% endblock %}
+
+{% block header %}
+	<header class="row ownShadow bg-lightgreen mb-2">
+		<h1 class="col-sm-12 my-auto font-weight-bold p-1"><i class="icon-money-1"></i> PERSONAL BUDGET APPLICATION <i class="icon-money-1"></i></h1>
+	</header>
+{% endblock %}
+
+{% block leftaside %}
+	<!-- SECTION LEFT ADVERTISEMENT -->
+	<aside class="d-none d-lg-block col-lg-2 px-0 my-auto">
+		<img src="/img/add.png" alt="Advertisement" class="img-responsive float-left" style="max-width: 100%; height: auto;" />
+	</aside>
+{% endblock %}
+
+{% block main %}
+	<!-- SECTION LOG IN -->
+	<section class="col-md-5 col-lg-4 px-1 my-auto">
+		<h4 class="mt-2"> Gain full control over own moneys, thanks to our application!!! </h4>
+		<h3 class="font-weight-bold"> LOG INTO </h3>
+		<form class="mx-auto ownShadow bg-lightgreen" action="/Home/logIn" method="post">
+			<div class="form-group">
+				<label>
+					<input class="form-control" type="email" name="login" placeholder="E-mail" value="{{ logUser.login }}" required />
+				</label>
+			</div>
+			<div class="form-group">
+				<label>
+					<input class="form-control" type="password" name="password" placeholder="Password" required />
+				</label>
+				{% if logUser.error is defined %}
+					<span class="error">{{ logUser.error }}</span>
+				{% endif %}
+			</div>
+			<div class="custom-checkbox form-group mb-0"> 
+				<input id="rememberMe" class="custom-control-input" type="checkbox" name="rememberMe" {% if logUser.rememberMe is defined %} checked {% endif %} />
+				<label for="rememberMe"class="custom-control-label">Remember me</label>
+			</div>
+			<button type="submit" class="btn btn-success btn-lg"><i class="icon-login"></i> Log In </button>
+			<p class="mt-2 mb-0"><a href="/request-password-reset">Forgot password??</a></p>
+		</form>
+	</section>
+	
+	<!-- SECTION REGISTRATION -->
+	<section class="col-md-5 col-lg-4 px-1 my-auto">
+		<h4 class="mt-2"> Haven't you had account yet?? Don't waste your time and take care about you finance now!!! </h4>
+		<h3 class="font-weight-bold"> CREATE NEW ACCOUNT </h3>
+		<form id="registerForm" class="mb-4 mx-auto ownShadow bg-lightgreen" action="/Home/register" method="post">
+			<div class="form-group">
+				<label>
+					<input class="form-control" type="text" name="name" placeholder="Name" value="{{ regUser.name }}" required />
+				</label>
+				{% if regUser.errors['name'] is defined %}
+					<span class="error">{{ regUser.errors['name'] }}</span>
+				{% endif %}
+			</div>
+			<div class="form-group">
+				<label>
+					<input class="form-control" type="email" name="email" placeholder="E-mail" value="{{ regUser.email }}" required />
+				</label>
+				{% if regUser.errors['email'] is defined %}
+					<span class="error">{{ regUser.errors['email'] }}</span>
+				{% endif %}
+			</div>
+			<div class="form-group">
+				<label>
+					<input id="password1" class="form-control" type="password" name="password" placeholder="Password" minlength="8" required />
+				</label>
+				{% if regUser.errors['password'] is defined %}
+					<span class="error">{{ regUser.errors['password'] }}</span>
+				{% endif %}
+			</div>
+			<div class="form-group">
+				<label>
+					<input class="form-control" type="password" name="passwordConfirmation" placeholder="Repeat password" minlength="8" required />
+				</label>
+			</div>
+			<div class= "custom-checkbox form-group"> 
+				<input id="regulations" class="custom-control-input" type="checkbox" name="terms" required />
+				<label for="regulations"class="custom-control-label">I'm accepting <a href="#" target="_blank"> Terms</a></label>
+				{% if regUser.errors['terms'] is defined %}
+					<span class="error">{{ regUser.errors['terms'] }}</span>
+				{% endif %}
+			</div>
+			<div class="g-recaptcha d-table mx-auto mt-1" data-sitekey="6LcVpuMaAAAAAJjvPFXPsT7YatsGtnO3lAaFzSzx"></div>
+			{% if regUser.errors['captcha'] is defined %}
+				<span class="error">{{ regUser.errors['captcha'] }}</span>
+			{% endif %}
+			<!--  6LcgSBQbAAAAABDmwwpMJ_SaKeJKvB4Eo7chp5Cq    CODE TO SERVER RECAPTCHA -->
+			<!--  6LcVpuMaAAAAAJjvPFXPsT7YatsGtnO3lAaFzSzx    CODE TO LOCALHOST RECAPTCHA -->
+			<button type="submit" class="btn btn-success btn-lg"><i class="icon-user-plus"></i> Sign up </button>
+		</form>
+	</section>
+{% endblock %}
+
+{% block rightaside %}
+	<!-- SECTION RIGHT ADDVERTISEMENT -->
+	<aside class="d-none d-md-block col-md-2 px-0 my-auto">
+		<img src="/img/add.png" alt="Advertisement" class="img-responsive float-right" style="max-width: 100%; height: auto;" />
+	</aside>
+{% endblock %}
+
+{% block modals %}
+	<!-- SECTION FLASH MODAL WINDOWS -->
+	<!-- Modal confirms that regitration was successful -->
+	<div class="modal" id="registrationSuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center">Congratulations!!! You signed up successfully!!!</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<button type="button" class="btn btn-success" data-dismiss="modal">Come back to log in page.</button>
+				 </div>
+			</div>
+		</div>
+	</div>
+	{% if modalController['registrationSuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#registrationSuccess").modal("show");} );</script>
+	{% endif %}	
+	
+	<!-- Modal confirms that log out was successful -->
+	<div class="modal" id="logOutSuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center">You logged out successfully!!!</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<button type="button" class="btn btn-success" data-dismiss="modal">Come back to log in page.</button>
+				 </div>
+			</div>
+		</div>
+	</div>
+	{% if modalController['logOutSuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#logOutSuccess").modal("show");} );</script>
+	{% endif %}	
+	
+
+{% endblock %}

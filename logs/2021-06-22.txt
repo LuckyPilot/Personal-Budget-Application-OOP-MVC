@@ -1,0 +1,67 @@
+[22-Jun-2021 14:36:17 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(25): App\MailSender::sentEmail('lukasz.mackow.p...', 'Mail wyslany na...', 'To dziala!!!', '<h1>To dzia\xC5\x82a!...')
+#1 [internal function]: App\Controllers\Home->indexAction()
+#2 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#4 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(37): Core\Router->dispatch('')
+#5 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\MailSender.php' on line 57
+[22-Jun-2021 14:36:47 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(25): App\MailSender::sentEmail('lukasz.mackow.p...', 'Mail wyslany na...', 'To dziala!!!', '<h1>To dzia\xC5\x82a!...')
+#1 [internal function]: App\Controllers\Home->indexAction()
+#2 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#4 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(37): Core\Router->dispatch('')
+#5 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\MailSender.php' on line 57
+[22-Jun-2021 14:38:08 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(25): App\MailSender::sentEmail('lukasz.mackow.p...', 'Mail wyslany na...', 'To dziala!!!', '<h1>To dzia\xC5\x82a!...')
+#1 [internal function]: App\Controllers\Home->indexAction()
+#2 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#4 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(37): Core\Router->dispatch('')
+#5 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\MailSender.php' on line 57
+[22-Jun-2021 14:39:27 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(25): App\MailSender::sentEmail('lukasz.mackow.p...', 'Mail wyslany na...', 'To dziala!!!', '<h1>To dzia\xC5\x82a!...')
+#1 [internal function]: App\Controllers\Home->indexAction()
+#2 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#4 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(37): Core\Router->dispatch('')
+#5 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\MailSender.php' on line 57
+[22-Jun-2021 14:40:05 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(25): App\MailSender::sentEmail('lukasz.mackow.p...', 'Mail wyslany na...', 'To dziala!!!', '<h1>To dzia\xC5\x82a!...')
+#1 [internal function]: App\Controllers\Home->indexAction()
+#2 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#4 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(37): Core\Router->dispatch('')
+#5 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\MailSender.php' on line 57
+[22-Jun-2021 14:40:30 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(25): App\MailSender::sentEmail('lukasz.mackow.p...', 'Mail wyslany na...', 'To dziala!!!', '<h1>To dzia\xC5\x82a!...')
+#1 [internal function]: App\Controllers\Home->indexAction()
+#2 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#4 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(37): Core\Router->dispatch('')
+#5 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\MailSender.php' on line 57
+[22-Jun-2021 14:41:21 Europe/Berlin] Uncaught exception: 'Exception' with message 'Error during sending email.'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(25): App\MailSender::sentEmail('lukasz.mackow.p...', 'Mail wyslany na...', 'To dziala!!!', '<h1>To dzia\xC5\x82a!...')
+#1 [internal function]: App\Controllers\Home->indexAction()
+#2 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#3 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#4 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(37): Core\Router->dispatch('')
+#5 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\App\MailSender.php' on line 57
+[22-Jun-2021 14:51:36 Europe/Berlin] Uncaught exception: 'PHPMailer\PHPMailer\Exception' with message 'SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting'
+Stack trace: #0 C:\xampp\htdocs\frameworkBudgetApp\vendor\phpmailer\phpmailer\src\PHPMailer.php(1638): PHPMailer\PHPMailer\PHPMailer->smtpSend('Date: Tue, 22 J...', 'This is a multi...')
+#1 C:\xampp\htdocs\frameworkBudgetApp\vendor\phpmailer\phpmailer\src\PHPMailer.php(1471): PHPMailer\PHPMailer\PHPMailer->postSend()
+#2 C:\xampp\htdocs\frameworkBudgetApp\App\MailSender.php(53): PHPMailer\PHPMailer\PHPMailer->send()
+#3 C:\xampp\htdocs\frameworkBudgetApp\App\Controllers\Home.php(25): App\MailSender::sentEmail('lukasz.mackow.p...', 'Mail wyslany na...', 'To dziala!!!', 'To dziala!!!')
+#4 [internal function]: App\Controllers\Home->indexAction()
+#5 C:\xampp\htdocs\frameworkBudgetApp\Core\Controller.php(48): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\frameworkBudgetApp\Core\Router.php(121): Core\Controller->__call('index', Array)
+#7 C:\xampp\htdocs\frameworkBudgetApp\public\index.php(37): Core\Router->dispatch('')
+#8 {main}
+Thrown in 'C:\xampp\htdocs\frameworkBudgetApp\vendor\phpmailer\phpmailer\src\PHPMailer.php' on line 1961
