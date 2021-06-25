@@ -11,7 +11,7 @@ use \App\Models\Password;
  *
  * PHP version 7.4
  */
-class ResetPassword extends \Core\Controller
+class RequestPasswordReset extends \Core\Controller
 {
 	
     /**
@@ -21,7 +21,7 @@ class ResetPassword extends \Core\Controller
      */
     public function indexAction() {
 		
-		View::renderTemplate( "RegainPassword/regainPassword.html" );
+		View::renderTemplate( "RequestPasswordReset/requestPasswordReset.html" );
 		
 	}
 	 
@@ -33,15 +33,15 @@ class ResetPassword extends \Core\Controller
 	public function requestPasswordResetAction() {
 		
 		$newPassword = new Password( $_POST );
-		$result = $newPassword -> resetUserPassword();
+		$result = $newPassword -> requestPasswordReset();
 		
 		 if ($result === true) {
-			 $this -> redirect( "/password-reset-success" );
+			 $this -> redirect( "/request-password-reset-success" );
 		 } elseif(empty( $result )) {
-			 FlashModals::addModal( "passwordResetFail" );
+			 FlashModals::addModal( "requestPasswordResetFail" );
 		 }
 		 
-		View::renderTemplate( "RegainPassword/regainPassword.html", ["passResetErrors" => $result] );
+		View::renderTemplate( "RequestPasswordReset/requestPasswordReset.html", ["reqPassResetErrors" => $result] );
 		
 	}
 	
@@ -50,10 +50,19 @@ class ResetPassword extends \Core\Controller
      *
      * @return void
      */
-	public function passwordResetSuccess() {
+	public function requestPasswordResetSuccess() {
 		
-		FlashModals::addModal( "passwordResetSuccess" );
-		$this -> redirect( "/regain-password");
+		FlashModals::addModal( "requestPasswordResetSuccess" );
+		$this -> redirect( "/request-password");
+		
+	}
+	
+	/**
+     * Reseting user password
+     *
+     * @return void
+     */
+	public function passwordResetAction() {
 		
 	}
 	

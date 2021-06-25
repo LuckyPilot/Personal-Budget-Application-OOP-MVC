@@ -15,10 +15,13 @@ class Password extends \Core\Model
 	
 	/**
 	 * Properties
-	 * Values sent by user during password reset process
+	 * Values sent by user during password changing/reseting process
 	 */
-	 private $resetEmail = NULL;
+	 private $requestResetEmail = NULL;
 	 private $reCaptcha = NULL;
+	 private $newPassword = NULL;
+	 private $newPasswordConfirmation = NULL;
+	 private $resetTokenValue = NULL;
 	 
 	 /**
 	 * Class constructor
@@ -40,16 +43,16 @@ class Password extends \Core\Model
 	 }
 	
 	/**
-	 * Reseting password by sending email with password reset link to user
+	 * Starting reset password procedure by sending email with password reset link to user    
 	 *
 	 * @return true if success, otherwise false
 	 */
-	public function resetUserPassword() {
+	public function requestPasswordReset() {
 		 
 		$validationErrors = $this -> validateUserEmailInput();
 		 
 		 if (empty( $validationErrors )) {
-			$user = new User( $this -> resetEmail );
+			$user = new User( $this -> requestResetEmail );
 			 
 			 if ($user -> exist) {
 				$resetTokenValue = $this -> preparePasswordResetToken( $user -> id );
@@ -62,9 +65,68 @@ class Password extends \Core\Model
 		 return $validationErrors;
 		 
 	} 
-	 
+	
+	public function resetUserPassword() {
+		
+		$validationErrors = $this -> validateUserPasswordInput();
+		 
+		 if (empty( $validationErrors )) {
+			$passwordResetToken = new PasswordResetToken( $this -> resetTokenValue );
+			$tokenDataFromDB = $passwordResetToken -> findTokenInDB();
+			
+			if ($this -> changeUserPassword( $tokenDataFromDB -> user_id )) {
+				$passwordResetToken -> deleteTokenFromDB( $tokenDataFromDB -> user_id );
+				return true;
+			}
+		}
+		 
+		 //return $validationErrors;
+		
+	}
+	
+	public function changeUserPassword( $userId ) {
+	
+		$sql = "UPDATE users SET password = :newPassword WHERE id = :userId ";
+		$passwordHash = password_hash( $this -> newPassword, PASSWORD_DEFAULT );
+		 
+		$db = static::getDB();
+		
+		$stmt = $db -> prepare( $sql );
+		$stmt -> bindValue( ":newPassword", $passwordHash , PDO::PARAM_STR );
+		$stmt -> bindValue( ":userId", $userId, PDO::PARAM_INT );
+		
+		return $stmt -> execute();
+		
+	}
+	
 	/**
-	 * Validating property values
+	 * Checking whether passwordResetToken given from URL exists and is valid, if not valid remove it from DB
+	 *
+	 * @param string $tokenValue Token value fetched from URL
+	 *
+	 * @return true if exists and is valid, otherwise false
+	 */
+	public function checkPasswordResetToken( $tokenValue ) {
+		
+		$passwordResetToken = new PasswordResetToken( $tokenValue );
+		$tokenDataFromDB = $passwordResetToken -> findTokenInDB();
+		
+		if ($tokenDataFromDB) {
+			$passwordResetToken -> setExpiryDate( $tokenDataFromDB -> expiry_date );
+			
+			if ($passwordResetToken -> checkExpiryDate()) {
+				return true;
+			} else {
+				$passwordResetToken -> deleteTokenFromDB();
+			}
+		}
+		
+		return false;
+		
+	}
+	
+	/**
+	 * Validating request password reset form values
 	 *
 	 * @return array $inputValidation Errors messages during validation process
 	 */
@@ -72,8 +134,22 @@ class Password extends \Core\Model
 		 
 		$inputValidation = new DataValidator();
 		 
-		$inputValidation -> validateEmailFormat( $this -> resetEmail );
+		$inputValidation -> validateEmailFormat( $this -> requestResetEmail );
 		$inputValidation -> validateCaptcha( $this -> reCaptcha );
+		 
+		return $inputValidation -> validationErrors;
+	}
+	
+	/**
+	 * Validating password reset form values
+	 *
+	 * @return array $inputValidation Errors messages during validation process
+	 */
+	private function validateUserPasswordInput() {
+		 
+		$inputValidation = new DataValidator();
+		 
+		$inputValidation -> validatePassword( $this -> newPassword, $this -> newPasswordConfirmation );
 		 
 		return $inputValidation -> validationErrors;
 	}
@@ -85,14 +161,14 @@ class Password extends \Core\Model
 	 *
 	 * @return true if mail sent, otherwise false
 	 */
-	public function sendPasswordResetEmail( $resetPasswordTokenValue ) {
+	private function sendPasswordResetEmail( $resetPasswordTokenValue ) {
 		
-		if ($resetTokenValue != false) {
+		if ($resetPasswordTokenValue != false) {
 			$resetURL = $this -> prepareResetPasswordURL( $resetPasswordTokenValue );
-			$emailText = \Core\View::getTemplate( "RegainPassword/resetEmail.txt", [ "resetURL" => $resetURL ] );
-			$emailHtml = \Core\View::getTemplate( "RegainPassword/resetEmail.html", [ "resetURL" => $resetURL ] );
+			$emailText = \Core\View::getTemplate( "RequestPasswordReset/requestResetEmail.txt", [ "resetURL" => $resetURL ] );
+			$emailHtml = \Core\View::getTemplate( "RequestPasswordReset/requestResetEmail.html", [ "resetURL" => $resetURL ] );
 			$emailSubject = "Password reset Personal Budget Application";
-			if (MailSender::sendEmail( $this -> resetEmail, $emailSubject, $emailText, $emailHtml )) {
+			if (MailSender::sendEmail( $this -> requestResetEmail, $emailSubject, $emailText, $emailHtml )) {
 				return true;
 			}
 		}
@@ -133,7 +209,7 @@ class Password extends \Core\Model
 	 */
 	 private function prepareResetPasswordURL( $resetTokenValue ) {
 		 
-		 $resetURL = "http://" . $_SERVER["HTTP_HOST"] . "/pasword/reset" . $resetTokenValue;
+		 $resetURL = "https://" . $_SERVER["HTTP_HOST"] . "/password/reset/" . $resetTokenValue;
 		 return $resetURL;
 		 
 	}

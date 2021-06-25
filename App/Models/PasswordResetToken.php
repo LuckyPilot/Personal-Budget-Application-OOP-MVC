@@ -39,23 +39,24 @@ class PasswordResetToken extends \App\Token
 	 *
 	 * @return void
 	 */
-	public function deleteTokenFromDB() {
+	public function deleteTokenFromDB( $userID = NULL ) {
 		 
-		/*$hashedToken = $this -> getHashedToken();
+		$hashedToken = $this -> getHashedToken();
 		
-		$sql = "DELETE FROM remembered_logins WHERE token_hash = :hashedToken";
+		$sql = "DELETE FROM reset_passwords WHERE token_hash = :hashedToken OR user_id = :userId";
 		 
 		$db = static::getDB();
 		
 		$stmt = $db -> prepare( $sql );
 		$stmt -> bindValue( ":hashedToken", $hashedToken, PDO::PARAM_STR );
+		$stmt -> bindValue( ":userId", $userID, PDO::PARAM_INT );
 		
-		$stmt -> execute();*/
+		$stmt -> execute();
 		
 	}
 	
 	/**
-	 * Find user token in DB remembered_logins table
+	 * Find user token in DB reset_passwords table
 	 *
 	 * @param string $token Token value
 	 *
@@ -63,17 +64,17 @@ class PasswordResetToken extends \App\Token
 	 */
 	public function findTokenInDB() {
 		
-		/*$rememberedTokenHash = $this -> getHashedToken();
+		$passwordResetTokenHash = $this -> getHashedToken();
 		
-		$sql = "SELECT * FROM remembered_logins WHERE token_hash = :rememberedTokenHash";
+		$sql = "SELECT * FROM reset_passwords WHERE token_hash = :passwordResetTokenHash";
 		
 		$db = static::getDB();
 		
 		$stmt = $db -> prepare( $sql );
-		$stmt -> bindValue( ":rememberedTokenHash", $rememberedTokenHash, PDO::PARAM_STR );
+		$stmt -> bindValue( ":passwordResetTokenHash", $passwordResetTokenHash, PDO::PARAM_STR );
 		$stmt -> execute();
 		 
-		return $stmt -> fetch( PDO::FETCH_OBJ );*/
+		return $stmt -> fetch( PDO::FETCH_OBJ );
 	}
 	
 }

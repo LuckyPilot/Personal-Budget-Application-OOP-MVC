@@ -11,12 +11,10 @@ class Token extends \Core\Model
 {
 	
 	/**
-	 * Token value
-	 *
-	 * @var string
+	 * Properties
 	 */
 	public ?string $value = NULL;
-	public ?string $expiryDate = NULL;
+	public ?string $expiryDate = NULL;  //(format Y-m-d H:i:s) 
 	 
 	 /**
 	 * Class constructor. Create exisitng token or new random token if token not exist
