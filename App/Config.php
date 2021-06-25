@@ -20,13 +20,13 @@ class Config
      * Database name
      * @var string
      */
-    const DB_NAME = 'db_budget';
+    const DB_NAME = 'lukaszm2_budget';
 
     /**
      * Database user
      * @var string
      */
-    const DB_USER = 'mvcuser';
+    const DB_USER = 'lukaszm2_budgetAdmin';
 
     /**
      * Database password
@@ -50,7 +50,7 @@ class Config
      * Secret key for RECAPTCHA
      * @var string
      */
-	 const SECRET_RECAPTCHA_KEY = '6LcVpuMaAAAAAO3UAn-mt-fChaxmGW8Sg-yPX2Vi';
+	 const SECRET_RECAPTCHA_KEY = '6LcgSBQbAAAAAIVPk3oaooKUjS3qO3bY3eLoQJgf';
 	 		//  6LcgSBQbAAAAAIVPk3oaooKUjS3qO3bY3eLoQJgf secret code do recaptchy serwerowej
 			//  6LcVpuMaAAAAAO3UAn-mt-fChaxmGW8Sg-yPX2Vi secret code do recaptchy localhostowej
 	 
@@ -58,13 +58,13 @@ class Config
      * Name for smtp server
      * @var string
      */
-	 const SMTP_HOST = 'smtp.gmail.com';
+	 const SMTP_HOST = 'mail.lukaszmackow.pl';
 	 
 	/**
      * Login for smtp server
      * @var string
      */
-	 const SMTP_USERNAME = 'l163g16@gmail.com';
+	 const SMTP_USERNAME = 'personalbudgetapplication@lukaszmackow.pl';
 	 
 	/**
      * Password for smtp server

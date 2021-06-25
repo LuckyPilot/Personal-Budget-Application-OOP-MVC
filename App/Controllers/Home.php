@@ -3,14 +3,15 @@
 namespace App\Controllers;
 
 use \Core\View;
-use \App\Models\UserManager;
+use \App\Models\Registration;
+use \App\Models\Login;
+use \App\Models\LoginToken;
 use \App\FlashModals;
-use \App\MailSender;
 
 /**
  * Home controller
  *
- * PHP version 7.0
+ * PHP version 7.4
  */
 class Home extends \Core\Controller
 {
@@ -22,9 +23,10 @@ class Home extends \Core\Controller
      */
     public function indexAction() {
 		
-		$user = new UserManager();
+		$user = new Login();
 		
 		if ($user -> isUserLoggedIn()) {
+			FlashModals::addModal( "logInSuccess");
 			$this -> redirect( "/usermenu" );
 		} else {
 			View::renderTemplate( "Home/home.html" );
@@ -39,14 +41,14 @@ class Home extends \Core\Controller
      */
 	public function registerAction() {
 		
-		$user = new UserManager();
-		$result = $user -> registerNewUser(  $_POST );
+		$newUser = new Registration( $_POST );
+		$result = $newUser -> registerNewUser();
 		
 		if ( $result === true ) {
 			FlashModals::addModal( "registrationSuccess" );
-			$this -> redirect( "/" );
+			$this -> redirect( "/home" );
 		} else {
-			View::renderTemplate( "Home/home.html", ["regUser" => $result] );
+			View::renderTemplate( "Home/home.html", ["regErrors" => $result] );
 		}
 		
 	}
@@ -58,13 +60,14 @@ class Home extends \Core\Controller
      */
 	public function logInAction() {
 		
-		$user = new UserManager();
-		$result = $user -> logInUser( $_POST );
+		$logUser = new Login( $_POST );
+		$result = $logUser -> logInUser( $_POST );
 		
 		if ( $result === true ) {
+			FlashModals::addModal( "logInSuccess");
 			$this -> redirect( $this -> getRequestedPage() );
 		} else {
-			View::renderTemplate( "Home/home.html", ["logUser" => $result] );
+			View::renderTemplate( "Home/home.html", ["loginError" => $result] );
 		}	
 		
 	}
@@ -77,7 +80,7 @@ class Home extends \Core\Controller
 	 public function logOutAction() {
 		 
 		 FlashModals::addModal( "logOutSuccess" );
-		 $this -> redirect( "/" );
+		 $this -> redirect( "/home" );
 		 
 	 }
 	 

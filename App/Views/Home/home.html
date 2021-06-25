@@ -30,26 +30,26 @@
 	<section class="col-md-5 col-lg-4 px-1 my-auto">
 		<h4 class="mt-2"> Gain full control over own moneys, thanks to our application!!! </h4>
 		<h3 class="font-weight-bold"> LOG INTO </h3>
-		<form class="mx-auto ownShadow bg-lightgreen" action="/Home/logIn" method="post">
+		<form class="mx-auto ownShadow bg-lightgreen" action="/login" method="post">
 			<div class="form-group">
 				<label>
-					<input class="form-control" type="email" name="login" placeholder="E-mail" value="{{ logUser.login }}" required />
+					<input class="form-control" type="email" name="login" placeholder="E-mail" value="{{ post['login'] }}" required />
 				</label>
 			</div>
 			<div class="form-group">
 				<label>
 					<input class="form-control" type="password" name="password" placeholder="Password" required />
 				</label>
-				{% if logUser.error is defined %}
-					<span class="error">{{ logUser.error }}</span>
+				{% if loginError is defined %}
+					<span class="error">{{ loginError }}</span>
 				{% endif %}
 			</div>
 			<div class="custom-checkbox form-group mb-0"> 
-				<input id="rememberMe" class="custom-control-input" type="checkbox" name="rememberMe" {% if logUser.rememberMe is defined %} checked {% endif %} />
+				<input id="rememberMe" class="custom-control-input" type="checkbox" name="rememberMe" {% if post['rememberMe'] is defined %} checked {% endif %} />
 				<label for="rememberMe"class="custom-control-label">Remember me</label>
 			</div>
 			<button type="submit" class="btn btn-success btn-lg"><i class="icon-login"></i> Log In </button>
-			<p class="mt-2 mb-0"><a href="/request-password-reset">Forgot password??</a></p>
+			<p class="mt-2 mb-0"><a href="/regain-password">Forgot password??</a></p>
 		</form>
 	</section>
 	
@@ -57,29 +57,29 @@
 	<section class="col-md-5 col-lg-4 px-1 my-auto">
 		<h4 class="mt-2"> Haven't you had account yet?? Don't waste your time and take care about you finance now!!! </h4>
 		<h3 class="font-weight-bold"> CREATE NEW ACCOUNT </h3>
-		<form id="registerForm" class="mb-4 mx-auto ownShadow bg-lightgreen" action="/Home/register" method="post">
+		<form id="registerForm" class="mb-4 mx-auto ownShadow bg-lightgreen" action="/registration" method="post">
 			<div class="form-group">
 				<label>
-					<input class="form-control" type="text" name="name" placeholder="Name" value="{{ regUser.name }}" required />
+					<input class="form-control" type="text" name="name" placeholder="Name" value="{{ post['name'] }}" required />
 				</label>
-				{% if regUser.errors['name'] is defined %}
-					<span class="error">{{ regUser.errors['name'] }}</span>
+				{% if regErrors['invalidName'] is defined %}
+					<span class="error">{{ regErrors['invalidName'] }}</span>
 				{% endif %}
 			</div>
 			<div class="form-group">
 				<label>
-					<input class="form-control" type="email" name="email" placeholder="E-mail" value="{{ regUser.email }}" required />
+					<input class="form-control" type="email" name="email" placeholder="E-mail" value="{{ post['email'] }}" required />
 				</label>
-				{% if regUser.errors['email'] is defined %}
-					<span class="error">{{ regUser.errors['email'] }}</span>
+				{% if regErrors['invalidEmail'] is defined %}
+					<span class="error">{{ regErrors['invalidEmail'] }}</span>
 				{% endif %}
 			</div>
 			<div class="form-group">
 				<label>
 					<input id="password1" class="form-control" type="password" name="password" placeholder="Password" minlength="8" required />
 				</label>
-				{% if regUser.errors['password'] is defined %}
-					<span class="error">{{ regUser.errors['password'] }}</span>
+				{% if regErrors['invalidPassword'] is defined %}
+					<span class="error">{{ regErrors['invalidPassword'] }}</span>
 				{% endif %}
 			</div>
 			<div class="form-group">
@@ -90,13 +90,13 @@
 			<div class= "custom-checkbox form-group"> 
 				<input id="regulations" class="custom-control-input" type="checkbox" name="terms" required />
 				<label for="regulations"class="custom-control-label">I'm accepting <a href="#" target="_blank"> Terms</a></label>
-				{% if regUser.errors['terms'] is defined %}
-					<span class="error">{{ regUser.errors['terms'] }}</span>
+				{% if regErrors['invalidTerms'] is defined %}
+					<span class="error">{{ regErrors['invalidTerms'] }}</span>
 				{% endif %}
 			</div>
-			<div class="g-recaptcha d-table mx-auto mt-1" data-sitekey="6LcVpuMaAAAAAJjvPFXPsT7YatsGtnO3lAaFzSzx"></div>
-			{% if regUser.errors['captcha'] is defined %}
-				<span class="error">{{ regUser.errors['captcha'] }}</span>
+			<div class="g-recaptcha d-table mx-auto mt-1" data-sitekey="6LcgSBQbAAAAABDmwwpMJ_SaKeJKvB4Eo7chp5Cq"></div>
+			{% if regErrors['invalidCaptcha'] is defined %}
+				<span class="error">{{ regErrors['invalidCaptcha'] }}</span>
 			{% endif %}
 			<!--  6LcgSBQbAAAAABDmwwpMJ_SaKeJKvB4Eo7chp5Cq    CODE TO SERVER RECAPTCHA -->
 			<!--  6LcVpuMaAAAAAJjvPFXPsT7YatsGtnO3lAaFzSzx    CODE TO LOCALHOST RECAPTCHA -->

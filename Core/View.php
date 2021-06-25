@@ -61,6 +61,7 @@ class View
             $twig = new \Twig\Environment($loader);
 			$twig -> addGlobal( 'modalController', \App\FlashModals::getModals() );
 			$twig -> addGlobal('session', $_SESSION);
+			$twig -> addGlobal('post', $_POST);
         }
 
         return $twig->render($template, $args);

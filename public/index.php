@@ -31,8 +31,14 @@ $router = new Core\Router();
 
 // Add the routes
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
+$router->add('home', ['controller' => 'Home', 'action' => 'index']);
+$router->add('registration', ['controller' => 'Home', 'action' => 'register']);
+$router->add('login', ['controller' => 'Home', 'action' => 'logIn']);
+$router->add('logout', ['controller' => 'Home', 'action' => 'logOut']);
 $router->add('usermenu', ['controller' => 'Menu', 'action' => 'index']);
-$router->add('request-password-reset', ['controller' => 'ResetPassword', 'action' => 'forgot']);
+$router->add('regain-password', ['controller' => 'ResetPassword', 'action' => 'index']);
+$router->add('password-reset-success', ['controller' => 'ResetPassword', 'action' => 'passwordResetSuccess']);
+$router->add('request-password-reset', ['controller' => 'ResetPassword', 'action' => 'requestPasswordReset']);
 $router->add('password/reset/{token:[\da-f]+}', ['controller' => 'ResetPassword', 'action' => 'forgot']);
 $router->add('{controller}/{action}');
     

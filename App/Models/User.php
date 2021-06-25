@@ -1,18 +1,20 @@
-<?php
+<?php 
 
-namespace App\NewModels;
+namespace App\Models;
 
 use PDO;
 
 /**
  * Basic user class fetching all properties from DB based on id or email
  *
- * PHP version 7.0
+ * PHP version 7.4
  */
 class User extends \Core\Model
 {
+	
 	/**
 	 * Properties
+	 * User values fetched from DB
 	 */
 	 public ?int $id = NULL; 
 	 public ?string $name = NULL;
