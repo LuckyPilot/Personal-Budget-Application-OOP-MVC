@@ -3,9 +3,9 @@
 namespace App\Controllers;
 
 use \Core\View;
-use \App\Models\Registration;
+use \App\Models\AccountRegistration;
+use \App\Models\AccountActivation;
 use \App\Models\Login;
-use \App\Models\LoginToken;
 use \App\FlashModals;
 
 /**
@@ -41,7 +41,7 @@ class Home extends \Core\Controller
      */
 	public function registerAction() {
 		
-		$newUser = new Registration( $_POST );
+		$newUser = new AccountRegistration( $_POST );
 		$result = $newUser -> registerNewUser();
 		
 		if ( $result === true ) {
@@ -49,6 +49,20 @@ class Home extends \Core\Controller
 			$this -> redirect( "/home" );
 		} else {
 			View::renderTemplate( "Home/home.html", ["regErrors" => $result] );
+		}
+		
+	}
+	
+	public function activateAccountAction() {
+		
+		$activationTokenValue = $this -> route_params["token"];
+		$accountActivation = new AccountActivation( $activationTokenValue );
+		
+		if ($accountActivation -> activateAccount()) {
+			FlashModals::addModal( "accountActivationSuccess" );
+			$this -> redirect( "/home" );
+		} else {
+			View::renderTemplate( "404.html" );
 		}
 		
 	}

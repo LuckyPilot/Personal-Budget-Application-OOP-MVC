@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use \Core\View;
 use \App\FlashModals;
-use \App\Models\Password;
+use \App\Models\PasswordReset;
 
 /**
  * Home controller
@@ -32,10 +32,10 @@ class RequestPasswordReset extends \Core\Controller
      */
 	public function requestPasswordResetAction() {
 		
-		$newPassword = new Password( $_POST );
-		$result = $newPassword -> requestPasswordReset();
+		$passwordRequest = new PasswordReset( $_POST );
+		$result = $passwordRequest -> requestPasswordReset();
 		
-		 if ($result === true) {
+		if ($result === true) {
 			 $this -> redirect( "/request-password-reset-success" );
 		 } elseif(empty( $result )) {
 			 FlashModals::addModal( "requestPasswordResetFail" );
@@ -54,26 +54,6 @@ class RequestPasswordReset extends \Core\Controller
 		
 		FlashModals::addModal( "requestPasswordResetSuccess" );
 		$this -> redirect( "/request-password");
-		
-	}
-	
-	/**
-     * Reseting user password
-     *
-     * @return void
-     */
-	public function passwordResetAction() {
-		
-	}
-	
-	/**
-     * Going back to home page after showing reet password succes message
-     *
-     * @return void
-     */
-	public function backToLoginPageAction() {
-		
-		$this -> redirect( "/home" );
 		
 	}
 	

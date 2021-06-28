@@ -119,7 +119,7 @@
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title w-100 text-center">Congratulations!!! You signed up successfully!!!</h4>
+					<h4 class="modal-title w-100 text-center">Congratulations!!! You signed up successfully!!! Please check your email to activate your account.</h4>
 				 </div>
 				<div class="modal-footer justify-content-center">
 					<button type="button" class="btn btn-success" data-dismiss="modal">Come back to log in page.</button>
@@ -146,6 +146,24 @@
 	</div>
 	{% if modalController['logOutSuccess'] == true %}
 		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#logOutSuccess").modal("show");} );</script>
+	{% endif %}	
+	
+	<div class="modal" id="accountActivationSuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center">Your account was activated. Now you can log in and gain control over your finances.</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<form class="p-0" method="get" action="/home">
+						<button type="submit" class="btn btn-success mt-0" >Let's begin!!!</button>
+					</form>
+				 </div>
+			</div>
+		</div>
+	</div>
+	{% if modalController['accountActivationSuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#accountActivationSuccess").modal("show");} );</script>
 	{% endif %}	
 	
 

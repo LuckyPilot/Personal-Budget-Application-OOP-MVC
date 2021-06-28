@@ -5,7 +5,7 @@ namespace App;
 /**
  * Flash notification message: mesage for one-time display as modal window, using the session for storage between requests
  *
- * PHP version 7.0
+ * PHP version 7.4
  */
 class FlashModals
 {

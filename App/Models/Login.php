@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use \App\CookieManager;
-use \App\FlashModals;
 
 /**
  * Log in user to application
@@ -44,7 +43,7 @@ class Login
 		
 		$userFromDB = new User( $this -> login );
 		
-		if ($userFromDB -> exist) {
+		if ($userFromDB -> exist && $userFromDB -> active) {
 			if ($this -> authenticatePassword( $userFromDB -> hashedPassword )) {
 				session_regenerate_id( true );
 				$_SESSION["userId"] = $userFromDB -> id;
@@ -71,7 +70,7 @@ class Login
 		$loginCookie = $_COOKIE["rememberMe"] ?? false;
 		
 		if ($loginCookie) {
-			$loginToken = new LoginToken( $loginCookie );
+			$loginToken = new RememberLoginToken( $loginCookie );
 			$tokenDataFromDB = $loginToken -> findTokenInDB();
 			
 			if ($tokenDataFromDB) {
@@ -128,14 +127,14 @@ class Login
 	 */
 	private function rememberUserAsLoggedIn() {
 		
-		$userToken = new LoginToken();
+		$loginToken = new RememberLoginToken();
 		
 		// Setting date how long application should remember user as logged in ( 1 month )
 		$expiryDate = date( "Y-m-d H:i:s", time() + 60 * 60 * 24 * 30 );
-		$userToken -> setExpiryDate( $expiryDate );
+		$loginToken -> setExpiryDate( $expiryDate );
 		
-		if ($userToken -> addHashedTokenToDB()) {
-			CookieManager::createCookie( "rememberMe", $userToken -> value );
+		if ($loginToken -> addHashedTokenToDB()) {
+			CookieManager::createCookie( "rememberMe", $loginToken -> value );
 		}
 		
 	}

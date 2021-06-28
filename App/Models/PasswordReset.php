@@ -6,11 +6,11 @@ use PDO;
 use \App\MailSender;
 
 /**
- * Managing passwords cases
+ * Managing passwords regaining process
  *
  * PHP version 7.4
  */
-class Password extends \Core\Model
+class PasswordReset extends \Core\Model
 {
 	
 	/**
@@ -67,35 +67,21 @@ class Password extends \Core\Model
 	} 
 	
 	public function resetUserPassword() {
-		
-		$validationErrors = $this -> validateUserPasswordInput();
 		 
-		 if (empty( $validationErrors )) {
-			$passwordResetToken = new PasswordResetToken( $this -> resetTokenValue );
-			$tokenDataFromDB = $passwordResetToken -> findTokenInDB();
-			
-			if ($this -> changeUserPassword( $tokenDataFromDB -> user_id )) {
-				$passwordResetToken -> deleteTokenFromDB( $tokenDataFromDB -> user_id );
-				return true;
-			}
+		$passwordResetToken = new PasswordResetToken( $this -> resetTokenValue );
+		$tokenDataFromDB = $passwordResetToken -> findTokenInDB();
+		
+		$newPassword = array( "newPassword" => $this -> newPassword, "newPasswordConfirmation" => $this -> newPasswordConfirmation );
+		
+		$passwordReset = new UserSettings( $newPassword, $tokenDataFromDB -> id );
+		$result = $passwordReset -> changeUserPassword();
+		
+		if ($result === true) {
+			$passwordResetToken -> deleteTokenFromDB();
+			return true;
 		}
-		 
-		 //return $validationErrors;
 		
-	}
-	
-	public function changeUserPassword( $userId ) {
-	
-		$sql = "UPDATE users SET password = :newPassword WHERE id = :userId ";
-		$passwordHash = password_hash( $this -> newPassword, PASSWORD_DEFAULT );
-		 
-		$db = static::getDB();
-		
-		$stmt = $db -> prepare( $sql );
-		$stmt -> bindValue( ":newPassword", $passwordHash , PDO::PARAM_STR );
-		$stmt -> bindValue( ":userId", $userId, PDO::PARAM_INT );
-		
-		return $stmt -> execute();
+		return $result;
 		
 	}
 	
@@ -112,12 +98,10 @@ class Password extends \Core\Model
 		$tokenDataFromDB = $passwordResetToken -> findTokenInDB();
 		
 		if ($tokenDataFromDB) {
-			$passwordResetToken -> setExpiryDate( $tokenDataFromDB -> expiry_date );
+			$passwordResetToken -> setExpiryDate( $tokenDataFromDB -> password_token_expiry );
 			
 			if ($passwordResetToken -> checkExpiryDate()) {
 				return true;
-			} else {
-				$passwordResetToken -> deleteTokenFromDB();
 			}
 		}
 		
@@ -139,20 +123,6 @@ class Password extends \Core\Model
 		 
 		return $inputValidation -> validationErrors;
 	}
-	
-	/**
-	 * Validating password reset form values
-	 *
-	 * @return array $inputValidation Errors messages during validation process
-	 */
-	private function validateUserPasswordInput() {
-		 
-		$inputValidation = new DataValidator();
-		 
-		$inputValidation -> validatePassword( $this -> newPassword, $this -> newPasswordConfirmation );
-		 
-		return $inputValidation -> validationErrors;
-	}
 	 
 	/**
 	 * Sending reset password link to given email
@@ -164,7 +134,7 @@ class Password extends \Core\Model
 	private function sendPasswordResetEmail( $resetPasswordTokenValue ) {
 		
 		if ($resetPasswordTokenValue != false) {
-			$resetURL = $this -> prepareResetPasswordURL( $resetPasswordTokenValue );
+			$resetURL = $this -> preparePasswordResetURL( $resetPasswordTokenValue );
 			$emailText = \Core\View::getTemplate( "RequestPasswordReset/requestResetEmail.txt", [ "resetURL" => $resetURL ] );
 			$emailHtml = \Core\View::getTemplate( "RequestPasswordReset/requestResetEmail.html", [ "resetURL" => $resetURL ] );
 			$emailSubject = "Password reset Personal Budget Application";
@@ -203,13 +173,13 @@ class Password extends \Core\Model
 	/**
 	 * Prepering password reset URL based on unique token
 	 *
-	 * @param string $resetToken Token generated for reset password for user
+	 * @param string $resetTokenValue Token generated for reset password for user
 	 *
 	 * @return string $resetURL Reset URL
 	 */
-	 private function prepareResetPasswordURL( $resetTokenValue ) {
+	 private function preparePasswordResetURL( $resetTokenValue ) {
 		 
-		 $resetURL = "https://" . $_SERVER["HTTP_HOST"] . "/password/reset/" . $resetTokenValue;
+		 $resetURL = "https://" . $_SERVER["HTTP_HOST"] . "/password-reset/" . $resetTokenValue;
 		 return $resetURL;
 		 
 	}

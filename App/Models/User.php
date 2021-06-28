@@ -21,6 +21,7 @@ class User extends \Core\Model
 	 public ?string $hashedPassword = NULL;
 	 public ?string $email = NULL;
 	 public bool $exist = false;
+	 public bool $active = false;
 	 
 	/**
 	 * Class constructor
@@ -37,7 +38,9 @@ class User extends \Core\Model
 			 $this -> name = $dataFromDB -> username;
 			 $this -> hashedPassword = $dataFromDB -> password;
 			 $this -> email = $dataFromDB -> email;
-			 
+			 if ($dataFromDB -> activation_token_hash == NULL) {
+				 $this -> active = true;
+			 } 
 		 }
 		 
 	 }

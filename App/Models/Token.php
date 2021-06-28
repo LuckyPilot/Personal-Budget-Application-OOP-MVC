@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 /**
  * Unique random tokens
  *
  * PHP version 7.4
  */
-class Token extends \Core\Model
+abstract class Token extends \Core\Model
 {
 	
 	/**

@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 /**
- * Sending email
+ * Sending email by PHPMailer API
  *
  * PHP version 7.4
  */

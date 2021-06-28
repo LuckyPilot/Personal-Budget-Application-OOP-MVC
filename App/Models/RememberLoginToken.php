@@ -9,11 +9,11 @@ use PDO;
  *
  * PHP version 7.4
  */
-class LoginToken extends \App\Token 
+class RememberLoginToken extends Token 
 {
 	
 	/**
-	 * Adding user token to remembered_logins table in DB
+	 * Adding automatic login token to remembered_logins table in DB
 	 *
 	 * @return true if login was remember successfully or false otherwise
 	 */
@@ -43,12 +43,13 @@ class LoginToken extends \App\Token
 		 
 		$hashedToken = $this -> getHashedToken();
 		
-		$sql = "DELETE FROM remembered_logins WHERE token_hash = :hashedToken";
+		$sql = "DELETE FROM remembered_logins WHERE token_hash = :hashedToken OR user_id = :userId";
 		 
 		$db = static::getDB();
 		
 		$stmt = $db -> prepare( $sql );
 		$stmt -> bindValue( ":hashedToken", $hashedToken, PDO::PARAM_STR );
+		$stmt -> bindValue( ":userId", $_SESSION["userId"], PDO::PARAM_INT );
 		
 		$stmt -> execute();
 		
@@ -56,8 +57,6 @@ class LoginToken extends \App\Token
 	
 	/**
 	 * Find user token in DB remembered_logins table
-	 *
-	 * @param string $token Token value
 	 *
 	 * @return custom object if found or false otherwise
 	 */

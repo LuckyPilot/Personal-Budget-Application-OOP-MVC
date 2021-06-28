@@ -1,0 +1,13 @@
+Personal Budget Application 
+
+Account activation
+Please click on the below link to activate your account:
+
+{{ activationURL }}
+
+If you didn't register to budget.lukaszmackow.pl, please disregard this message.
+
+This email is generated automaticaly.
+
+Best Regards 
+Personal Budget Application Team

@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use \Core\View;
-use \App\Models\Password;
+use \App\Models\PasswordReset;
 use \App\FlashModals;
 
 /**
@@ -11,7 +11,7 @@ use \App\FlashModals;
  *
  * PHP version 7.4
  */
-class PasswordReset extends \Core\Controller
+class PasswordRegain extends \Core\Controller
 {
 	
 	/**
@@ -23,9 +23,9 @@ class PasswordReset extends \Core\Controller
 		
 		$passwordResetToken = $this -> route_params["token"];
 		
-		$newPassword = new Password();
+		$passwordReset = new PasswordReset();
 		
-		if ($newPassword -> checkPasswordResetToken( $passwordResetToken )) {
+		if ($passwordReset -> checkPasswordResetToken( $passwordResetToken )) {
 			View::renderTemplate( "PasswordReset/passwordReset.html", ["passwordResetToken" => $passwordResetToken] );
 		} else {
 			View::renderTemplate( "PasswordReset/invalidPasswordResetToken.html" );
@@ -40,12 +40,12 @@ class PasswordReset extends \Core\Controller
      */
 	public function resetPasswordAction() {
 		
-		$newPassword = new Password( $_POST );
-		$result = $newPassword -> resetUserPassword();
+		$passwordReset = new PasswordReset( $_POST );
+		$result = $passwordReset -> resetUserPassword();
 		
-		 if ($result === true) {
+		if ($result === true) {
 			FlashModals::addModal( "passwordResetSuccess" );
-		 } 
+		}
 		 
 		View::renderTemplate( "PasswordReset/passwordReset.html", ["passResetErrors" => $result] );
 		

@@ -48,7 +48,7 @@ class Logout
 		$rememberMeCookie = $_COOKIE["rememberMe"] ?? false;
 		
 		if ($rememberMeCookie) {
-			$loginToken = new LoginToken( $rememberMeCookie );
+			$loginToken = new RememberLoginToken( $rememberMeCookie );
 			$loginToken -> deleteTokenFromDB();
 			CookieManager::deleteCookie( "rememberMe" );
 		}

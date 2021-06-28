@@ -9,7 +9,7 @@ use PDO;
  *
  * PHP version 7.4
  */
-class Registration extends \Core\Model
+class AccountRegistration extends \Core\Model
 {
 	/**
 	 * Properties
@@ -51,10 +51,15 @@ class Registration extends \Core\Model
 		$validationErrors = $this -> validateUserInputs();
 		
 		if (empty( $validationErrors )) {
-			$db = static::getDB();
 			
-			$this -> addNewUserToDB( $db );
+			$activationToken = new AccountActivationToken();
+		
+			$db = static::getDB();
+			$this -> addNewUserToDB( $db, $activationToken -> getHashedToken() );
 			$this -> setInitialDataForNewUserInDB( $db );
+			
+			$accountActivation = new AccountActivation( $activationToken -> value );
+			$accountActivation -> sendActivationEmail( $this -> email );
 				
 			return true;
 		}
@@ -87,25 +92,28 @@ class Registration extends \Core\Model
 	 * Adding new user credentials to DB
 	 *
 	 * @param object $db Connection with database
+	 * @param string $activationTokenHash Hashed value of activation token
 	 *
 	 * @return true if saving new user credentials to DB success or false otherwise
 	 */
-	 private function addNewUserToDB( &$db ) {
+	 private function addNewUserToDB( &$db, $activationTokenHash ) {
 		
 		$passwordHash = password_hash( $this -> password, PASSWORD_DEFAULT );
-		$sql = "INSERT INTO users VALUES(NULL, :name, :passwordHash, :email)";
+		
+		$sql = "INSERT INTO users ( username, email, password, activation_token_hash ) VALUES( :name, :email , :passwordHash, :activationTokenHash)";
 		
 		$stmt = $db -> prepare($sql);
 		
 		$stmt -> bindValue( ":name", $this -> name, PDO::PARAM_STR );
-		$stmt -> bindValue( ":passwordHash", $passwordHash, PDO::PARAM_STR );
 		$stmt -> bindValue( ":email", $this -> email, PDO::PARAM_STR );
+		$stmt -> bindValue( ":passwordHash", $passwordHash, PDO::PARAM_STR );
+		$stmt -> bindValue( ":activationTokenHash", $activationTokenHash, PDO::PARAM_STR );
 		
 		return $stmt -> execute();
 	}
-	
-	/**
-	 * Adding initial new user data to DB
+	 
+	 /**
+	 * Adding initial data for user to DB
 	 *
 	 * @param object $db Connection with database
 	 *
@@ -180,7 +188,6 @@ class Registration extends \Core\Model
 		}
 		
 	}
-	 
 }
 
 ?>
