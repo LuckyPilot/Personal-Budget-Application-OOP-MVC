@@ -75,7 +75,7 @@ class AccountRegistration extends \Core\Model
 	 */
 	 private function validateUserInputs() {
 		 
-		$inputValidation = new DataValidator();
+		$inputValidation = new UserDataValidator();
 		
 		$inputValidation -> validateName( $this -> name );
 		$inputValidation -> validateEmailFormat( $this -> email );

@@ -116,7 +116,7 @@ class PasswordReset extends \Core\Model
 	 */
 	private function validateUserEmailInput() {
 		 
-		$inputValidation = new DataValidator();
+		$inputValidation = new UserDataValidator();
 		 
 		$inputValidation -> validateEmailFormat( $this -> requestResetEmail );
 		$inputValidation -> validateCaptcha( $this -> reCaptcha );

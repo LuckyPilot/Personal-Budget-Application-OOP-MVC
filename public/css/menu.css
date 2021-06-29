@@ -33,7 +33,7 @@ input, select {
 	border: 2px solid mediumseagreen;
 	padding: 5px;
 	outline: none;
-	margin-left: 10px;
+	margin-left: 0.3rem;
 }
 
 input:focus, input:hover, textarea:hover, textarea:focus, select:focus, select:hover {

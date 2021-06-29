@@ -37,6 +37,8 @@ $router->add('account-activation/{token:[\da-f]+}', ['controller' => 'Home', 'ac
 $router->add('login', ['controller' => 'Home', 'action' => 'logIn']);
 $router->add('logout', ['controller' => 'Home', 'action' => 'logOut']);
 $router->add('usermenu', ['controller' => 'Menu', 'action' => 'index']);
+$router->add('add-income', ['controller' => 'Menu', 'action' => 'addIncome']);
+$router->add('add-expense', ['controller' => 'Menu', 'action' => 'addExpense']);
 $router->add('request-password', ['controller' => 'RequestPasswordReset', 'action' => 'index']);
 $router->add('request-password-reset', ['controller' => 'RequestPasswordReset', 'action' => 'requestPasswordReset']);
 $router->add('request-password-reset-success', ['controller' => 'RequestPasswordReset', 'action' => 'requestPasswordResetSuccess']);

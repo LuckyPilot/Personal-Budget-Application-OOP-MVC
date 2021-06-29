@@ -67,7 +67,7 @@ class UserSettings extends \Core\Model
 	 */
 	private function validateUserPasswordInput() {
 		 
-		$inputValidation = new DataValidator();
+		$inputValidation = new UserDataValidator();
 		 
 		$inputValidation -> validatePassword( $this -> newSettingValue["newPassword"], $this -> newSettingValue["newPasswordConfirmation"] );
 		 

@@ -7,7 +7,7 @@ namespace App\Models;
  *
  * PHP version 7.4
  */
-class DataValidator
+class UserDataValidator
 {
 	
 	/**

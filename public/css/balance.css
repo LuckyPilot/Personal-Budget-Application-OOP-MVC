@@ -1,0 +1,21 @@
+/* Ustawienia tabel */
+table {
+	margin: 1rem auto;
+}
+
+.ownBorder {
+	border: medium solid mediumseagreen;
+	border-radius: 10px;
+}
+
+/* Ustawienia piechart */
+#piechart {
+	min-height: 400px;
+}
+
+/* Ustawienia bocznego paska reklamy */
+aside img {
+	position: sticky;
+	top: 110px;
+	z-index: -1;
+}

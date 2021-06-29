@@ -44,18 +44,24 @@
 	<section class="col-md-8">
 				
 	<!-- SECTION OF ADDING INCOMES -->
-	<button id="option0" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="" data-target="#insertion0">
+	<button id="option0" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="{% if incomeErrors is defined %} true {% endif %}" data-target="#insertion0">
 		<i class="icon-down-big"></i>
 		<h3 class="font-weight-bold mb-0 p-3"><i class="icon-plus-outline"></i>ADD INCOME</h3>
 		<i class="icon-down-big"></i>
 	</button>
-	<div id="insertion0" class="collapse formular p-3 ownShadow bg-lightgreen">
-		<form action="addIncome.php" method="post">
+	<div id="insertion0" class="collapse formular p-3 ownShadow bg-lightgreen {% if incomeErrors is defined %} show {% endif %}">
+		<form action="/add-income" method="post" novalidate>
 			<div class="my-2">
 				<label><i class="icon-money"></i> Enter amount: <input type="number" name="amount" min="0" step="0.01" required /></label>
+				{% if incomeErrors['invalidAmount'] is defined %}
+					<span class="error">{{ incomeErrors['invalidAmount'] }}</span>
+				{% endif %}
 			</div>
 			<div class="my-2">
 				<label><i class="icon-calendar"></i> Enter date: <input  type="date" id="incomeDate" name="date" required /></label>
+				{% if incomeErrors['invalidDate'] is defined %}
+					<span class="error">{{ incomeErrors['invalidDate'] }}</span>
+				{% endif %}
 			</div>
 			<div class="my-2">
 				<fieldset class="d-flex flex-wrap justify-content-center p-2">
@@ -63,17 +69,20 @@
 					{% for category in userData.incomesCategory %}
 						{% if loop.first %}
 							<div class="custom-control custom-radio custom-control-inline">
-							<input id="{{ category['name'] }}" type="radio" class="custom-control-input" name="incomeCategory" value="{{ category['name'] }}" checked />
+							<input id="{{ category['name'] }}" type="radio" class="custom-control-input" name="category" value="{{ category['name'] }}" checked />
 							<label class="custom-control-label" for="{{ category['name'] }}">{{ category['name'] }}</label>
 							</div>
 						{% else %}
 							<div class="custom-control custom-radio custom-control-inline">
-							<input id="{{ category['name'] }}" type="radio" class="custom-control-input" name="incomeCategory" value="{{ category['name'] }}" />
+							<input id="{{ category['name'] }}" type="radio" class="custom-control-input" name="category" value="{{ category['name'] }}"  {% if post['category'] == category['name'] %} checked {% endif %} />
 							<label class="custom-control-label" for="{{ category['name'] }}">{{ category['name'] }}</label>
 							</div>
 						{% endif %}
 					{% endfor %}
 				</fieldset>
+				{% if incomeErrors['invalidCategory'] is defined %}
+					<span class="error">{{ incomeErrors['invalidCategory'] }}</span>
+				{% endif %}
 			</div>
 			<div class="my-2">
 				<label><i class="icon-comment"></i>Comment (optional max. 42 chars): <textarea name="comment" maxlength="42"></textarea>
@@ -87,19 +96,24 @@
 	</div>
 	
 	<!-- SECTION OF ADDING EXPENSES -->
-	<button id="option1" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" 
-	aria-expanded="" data-target="#insertion1">
+	<button id="option1" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="{% if expenseErrors is defined %} true {% endif %}" data-target="#insertion1">
 		<i class="icon-down-big"></i>
 		<h3 class="font-weight-bold mb-0 p-3"><i class="icon-minus-outline"></i> ADD EXPENSE </h3>
 		<i class="icon-down-big"></i>
 	</button>
-	<div id="insertion1" class="collapse formular p-3 ownShadow bg-lightgreen">
-		<form action="addExpense.php" method="post">
+	<div id="insertion1" class="collapse formular p-3 ownShadow bg-lightgreen {% if expenseErrors is defined %} show {% endif %}">
+		<form action="/add-expense" method="post" novalidate>
 			<div class="my-2">
 				<label><i class="icon-money"></i> Enter amount: <input type="number" name="amount" min="0" step="0.01" required /></label>
+				{% if expenseErrors['invalidAmount'] is defined %}
+					<span class="error">{{ expenseErrors['invalidAmount'] }}</span>
+				{% endif %}
 			</div>
 			<div class="my-2">
 				<label><i class="icon-calendar"></i> Enter date: <input  type="date" id="expenseDate" name="date" required /></label>
+				{% if expenseErrors['invalidDate'] is defined %}
+					<span class="error">{{ expenseErrors['invalidDate'] }}</span>
+				{% endif %}
 			</div>
 			<div class="my-2">
 				<fieldset class="d-flex flex-wrap justify-content-center p-2">
@@ -107,17 +121,21 @@
 					{% for method in userData.paymentMethods %}
 						{% if loop.first %}
 							<div class="custom-control custom-radio custom-control-inline">
-							<input id="{{ method['name'] }}" type="radio" class="custom-control-input" name="paymentCategory" value="{{ method['name'] }}" checked />
+							<input id="{{ method['name'] }}" type="radio" class="custom-control-input" name="method" value="{{ method['name'] }}" checked />
 							<label class="custom-control-label" for="{{ method['name'] }}">{{ method['name'] }}</label>
 							</div>
 						{% else %}
 							<div class="custom-control custom-radio custom-control-inline">
-							<input id="{{ method['name'] }}" type="radio" class="custom-control-input" name="paymentCategory" value="{{ method['name'] }}" />
+							<input id="{{ method['name'] }}" type="radio" class="custom-control-input" name="method" value="{{ method['name'] }}"
+							{% if post['method'] == method['name'] %} checked {% endif %} />
 							<label class="custom-control-label" for="{{ method['name'] }}">{{ method['name'] }}</label>
 							</div>
 						{% endif %}
 					{% endfor %}
 				</fieldset>
+				{% if expenseErrors['invalidMethod'] is defined %}
+					<span class="error">{{ expenseErrors['invalidMethod'] }}</span>
+				{% endif %}
 			</div>
 			<div class="my-2">
 				<fieldset class="d-flex flex-wrap justify-content-center p-2">
@@ -125,17 +143,20 @@
 					{% for category in userData.expensesCategory %}
 						{% if loop.first %}
 							<div class="custom-control custom-radio custom-control-inline">
-							<input id="{{ category['name'] }}" type="radio" class="custom-control-input" name="expenseCategory" value="{{ category['name'] }}" checked />
+							<input id="{{ category['name'] }}" type="radio" class="custom-control-input" name="category" value="{{ category['name'] }}" checked />
 							<label class="custom-control-label" for="{{ category['name'] }}">{{ category['name'] }}</label>
 							</div>
 						{% else %}
 							<div class="custom-control custom-radio custom-control-inline">
-							<input id="{{ category['name'] }}" type="radio" class="custom-control-input" name="expenseCategory" value="{{ category['name'] }}" />
+							<input id="{{ category['name'] }}" type="radio" class="custom-control-input" name="category" value="{{ category['name'] }}" {% if post['category'] == category['name'] %} checked {% endif %} />
 							<label class="custom-control-label" for="{{ category['name'] }}">{{ category['name'] }}</label>
 							</div>
 						{% endif %}
 					{% endfor %}
 				</fieldset>
+				{% if expenseErrors['invalidCategory'] is defined %}
+					<span class="error">{{ expenseErrors['invalidCategory'] }}</span>
+				{% endif %}
 			</div>
 			<div class="my-2">
 				<label><i class="icon-comment"></i>Comment (optional max. 42 chars): <textarea name="comment" maxlength="42"></textarea>
@@ -215,7 +236,7 @@
 	{% endif %}	
 	
 	<!-- Modal confirms that adding income was successful -->
-	<div class="modal" id="addIncomeSuccess">
+	<div class="modal" id="incomeSuccess">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -227,11 +248,12 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- <script>document.addEventListener( "DOMContentLoaded" ,function() {$("#addIncomeSuccess").modal("show");} );</script> -->
+	{% if modalController['incomeSuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#incomeSuccess").modal("show");} );</script>
+	{% endif %}	
 	
 	<!-- Modal confirms that adding expense was successful -->
-	<div class="modal" id="addExpenseSuccess">
+	<div class="modal" id="expenseSuccess">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -243,7 +265,8 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- <script>document.addEventListener( "DOMContentLoaded" ,function() {$("#addExpenseSuccess").modal("show");} );</script> -->
+	{% if modalController['expenseSuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#expenseSuccess").modal("show");} );</script>
+	{% endif %}
 	
 {% endblock %}
