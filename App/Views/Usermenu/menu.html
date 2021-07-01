@@ -44,23 +44,25 @@
 	<section class="col-md-8">
 				
 	<!-- SECTION OF ADDING INCOMES -->
-	<button id="option0" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="{% if incomeErrors is defined %} true {% endif %}" data-target="#insertion0">
+	<button id="option0" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="{% if incomeResult is defined %} true {% endif %}" data-target="#insertion0">
 		<i class="icon-down-big"></i>
 		<h3 class="font-weight-bold mb-0 p-3"><i class="icon-plus-outline"></i>ADD INCOME</h3>
 		<i class="icon-down-big"></i>
 	</button>
-	<div id="insertion0" class="collapse formular p-3 ownShadow bg-lightgreen {% if incomeErrors is defined %} show {% endif %}">
+	<div id="insertion0" class="collapse formular p-3 ownShadow bg-lightgreen {% if incomeResult is defined %} show {% endif %}">
 		<form action="/add-income" method="post" novalidate>
 			<div class="my-2">
-				<label><i class="icon-money"></i> Enter amount: <input type="number" name="amount" min="0" step="0.01" required /></label>
-				{% if incomeErrors['invalidAmount'] is defined %}
-					<span class="error">{{ incomeErrors['invalidAmount'] }}</span>
+				<label><i class="icon-money"></i> Enter amount: <input type="number" name="amount" min="0" step="0.01" 
+				value="{{ incomeResult.amount }}" required /></label>
+				{% if incomeResult.inputValidationErrors['invalidAmount'] is defined %}
+					<span class="error">{{ incomeResult.inputValidationErrors['invalidAmount'] }}</span>
 				{% endif %}
 			</div>
 			<div class="my-2">
-				<label><i class="icon-calendar"></i> Enter date: <input  type="date" id="incomeDate" name="date" required /></label>
-				{% if incomeErrors['invalidDate'] is defined %}
-					<span class="error">{{ incomeErrors['invalidDate'] }}</span>
+				<label><i class="icon-calendar"></i> Enter date: <input  type="date" id="incomeDate" name="date" 
+				data-value="{{ incomeResult.date }}"required /></label>
+				{% if incomeResult.inputValidationErrors['invalidDate'] is defined %}
+					<span class="error">{{ incomeResult.inputValidationErrors['invalidDate'] }}</span>
 				{% endif %}
 			</div>
 			<div class="my-2">
@@ -80,8 +82,8 @@
 						{% endif %}
 					{% endfor %}
 				</fieldset>
-				{% if incomeErrors['invalidCategory'] is defined %}
-					<span class="error">{{ incomeErrors['invalidCategory'] }}</span>
+				{% if incomeResult.inputValidationErrors['invalidCategory'] is defined %}
+					<span class="error">{{ incomeResult.inputValidationErrors['invalidCategory'] }}</span>
 				{% endif %}
 			</div>
 			<div class="my-2">
@@ -96,23 +98,25 @@
 	</div>
 	
 	<!-- SECTION OF ADDING EXPENSES -->
-	<button id="option1" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="{% if expenseErrors is defined %} true {% endif %}" data-target="#insertion1">
+	<button id="option1" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="{% if expenseResult is defined %} true {% endif %}" data-target="#insertion1">
 		<i class="icon-down-big"></i>
 		<h3 class="font-weight-bold mb-0 p-3"><i class="icon-minus-outline"></i> ADD EXPENSE </h3>
 		<i class="icon-down-big"></i>
 	</button>
-	<div id="insertion1" class="collapse formular p-3 ownShadow bg-lightgreen {% if expenseErrors is defined %} show {% endif %}">
+	<div id="insertion1" class="collapse formular p-3 ownShadow bg-lightgreen {% if expenseResult is defined %} show {% endif %}">
 		<form action="/add-expense" method="post" novalidate>
 			<div class="my-2">
-				<label><i class="icon-money"></i> Enter amount: <input type="number" name="amount" min="0" step="0.01" required /></label>
-				{% if expenseErrors['invalidAmount'] is defined %}
-					<span class="error">{{ expenseErrors['invalidAmount'] }}</span>
+				<label><i class="icon-money"></i> Enter amount: <input type="number" name="amount" min="0" step="0.01" 
+				value="{{ expenseResult.amount }}" required /></label>
+				{% if expenseResult.inputValidationErrors['invalidAmount'] is defined %}
+					<span class="error">{{ expenseResult.inputValidationErrors['invalidAmount'] }}</span>
 				{% endif %}
 			</div>
 			<div class="my-2">
-				<label><i class="icon-calendar"></i> Enter date: <input  type="date" id="expenseDate" name="date" required /></label>
-				{% if expenseErrors['invalidDate'] is defined %}
-					<span class="error">{{ expenseErrors['invalidDate'] }}</span>
+				<label><i class="icon-calendar"></i> Enter date: <input  type="date" id="expenseDate" name="date" 
+				data-value="{{ expenseResult.date }}" required /></label>
+				{% if expenseResult.inputValidationErrors['invalidDate'] is defined %}
+					<span class="error">{{ expenseResult.inputValidationErrors['invalidDate'] }}</span>
 				{% endif %}
 			</div>
 			<div class="my-2">
@@ -133,8 +137,8 @@
 						{% endif %}
 					{% endfor %}
 				</fieldset>
-				{% if expenseErrors['invalidMethod'] is defined %}
-					<span class="error">{{ expenseErrors['invalidMethod'] }}</span>
+				{% if expenseResult.inputValidationErrors['invalidMethod'] is defined %}
+					<span class="error">{{ expenseResult.inputValidationErrors['invalidMethod'] }}</span>
 				{% endif %}
 			</div>
 			<div class="my-2">
@@ -154,8 +158,8 @@
 						{% endif %}
 					{% endfor %}
 				</fieldset>
-				{% if expenseErrors['invalidCategory'] is defined %}
-					<span class="error">{{ expenseErrors['invalidCategory'] }}</span>
+				{% if expenseResult.inputValidationErrors['invalidCategory'] is defined %}
+					<span class="error">{{ expenseResult.inputValidationErrors['invalidCategory'] }}</span>
 				{% endif %}
 			</div>
 			<div class="my-2">
@@ -169,27 +173,31 @@
 	</div>
 	
 	<!-- SECTION OF CREATING OVERVIEW/BALANCE -->
-	<button id="option2" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse"
-	aria-expanded="" data-target="#insertion2">
+	<button id="option2" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="{% if balanceErrors is defined %} true {% endif %}" data-target="#insertion2">
 		<i class="icon-down-big" ></i>
 		<h3 class="font-weight-bold mb-0 p-3"><i class="icon-th-list-outline"></i> CREATE BALANCE </h3>
 		<i class="icon-down-big"></i>
 	</button>
-	<div id="insertion2" class="collapse formular p-3 ownShadow bg-lightgreen">
-		<form action="makeBalance.php" name="overviewForm" method="post" target="_blank">
+	<div id="insertion2" class="collapse formular p-3 ownShadow bg-lightgreen {% if balanceErrors is defined %} show {% endif %}">
+		<form action="/generate-balance" name="overviewForm" method="post" target="_blank" novalidate>
 			<div class="my-2">
 				<label for="period"><i class="icon-list-alt"></i> Choose period: </label> 
 				<select id="period" name="period">
 					<option value="currentMonth" selected>Current month</option>
 					<option value="previousMonth">Previous month</option>
 					<option value="currentYear">Current year</option>
-					<option value="ownPeriod">Own period</option>
+					<option value="ownPeriod" {% if balanceErrors is defined %} selected {% endif %}>Own period</option>
 				</select>
 			</div>
-			<div id="dataSelection">
-				<label class="d-block"><i class="icon-calendar"></i> Enter initial date: <input type="date" name="begDate" id="begDate" value="" disabled required /></label>
-				<label class="d-block"> and final date: <input type="date" name="endDate" id="endDate" value="" disabled required /></label>
+			<div id="dataSelection" style="{% if balanceErrors is defined %} display: block; {% endif %}">
+				<label class="d-block"><i class="icon-calendar"></i> Enter initial date: <input type="date" name="begDate" id="begDate" 
+				value="{{ post['begDate']}}" {% if balanceErrors is not defined %} disabled {% endif %} required /></label>
+				<label class="d-block"> and final date: <input type="date" name="endDate" id="endDate" value="{{ post['endDate']}}" 
+				{% if balanceErrors is not defined %} disabled {% endif %} required /></label>
 			</div>
+			{% if balanceErrors['invalidDate'] is defined %}
+				<span class="error">{{ balanceErrors['invalidDate'] }}</span>
+			{% endif %}
 			<div class="my-2">
 				<button type="submit" class="btn bg-success my-2 font-weight-bold"><i class="icon-ok"></i> Show balance </button>
 			</div>

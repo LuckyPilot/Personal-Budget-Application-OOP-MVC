@@ -19,14 +19,11 @@
 		// Draw the chart and set the chart values
 		function drawChart() {
 		  var data = google.visualization.arrayToDataTable([
-		  ['Category', 'Amount[zł]']
-		  <?php
-		  if (isset( $_SESSION['expenseBalance'] )) {
-			  foreach( $_SESSION['expenseBalance'] as $category => $amount ) {
-				  echo ",['".$category."', ".$amount."]";
-			  }
-		  }
-		?>]);
+		  ['Category', 'Amount[zł]'],
+		  {% for expense in balance.expenses %}
+			["{{ expense['name'] }}" , {{ expense['sum'] }} ],
+		  {% endfor %}
+		]);
 
 		  // Optional; add a title and set the width and height of the chart
 		  var options = {backgroundColor: 'lightgreen', pieHole: 0.4, responsive: true, width: 'auto', height: 'auto', legend:{alignment: 'center', 
@@ -42,13 +39,11 @@
 {% block header %}
 	<header class="row ownShadow bg-lightgreen sticky-top">
 		<h1 class="col-sm-12 my-auto font-weight-bold p-1"><i class="icon-calendar"></i> BALANCE OVERVIEW <i class="icon-calendar"></i></h1>
-		<h3 class="col-sm-12 my-auto font-weight-bold p-1"><?php 
-		if (isset( $_SESSION['initDateOfBalance'] ) && isset( $_SESSION['endDateOfBalance'] )) {
-			echo "FROM ".$_SESSION['initDateOfBalance']." TO ".$_SESSION['endDateOfBalance'];
-			unset( $_SESSION['initDateOfBalance'] );
-			unset( $_SESSION['endDateOfBalance'] );	
-		}
-		?></h3>
+		<h3 class="col-sm-12 my-auto font-weight-bold p-1">
+		{% if balance.begDate is defined and balance.endDate is defined %}
+			FROM {{ balance.begDate }} TO {{ balance.endDate }}
+		{% endif %}
+		</h3>
 	</header>
 {% endblock %}
 
@@ -71,17 +66,16 @@
 					<thead class="table-success">
 						<tr>
 							<th>Category</th>
-							<th>Amount</th>
+							<th>Amount[zł]</th>
 						</tr>
 					</thead>
 					<tbody>
-					<?php
-						if (isset( $_SESSION['incomeBalance'] )) {
-							foreach( $_SESSION['incomeBalance'] as $income => $amount ) {
-								echo "<tr><th>".$income."</th><td>".$amount."</td></tr>";
-							}
-						}
-					?>
+					{% set incomesSum = 0 %}
+					{% for income in balance.incomes %}
+						<tr><th> {{ income['name'] }}  </th><td> {{ income['sum'] }} </td></tr>
+						{% set incomesSum = incomesSum + income['sum'] %}
+					{% endfor %}
+					<tr><th> SUM: </th><td> {{ incomesSum }} </td></tr>
 					</tbody>
 			</table>
 			</div>
@@ -92,21 +86,24 @@
 					<thead class="table-success">
 						<tr>
 							<th>Category</th>
-							<th>Amount</th>
+							<th>Amount[zł]</th>
 						</tr>
 					</thead>
 					<tbody>
-					<?php
-						if (isset( $_SESSION['expenseBalance'] )) {
-							foreach( $_SESSION['expenseBalance'] as $income => $amount ) {
-								echo "<tr><th>".$income."</th><td>".$amount."</td></tr>";
-							}
-						}
-					?>
+					{% set expensesSum = 0 %}
+					{% for expense in balance.expenses %}
+						<tr><th> {{ expense['name'] }}  </th><td> {{ expense['sum'] }} </td></tr>
+						{% set expensesSum = expensesSum + expense['sum'] %}
+					{% endfor %}
+					<tr><th> SUM: </th><td> {{ expensesSum }} </td></tr>
 					</tbody>
 			</table>
 			</div>
 		</section>
+		{% if incomesSum - expensesSum < 0 %}
+			<span class="error"> BE CAREFUL!!! YOU ARE FALLING INTO DEBT!!!</span>
+		{% endif %}
+		
 		<!-- SECTION OF PIE CHART -->
 		<section class="row mt-2 mb-4 p-1">
 			<div class="col-md-10 bg-lightgreen ownBorder ownShadow mx-auto p-1">

@@ -38,8 +38,9 @@ document.getElementById("period").addEventListener(  "input", function() {
 } );
 
 
-// Event responsible for insertion current and maximum date in income and expense date selection field.
+// Event responsible for insertion current and maximum date in income and expense date selection field. Twig template block this if user set own date already.
 document.addEventListener( "DOMContentLoaded", function() {
+	
 	let currentDate = new Date();
 	
 	// Function create require double digit number even if number < 10
@@ -56,9 +57,21 @@ document.addEventListener( "DOMContentLoaded", function() {
 	
 	// Set default date as current date
 	currentDate = year + "-" + month + "-" + day;
-	document.getElementById("incomeDate").value = currentDate;
-	document.getElementById("expenseDate").value = currentDate;
+	let userIncomeDate = document.getElementById("incomeDate").dataset.value;
+	let userExpenseDate = document.getElementById("expenseDate").dataset.value;
+	
+	if (userExpenseDate != "") {
+		document.getElementById("expenseDate").value = userExpenseDate;
+	} else {
+		document.getElementById("expenseDate").value = currentDate;
+	}
 
+	if (userIncomeDate != "") {
+		document.getElementById("incomeDate").value = userIncomeDate;
+	} else {
+		document.getElementById("incomeDate").value = currentDate;
+	}
+		
 	// Finding last day of current month
 	let lastDayOfCurrentMonthDate = new Date( year, month, 0 );
 	let lastDay = lastDayOfCurrentMonthDate.getDate();

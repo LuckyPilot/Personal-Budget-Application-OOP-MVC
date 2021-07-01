@@ -9,11 +9,11 @@ abstract class CashFlow extends \Core\Model
 	 * Properties
 	 * Values sent by user during adding income/expense process 
 	 */
-	public ?float $amount = NULL;
-	public ?string $date = NULL;
-	public ?string $category = NULL;
-	public ?string $method = NULL;
-	public ?string $comment = NULL;
+	public $amount = NULL;
+	public $date = NULL;
+	public $method = NULL;
+	public $category = NULL;
+	public $comment = NULL;
 	
 	 /**
 	 * Class constructor
@@ -22,10 +22,12 @@ abstract class CashFlow extends \Core\Model
 	 *
 	 * @return void
 	 */
-	public function __construct( $data = [] ) {
-		foreach($data as $key => $value){
-			$this -> $key = $value; 
+	public function __construct( $data=[] ) {
+		
+		foreach ($data as $key => $value) {
+			$this -> $key = $value;	
 		}
+		
 	}
 	
 }

@@ -6,6 +6,7 @@ use \Core\View;
 use \App\FlashModals;
 use \App\Models\Income;
 use \App\Models\Expense;
+use \App\Models\BalanceGenerator;
 use \App\Models\Logout;
 
 
@@ -42,7 +43,7 @@ class Menu extends Authenticated
 			 FlashModals::addModal( "incomeSuccess" );
 			 $this -> redirect( "/usermenu" );
 		 } else {
-			 View::renderTemplate( "Usermenu/menu.html", ["userData" => $this -> userData, "incomeErrors" => $result] );
+			 View::renderTemplate( "Usermenu/menu.html", ["userData" => $this -> userData, "incomeResult" => $result] );
 		 }
 		 
 	 }
@@ -61,10 +62,28 @@ class Menu extends Authenticated
 			FlashModals::addModal( "expenseSuccess" );
 			$this -> redirect( "/usermenu" );
 		} else {
-			View::renderTemplate( "Usermenu/menu.html", ["userData" => $this -> userData, "expenseErrors" => $result] );
+			View::renderTemplate( "Usermenu/menu.html", ["userData" => $this -> userData, "expenseResult" => $result] );
 		}
 		 
 	}
+	
+	/**
+     * Generating balance from expenses and incomes
+     *
+     * @return void
+     */
+	 public function generateBalanceAction() {
+		
+		 $newBalance = new BalanceGenerator( $_POST );
+		 $result = $newBalance -> generateNewBalance();
+
+		 if (empty( $result -> userInputsValidationErrors )) {
+			 View::renderTemplate( "Balance/balance.html", ["balance" => $result]);
+		 } else {
+			 View::renderTemplate( "Usermenu/menu.html", ["userData" => $this -> userData, "balanceErrors" => $result -> userInputsValidationErrors] );
+		 }
+
+	 }
 	
 	/**
      * Log out user

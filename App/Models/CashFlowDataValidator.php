@@ -3,7 +3,7 @@
 namespace App\Models;
 
 /**
- * Validate user inputs
+ * Validate cashflow inputs
  *
  * PHP version 7.4
  */

@@ -4,26 +4,61 @@ namespace App\Models;
 
 use PDO;
 
+/**
+ * Expenses manager
+ *
+ * PHP version 7.4
+ */
 class Expense extends CashFlow
 {
 	
 	/**
+	 * Properties
+	 * Array with errors from user input  validation process
+	 */
+	 public $inputValidationErrors = [];
+	 
+	/**
 	 * Adding new expense do DB
 	 *
-	 * @return true if new expense was added or array with errors otherwise
+	 * @return true if new expense was added or Expense object otherwise
 	 */
 	public function addExpense(){
 		
-		$validationErrors = $this -> validateExpenseInputs();
+		$this -> inputValidationErrors = $this -> validateExpenseInputs();
 		
-		if (empty( $validationErrors )) {
+		if (empty( $this -> inputValidationErrors )) {
 			if ($this -> addExpenseToDB()) {
 				return true;
 			}
 		}
 		
-		return $validationErrors;
+		return $this;
 		
+	}
+	
+	/**
+	 * Fetchinn user's expenses from given period from DB
+	 *
+	 * @param string $begDate Date which begins period
+	 * @param string $endDate Date which ends period
+	 *
+	 * @return array 
+	 */
+	public function fetchExpensesFromDB( $begDate, $endDate ) {
+		
+		$sql ="SELECT expense_category.name,  SUM(expenses.amount) AS sum FROM expenses INNER JOIN expenses_category_assigned_to_users AS expense_category ON expenses.expense_category_assigned_to_user_id = expense_category.id WHERE expenses.user_id = :userId AND expenses.date_of_expense BETWEEN :begDate AND :endDate GROUP BY expense_category.name ORDER BY SUM(expenses.amount) DESC";
+		
+		$db = static::getDB();
+		$stmt = $db -> prepare($sql);
+		
+		$stmt -> bindValue( ":userId", $_SESSION["userId"], PDO::PARAM_INT );
+		$stmt -> bindValue( ":begDate", $begDate, PDO::PARAM_STR );
+		$stmt -> bindValue( ":endDate", $endDate, PDO::PARAM_STR );
+		
+		$stmt -> execute();
+		
+		return $stmt -> fetchAll( PDO::FETCH_ASSOC );
 	}
 	
 	/**
@@ -59,9 +94,9 @@ class Expense extends CashFlow
 		$db = static::getDB();
 		$stmt = $db -> prepare($sql);
 		
-		$stmt -> bindValue( ":userId", $_SESSION["userId"], PDO::PARAM_STR );
-		$stmt -> bindValue( ":catId", $catId -> id, PDO::PARAM_STR );
-		$stmt -> bindValue( ":payId", $payId -> id, PDO::PARAM_STR );
+		$stmt -> bindValue( ":userId", $_SESSION["userId"], PDO::PARAM_INT );
+		$stmt -> bindValue( ":catId", $catId -> id, PDO::PARAM_INT );
+		$stmt -> bindValue( ":payId", $payId -> id, PDO::PARAM_INT );
 		$stmt -> bindValue( ":amount", $this -> amount, PDO::PARAM_STR );
 		$stmt -> bindValue( ":date", $this -> date, PDO::PARAM_STR );
 		$stmt -> bindValue( ":comment", $this -> comment, PDO::PARAM_STR );
@@ -82,7 +117,7 @@ class Expense extends CashFlow
 		$db = static::getDB();
 		$stmt = $db -> prepare($sql);
 		
-		$stmt -> bindValue( ":userId", $_SESSION["userId"], PDO::PARAM_STR );
+		$stmt -> bindValue( ":userId", $_SESSION["userId"], PDO::PARAM_INT );
 		$stmt -> bindValue( ":catName", $this -> category, PDO::PARAM_STR );
 		
 		$stmt -> execute();
@@ -103,7 +138,7 @@ class Expense extends CashFlow
 		$db = static::getDB();
 		$stmt = $db -> prepare($sql);
 		
-		$stmt -> bindValue( ":userId", $_SESSION["userId"], PDO::PARAM_STR );
+		$stmt -> bindValue( ":userId", $_SESSION["userId"], PDO::PARAM_INT );
 		$stmt -> bindValue( ":catName", $this -> method, PDO::PARAM_STR );
 		
 		$stmt -> execute();

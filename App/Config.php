@@ -5,7 +5,7 @@ namespace App;
 /**
  * Application configuration
  *
- * PHP version 7.0
+ * PHP version 7.4
  */
 class Config
 {
