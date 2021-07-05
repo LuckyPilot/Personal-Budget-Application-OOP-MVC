@@ -77,7 +77,10 @@
 					{% endfor %}
 					<tr><th> SUM: </th><td> {{ incomesSum }} </td></tr>
 					</tbody>
-			</table>
+				</table>
+				{% if balance.incomes is empty %}
+					<span> You don't have any incomes in this period...</span>
+				{% endif %}
 			</div>
 			<!-- EXPENSE TABLE -->
 			<div class="col-md-6 p-1">
@@ -97,7 +100,10 @@
 					{% endfor %}
 					<tr><th> SUM: </th><td> {{ expensesSum }} </td></tr>
 					</tbody>
-			</table>
+				</table>
+				{% if balance.expenses is empty %}
+					<span> You don't have any expenses in this period...</span>
+				{% endif %}
 			</div>
 		</section>
 		{% if incomesSum - expensesSum < 0 %}
