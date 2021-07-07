@@ -59,7 +59,7 @@
 .icon-reply-outline:before { content: '\e802'; font-size: 40px;} /* '' */
 .icon-cog-outline:before { content: '\e803'; } /* '' */
 .icon-minus-outline:before { content: '\e804';  font-size: 30px;} /* '' */
-.icon-user:before { content: '\e805'; font-size: 25px } /* '' */
+.icon-user:before { content: '\e805'; font-size: 30px } /* '' */
 .icon-down-big:before { content: '\e806'; float: left; font-size: 40px;} /* '' */
 .icon-up-big:before { content: '\e807'; float: left; font-size: 40px;} /* '' */
 .icon-ok:before { content: '\e808'; } /* '' */

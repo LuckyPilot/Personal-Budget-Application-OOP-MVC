@@ -25,7 +25,7 @@
 				<i class="d-block d-md-none material-icons">format_align_justify</i>
 			</button>
 			<div class="dropdown-menu dropdown-menu-right bg-success w-inherit" role="menu">
-				<a href="#" class="dropdown-item"><i class="icon-cog-outline"></i>Settings</a>
+				<a href="/settings" class="dropdown-item"><i class="icon-cog-outline"></i>Settings</a>
 				<a href="/Menu/logOut" class="dropdown-item"><i class="icon-logout"></i>Log out</a>
 			</div>
 		</nav>
@@ -104,6 +104,9 @@
 		<i class="icon-down-big"></i>
 	</button>
 	<div id="insertion1" class="collapse formular p-3 ownShadow bg-lightgreen {% if expenseResult is defined %} show {% endif %}">
+		<div class="alert alert-success">
+			Tutaj ma byc ajax
+		</div>
 		<form action="/add-expense" method="post" novalidate>
 			<div class="my-2">
 				<label><i class="icon-money"></i> Enter amount: <input type="number" name="amount" min="0" step="0.01" 
@@ -153,7 +156,7 @@
 						{% else %}
 							<div class="custom-control custom-radio custom-control-inline">
 							<input id="{{ category['name'] }}" type="radio" class="custom-control-input" name="category" value="{{ category['name'] }}" {% if post['category'] == category['name'] %} checked {% endif %} />
-							<label class="custom-control-label" for="{{ category['name'] }}">{{ category['name'] }}</label>
+							<label class="custom-control-label" for="{{ category['name'] }}">{{ category['name'] }} {% if category['expense_limit'] != NULL %} (limit: {{ category['expense_limit'] }}) {% endif %}</label>
 							</div>
 						{% endif %}
 					{% endfor %}

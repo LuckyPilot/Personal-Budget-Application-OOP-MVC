@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Personal Budget-Settings
+{% endblock %}
+
+{% block stylesheets %}
+	<link href="/css/settings.css" rel="stylesheet" />
+{% endblock %}
+
+{% block scripts %}
+	<script src="/js/settings.js" defer></script>
+{% endblock %}
+
+{% block header %}
+	<header>
+		<div class="row ownShadow bg-lightgreen mb-2">
+			<div class="col-sm-1 my-auto font-weight-bold p-1">
+				<a href="/usermenu" class="text-dark"><i class="icon-reply-outline"></i></a>
+			</div>
+			<h1 class="col-sm-10 my-auto font-weight-bold p-1"><i class="icon-cog-outline"></i> Application Settings </h1>
+		</div>
+	</header>
+{% endblock %}
+
+{% block leftaside %}
+	<!-- SECTION LEFT ADVERTISEMENT -->
+	<aside class="d-none d-lg-block col-lg-2 px-0 my-auto">
+		<img src="/img/add.png" alt="Advertisement" class="img-responsive float-left" style="max-width: 100%; height: auto;" />
+	</aside>
+{% endblock %}
+
+{% block main %}
+	<!-- SECTION MAIN -->
+	<section class="col-md-8">
+				
+		<!-- SECTION OF CHANGING PROFILE DATA -->
+		<button id="option0" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="" data-target="#insertion0">
+			<i class="icon-down-big"></i>
+			<h3 class="font-weight-bold mb-0 p-3"><i class="icon-user"></i>PROFILE DATA</h3>
+			<i class="icon-down-big"></i>
+		</button>
+		<div id="insertion0" class="collapse formular p-3 ownShadow bg-lightgreen">
+			<ul class="list-inline">
+			  <li class="list-inline-item">Your current name: <strong>{{ userData.name }}</strong></li>
+			  <li class="list-inline-item">Your current email: <strong>{{ userData.email }}</strong></li>
+			</ul>
+			<form class="mx-auto mb-2" action="/Settings/changeName" method="post">
+				<label>
+					<input type="text" name="newName" placeholder="New name" value="" required/>
+				</label>
+				<button type="submit" class="btn btn-success ml-2 font-weight-bold"><i class="icon-arrows-cw"></i> Change name </button>
+			</form>
+			<form class="mx-auto mb-2" action="/Settings/changeLogin" method="post">
+				<label>
+					<input type="email" name="newLogin" placeholder="New e-mail" value="" required/>
+				</label>
+				<button type="submit" class="btn btn-success ml-2 font-weight-bold"><i class="icon-arrows-cw"></i> Change email </button>
+			</form>
+			<form class="mx-auto mb-2" action="/Settings/changePassword" method="post">
+				<div>
+					<label>
+						<input type="password" name="newPassword" placeholder="New password" minlength="8" required />
+					</label>
+					<label>
+						<input type="password" name="newPasswordConfirmation" placeholder="Repeat new password" minlength="8" required />
+					</label>
+				</div>
+				<button type="submit" class="btn btn-success font-weight-bold"><i class="icon-arrows-cw"></i> Change password </button>
+			</form>
+		</div>
+		
+		<!-- SECTION OF MANAGING INCOMES CATEGORY -->
+		<button id="option1" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="" data-target="#insertion1">
+			<i class="icon-down-big"></i>
+			<h3 class="font-weight-bold mb-0 p-3"><i class="icon-th-list-outline"></i>INCOMES CATEGORY MANAGER</h3>
+			<i class="icon-down-big"></i>
+		</button>
+		<div id="insertion1" class="collapse formular p-3 ownShadow bg-lightgreen">
+			<div class="my-2">
+				<label for="incomeCategoryManager"><i class="icon-list-alt"></i> Choose action: </label> 
+				<select id="incomeCategoryManager" class="form-select">
+					<option value="none">...</option>
+					<option value="add">Add new</option>
+					<option value="modify">Modify</option>
+					<option value="delete">Delete</option>
+				</select>
+			</div>
+			<form id="addNewIncomeCategory" class="mx-auto">
+				<label>
+					<input type="text" name="newIncomeName" placeholder="New category name" value="" required />
+				</label>
+				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"><i class="icon-ok"></i> Add </button>
+			</form>
+			<form id="modifyIncomeCategory" class="mx-auto">
+				<div>
+					<label for="incomeCategoryToModify"><i class="icon-list-alt"></i> Choose category to modify: </label> 
+					<select id="incomeCategoryToModify" name="incomeCategoryToModify">
+						{% for category in userData.incomesCategory %}
+							<option name="{{ category['name'] }}"> {{ category['name'] }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<label>
+					<input type="text" name="changeIncomeName" placeholder="New category name" value="" required />
+				</label>
+				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"><i class="icon-ok"></i> Set </button>
+			</form>
+			<form id="deleteIncomeCategory" class="mx-auto">
+				<div class="alert alert-danger">
+					<strong>CAUTION!!!</strong>Deleting income category will cause deleting all incomes in this category as well!!!
+				</div>
+				<label for="incomeCategoryToDelete"><i class="icon-list-alt"></i> Choose category to delete: </label> 
+				<select id="incomeCategoryToDelete" name="incomeCategoryToDelete">
+					{% for category in userData.incomesCategory %}
+						<option name="{{ category['name'] }}"> {{ category['name'] }}</option>
+					{% endfor %}
+				</select>
+				<button type="submit" class="btn bg-danger my-2 font-weight-bold ml-2"><i class="icon-cancel"></i> Delete </button>
+			</form>
+		</div>
+		
+		<!-- SECTION OF MANAGING EXPENSES CATEGORY -->
+		<button id="option2" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="" data-target="#insertion2">
+			<i class="icon-down-big"></i>
+			<h3 class="font-weight-bold mb-0 p-3"><i class="icon-th-list-outline"></i>EXPENSES CATEGORY MANAGER</h3>
+			<i class="icon-down-big"></i>
+		</button>
+		<div id="insertion2" class="collapse formular p-3 ownShadow bg-lightgreen">
+			<div class="my-2">
+				<label for="expenseCategoryManager"><i class="icon-list-alt"></i> Choose action: </label> 
+				<select id="expenseCategoryManager" name="expenseCategoryManager">
+					<option value="none">...</option>
+					<option value="add">Add new</option>
+					<option value="modify">Modify</option>
+					<option value="delete">Delete</option>
+				</select>
+			</div>
+			<form id="addNewExpenseCategory" class="mx-auto">
+				<label>
+					<input type="text" name="newExpenseName" placeholder="New category name" value="" required />
+				</label>
+				<label>
+					<input type="number" name="newExpenseLimit" placeholder="Expense limit" min="0" step="1" value="" />
+				</label>
+				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"><i class="icon-ok"></i> Add </button>
+			</form>
+			<form id="modifyExpenseCategory" class="mx-auto">
+				<div>
+					<label for="expenseCategoryToModify"><i class="icon-list-alt"></i> Choose category to modify: </label> 
+					<select id="expenseCategoryToModify" name="expenseCategoryToModify">
+						{% for category in userData.expensesCategory %}
+							<option name="{{ category['name'] }}"> {{ category['name'] }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<label>
+					<input type="text" name="changeExpenseName" placeholder="New category name" value="" />
+				</label>
+				<label>
+					<input type="number" name="changeExpenseLimit" placeholder="New expense limit" min="0" step="1" value="" />
+				</label>
+				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"><i class="icon-ok"></i> Set </button>
+			</form>
+			<form id="deleteExpenseCategory" class="mx-auto">
+				<div class="alert alert-danger">
+					<strong>CAUTION!!!</strong>Deleting expense category will cause deleting all expenses in this category as well!!!
+				</div>
+				<label for="expenseCategoryToDelete"><i class="icon-list-alt"></i> Choose category to delete: </label> 
+				<select id="expenseCategoryToDelete" name="expenseCategoryToDelete">
+					{% for category in userData.expensesCategory %}
+						<option name="{{ category['name'] }}"> {{ category['name'] }}</option>
+					{% endfor %}
+				</select>
+				<button type="submit" class="btn bg-danger my-2 font-weight-bold ml-2"><i class="icon-cancel"></i> Delete </button>
+			</form>
+		</div>
+	
+	</section>
+{% endblock %}
+
+{% block rightaside %}
+	<!-- SECTION RIGHT ADDVERTISEMENT -->
+	<aside class="d-none d-md-block col-md-2 px-0 my-auto">
+		<img src="/img/add.png" alt="Advertisement" class="img-responsive float-right" style="max-width: 100%; height: auto;" />
+	</aside>
+{% endblock %}
+
+{% block modals %}
+
+<!-- Modal confirms that reset password link was sent-->
+	<div class="modal" id="passwordResetSuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center">Password was changed successfully.</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<form class="p-0" method="get" action="/home">
+						<button type="submit" class="btn btn-success mt-0" >Come back to log in page.</button>
+					</form>
+				 </div>
+			</div>
+		</div>
+	</div>
+	{% if modalController['passwordResetSuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#passwordResetSuccess").modal("show");} );</script>
+	{% endif %}	
+	
+{% endblock %}

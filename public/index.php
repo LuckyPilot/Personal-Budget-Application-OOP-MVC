@@ -45,6 +45,7 @@ $router->add('request-password-reset', ['controller' => 'RequestPasswordReset', 
 $router->add('request-password-reset-success', ['controller' => 'RequestPasswordReset', 'action' => 'requestPasswordResetSuccess']);
 $router->add('password-reset/{token:[\da-f]+}', ['controller' => 'PasswordRegain', 'action' => 'index']);
 $router->add('reset-password', ['controller' => 'PasswordRegain', 'action' => 'resetPassword']);
+$router->add('settings', ['controller' => 'Settings', 'action' => 'index']);
 $router->add('{controller}/{action}');
     
 $router->dispatch($_SERVER['QUERY_STRING']);

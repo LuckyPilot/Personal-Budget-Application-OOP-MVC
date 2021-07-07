@@ -65,7 +65,7 @@ class LoggedUser extends User
 	 */
 	 private function fetchExpensesCategory( $userId ) {
 		 
-		 $sql = "SELECT name FROM expenses_category_assigned_to_users WHERE user_id= :userId";
+		 $sql = "SELECT name, expense_limit FROM expenses_category_assigned_to_users WHERE user_id= :userId";
 		 
 		 $db = static::getDB();
 		 $stmt = $db -> prepare($sql);
