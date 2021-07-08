@@ -57,6 +57,10 @@ class UserDataValidator
 		
 		if ( $user -> exist ) {
 			 $this -> validationErrors['invalidEmail'] = "User with this email alrady exists!";
+			 
+			 if (isset( $_SESSION["userId"] ) && $user -> id == $_SESSION["userId"] ) {
+				 $this -> validationErrors['invalidEmail'] = "This is your current email!";
+			 }
 		}
 		
 	}

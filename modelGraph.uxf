@@ -332,18 +332,20 @@ _+getModals():string_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>324</x>
-      <y>522</y>
-      <w>252</w>
-      <h>117</h>
+      <y>423</y>
+      <w>279</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>UserSettings
 --
 - userId: int
-- newSettingValue: string
+- newSettingValue: array
 --
 + UserSettings()
++ changeUserName():mixed bool/array
 + changeUserPassword():mixed bool/array
-- validateUserPasswordInput():array
+- validateUserNameInput():mixed bool/array
+- validateUserPasswordInput():mixed bool/array
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -591,12 +593,12 @@ _+getModals():string_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>468</x>
-      <y>630</y>
+      <y>558</y>
       <w>27</w>
-      <h>72</h>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -634,13 +636,13 @@ _+getModals():string_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>567</x>
-      <y>603</y>
-      <w>99</w>
-      <h>207</h>
+      <x>594</x>
+      <y>504</y>
+      <w>72</w>
+      <h>306</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>90.0;210.0;10.0;10.0</additional_attributes>
+    <additional_attributes>60.0;320.0;30.0;260.0;30.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>

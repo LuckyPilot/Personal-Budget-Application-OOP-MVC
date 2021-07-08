@@ -32,6 +32,21 @@ class CashFlowDataValidator
 	}
 	
 	/**
+	 * Checking whether limit is valid integer number and ha positive value. If not, set info to validationErrors array
+	 * 
+	 * @return void
+	 */
+	public function validateLimit( $amount ) {
+		
+		 if (!filter_var( $amount, FILTER_VALIDATE_INT )) {
+			 $this -> validationErrors['invalidAmount'] = "Amount has to be integer number!";
+		 } elseif ($amount < 0) {
+			  $this -> validationErrors['invalidAmount'] = "Limit can't have negative value!";
+		 }
+		 
+	}
+	
+	/**
 	 * Checking whether date is valid date format. If not, set info to validationErrors array
 	 * 
 	 * @return void

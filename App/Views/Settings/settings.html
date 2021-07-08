@@ -35,29 +35,35 @@
 	<section class="col-md-8">
 				
 		<!-- SECTION OF CHANGING PROFILE DATA -->
-		<button id="option0" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="" data-target="#insertion0">
+		<button id="option0" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="{% if profileChangeErrors is defined %} true {% endif %}" data-target="#insertion0">
 			<i class="icon-down-big"></i>
 			<h3 class="font-weight-bold mb-0 p-3"><i class="icon-user"></i>PROFILE DATA</h3>
 			<i class="icon-down-big"></i>
 		</button>
-		<div id="insertion0" class="collapse formular p-3 ownShadow bg-lightgreen">
+		<div id="insertion0" class="collapse formular p-3 ownShadow bg-lightgreen {% if profileChangeErrors is defined %} show {% endif %}">
 			<ul class="list-inline">
 			  <li class="list-inline-item">Your current name: <strong>{{ userData.name }}</strong></li>
 			  <li class="list-inline-item">Your current email: <strong>{{ userData.email }}</strong></li>
 			</ul>
-			<form class="mx-auto mb-2" action="/Settings/changeName" method="post">
+			<form class="mx-auto mb-2" action="/Settings/changeName" method="post" novalidate>
 				<label>
-					<input type="text" name="newName" placeholder="New name" value="" required/>
+					<input type="text" name="newName" placeholder="New name" value="{{ post['newName'] }}" required/>
 				</label>
 				<button type="submit" class="btn btn-success ml-2 font-weight-bold"><i class="icon-arrows-cw"></i> Change name </button>
+				{% if profileChangeErrors['invalidName'] is defined %}
+					<span class="error">{{ profileChangeErrors['invalidName'] }}</span>
+				{% endif %}
 			</form>
-			<form class="mx-auto mb-2" action="/Settings/changeLogin" method="post">
+			<form class="mx-auto mb-2" action="/Settings/changeEmail" method="post" novalidate>
 				<label>
-					<input type="email" name="newLogin" placeholder="New e-mail" value="" required/>
+					<input type="email" name="newEmail" placeholder="New e-mail" value="{{ post['newEmail'] }}" required/>
 				</label>
 				<button type="submit" class="btn btn-success ml-2 font-weight-bold"><i class="icon-arrows-cw"></i> Change email </button>
+				{% if profileChangeErrors['invalidEmail'] is defined %}
+					<span class="error">{{ profileChangeErrors['invalidEmail'] }}</span>
+				{% endif %}
 			</form>
-			<form class="mx-auto mb-2" action="/Settings/changePassword" method="post">
+			<form class="mx-auto mb-2" action="/Settings/changePassword" method="post" novalidate>
 				<div>
 					<label>
 						<input type="password" name="newPassword" placeholder="New password" minlength="8" required />
@@ -65,6 +71,9 @@
 					<label>
 						<input type="password" name="newPasswordConfirmation" placeholder="Repeat new password" minlength="8" required />
 					</label>
+					{% if profileChangeErrors['invalidPassword'] is defined %}
+						<span class="error">{{ profileChangeErrors['invalidPassword'] }}</span>
+					{% endif %}
 				</div>
 				<button type="submit" class="btn btn-success font-weight-bold"><i class="icon-arrows-cw"></i> Change password </button>
 			</form>
@@ -188,23 +197,61 @@
 
 {% block modals %}
 
-<!-- Modal confirms that reset password link was sent-->
-	<div class="modal" id="passwordResetSuccess">
+<!-- Modal confirms that change name was successfull -->
+	<div class="modal" id="changeNameSuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center">Name was changed successfully.</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<form class="p-0" method="get" action="/settings">
+						<button type="submit" class="btn btn-success mt-0" >Come back to settings</button>
+					</form>
+				 </div>
+			</div>
+		</div>
+	</div>
+	{% if modalController['changeNameSuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#changeNameSuccess").modal("show");} );</script>
+	{% endif %}	
+	
+	<!-- Modal confirms that change password was successfull -->
+	<div class="modal" id="changePasswordSuccess">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title w-100 text-center">Password was changed successfully.</h4>
 				 </div>
 				<div class="modal-footer justify-content-center">
-					<form class="p-0" method="get" action="/home">
-						<button type="submit" class="btn btn-success mt-0" >Come back to log in page.</button>
+					<form class="p-0" method="get" action="/settings">
+						<button type="submit" class="btn btn-success mt-0" >Come back to settings</button>
 					</form>
 				 </div>
 			</div>
 		</div>
 	</div>
-	{% if modalController['passwordResetSuccess'] == true %}
-		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#passwordResetSuccess").modal("show");} );</script>
+	{% if modalController['changePasswordSuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#changePasswordSuccess").modal("show");} );</script>
+	{% endif %}	
+	
+	<!-- Modal confirms that change login was successfull -->
+	<div class="modal" id="changeLoginSuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center">Email was changed successfully.</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<form class="p-0" method="get" action="/settings">
+						<button type="submit" class="btn btn-success mt-0" >Come back to settings</button>
+					</form>
+				 </div>
+			</div>
+		</div>
+	</div>
+	{% if modalController['changeLoginSuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#changeLoginSuccess").modal("show");} );</script>
 	{% endif %}	
 	
 {% endblock %}

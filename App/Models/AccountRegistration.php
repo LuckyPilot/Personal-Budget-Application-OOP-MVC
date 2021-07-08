@@ -163,7 +163,7 @@ class AccountRegistration extends \Core\Model
 		
 		while ($defaultExpenseCategories = $query -> fetch( PDO::FETCH_ASSOC )) {
 			
-			$db -> query( "INSERT INTO expenses_category_assigned_to_users VALUES (NULL, '$userId', '".$defaultExpenseCategories['name']."')" );
+			$db -> query( "INSERT INTO expenses_category_assigned_to_users VALUES (NULL, '$userId', '".$defaultExpenseCategories['name']."', NULL)" );
 			
 		}
 		

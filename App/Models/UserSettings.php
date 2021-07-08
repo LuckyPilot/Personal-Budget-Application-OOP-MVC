@@ -39,6 +39,36 @@ class UserSettings extends \Core\Model
 		 
 	 }
 	
+	/**
+	 * Changing user name in DB
+	 *
+	 * @return array $validationErrors Errors messages during validation process or true if name successfully changed
+	 */
+	 public function changeUserName() {
+		 
+		$validationErrors = $this -> validateUserNameInput();
+		
+		if (empty( $validationErrors )) {
+			$sql = "UPDATE users SET username = :newName WHERE id = :userId ";
+			 
+			$db = static::getDB();
+			
+			$stmt = $db -> prepare( $sql );
+			$stmt -> bindValue( ":newName", $this -> newSettingValue["newName"], PDO::PARAM_STR );
+			$stmt -> bindValue( ":userId", $this -> userId, PDO::PARAM_INT );
+			
+			return $stmt -> execute();	
+		}
+		
+		return $validationErrors;
+		
+	 }
+	 
+	/**
+	 * Changing user password in DB
+	 *
+	 * @return array $validationErrors Errors messages during validation process or true if password successfully changed
+	 */
 	public function changeUserPassword() {
 	
 		$validationErrors = $this -> validateUserPasswordInput();
@@ -61,7 +91,47 @@ class UserSettings extends \Core\Model
 	}
 	
 	/**
-	 * Validating password reset form values
+	 * Changing user email in DB
+	 *
+	 * @return array $validationErrors Errors messages during validation process or true if email successfully changed
+	 */
+	public function changeUserEmail() {
+		
+		$validationErrors = $this -> validateUserEmailInput();
+		
+		if (empty( $validationErrors )) {
+			$sql = "UPDATE users SET email = :newEmail WHERE id = :userId ";
+			 
+			$db = static::getDB();
+			
+			$stmt = $db -> prepare( $sql );
+			$stmt -> bindValue( ":newEmail", $this -> newSettingValue["newEmail"] , PDO::PARAM_STR );
+			$stmt -> bindValue( ":userId", $this -> userId, PDO::PARAM_INT );
+			
+			return $stmt -> execute();	
+		}
+		
+		return $validationErrors;
+		
+	}
+	
+	/**
+	 * Validating name change form values
+	 *
+	 * @return array $inputValidation Errors messages during validation process
+	 */
+	private function validateUserNameInput() {
+		
+		$inputValidation = new UserDataValidator();
+		 
+		$inputValidation -> validateName( $this -> newSettingValue["newName"] );
+		 
+		return $inputValidation -> validationErrors;
+		
+	}
+	
+	/**
+	 * Validating password change form values
 	 *
 	 * @return array $inputValidation Errors messages during validation process
 	 */
@@ -75,19 +145,19 @@ class UserSettings extends \Core\Model
 	}
 	
 	/**
-	 * Validating request password reset form values
+	 * Validating email change form values
 	 *
 	 * @return array $inputValidation Errors messages during validation process
 	 */
-	/*private function validateUserEmailInput() {
+	private function validateUserEmailInput() {
 		 
-		$inputValidation = new DataValidator();
+		$inputValidation = new UserDataValidator();
 		 
-		$inputValidation -> validateEmailFormat( $this -> requestResetEmail );
-		$inputValidation -> validateCaptcha( $this -> reCaptcha );
+		$inputValidation -> validateEmailFormat( $this -> newSettingValue["newEmail"] );
+		$inputValidation -> validateEmailAvailability( $this -> newSettingValue["newEmail"] );
 		 
 		return $inputValidation -> validationErrors;
-	}*/
+	}
 	
 }
 
