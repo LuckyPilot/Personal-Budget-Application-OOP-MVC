@@ -17,19 +17,21 @@ class UserSettings extends \Core\Model
 	 * Value of setting to change (in casse of password array) and user ID
 	 */
 	 private $userId = NULL;
-	 private $newSettingValue = NULL;
 	 
 	 /**
 	 * Class constructor
+	 * Setting initial class properties depends from form data sent by user.
 	 *
-	 * @param string $newSettingValue Setting to change
+	 * @param array $formData Setting to change
 	 * @param int $userId User Id to which changes should be made
 	 *
 	 * @return void
 	 */
-	 public function __construct( $newSettingValue, $userId = NULL ) {
+	 public function __construct( $formData, $userId = NULL ) {
 		 
-		$this -> newSettingValue = $newSettingValue;
+		 foreach ($formData as $key => $value ) {
+			 $this -> $key = $value;
+		 }
 		
 		if ($userId == NULL) {
 			$this -> userId = $_SESSION["userId"];
@@ -54,7 +56,7 @@ class UserSettings extends \Core\Model
 			$db = static::getDB();
 			
 			$stmt = $db -> prepare( $sql );
-			$stmt -> bindValue( ":newName", $this -> newSettingValue["newName"], PDO::PARAM_STR );
+			$stmt -> bindValue( ":newName", $this -> newUserName, PDO::PARAM_STR );
 			$stmt -> bindValue( ":userId", $this -> userId, PDO::PARAM_INT );
 			
 			return $stmt -> execute();	
@@ -75,7 +77,7 @@ class UserSettings extends \Core\Model
 		
 		if (empty( $validationErrors )) {
 			$sql = "UPDATE users SET password = :newPassword WHERE id = :userId ";
-			$passwordHash = password_hash( $this -> newSettingValue["newPassword"], PASSWORD_DEFAULT );
+			$passwordHash = password_hash( $this -> newPassword, PASSWORD_DEFAULT );
 			 
 			$db = static::getDB();
 			
@@ -105,7 +107,7 @@ class UserSettings extends \Core\Model
 			$db = static::getDB();
 			
 			$stmt = $db -> prepare( $sql );
-			$stmt -> bindValue( ":newEmail", $this -> newSettingValue["newEmail"] , PDO::PARAM_STR );
+			$stmt -> bindValue( ":newEmail", $this -> newEmail, PDO::PARAM_STR );
 			$stmt -> bindValue( ":userId", $this -> userId, PDO::PARAM_INT );
 			
 			return $stmt -> execute();	
@@ -124,7 +126,7 @@ class UserSettings extends \Core\Model
 		
 		$inputValidation = new UserDataValidator();
 		 
-		$inputValidation -> validateName( $this -> newSettingValue["newName"] );
+		$inputValidation -> validateName( $this -> newUserName );
 		 
 		return $inputValidation -> validationErrors;
 		
@@ -139,7 +141,7 @@ class UserSettings extends \Core\Model
 		 
 		$inputValidation = new UserDataValidator();
 		 
-		$inputValidation -> validatePassword( $this -> newSettingValue["newPassword"], $this -> newSettingValue["newPasswordConfirmation"] );
+		$inputValidation -> validatePassword( $this -> newPassword, $this -> newPasswordConfirmation );
 		 
 		return $inputValidation -> validationErrors;
 	}
@@ -153,8 +155,8 @@ class UserSettings extends \Core\Model
 		 
 		$inputValidation = new UserDataValidator();
 		 
-		$inputValidation -> validateEmailFormat( $this -> newSettingValue["newEmail"] );
-		$inputValidation -> validateEmailAvailability( $this -> newSettingValue["newEmail"] );
+		$inputValidation -> validateEmailFormat( $this -> newEmail );
+		$inputValidation -> validateEmailAvailability( $this -> newEmail );
 		 
 		return $inputValidation -> validationErrors;
 	}

@@ -35,23 +35,23 @@
 	<section class="col-md-8">
 				
 		<!-- SECTION OF CHANGING PROFILE DATA -->
-		<button id="option0" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="{% if profileChangeErrors is defined %} true {% endif %}" data-target="#insertion0">
+		<button id="option0" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="{% if profileSettingsErrors is defined %} true {% endif %}" data-target="#insertion0">
 			<i class="icon-down-big"></i>
 			<h3 class="font-weight-bold mb-0 p-3"><i class="icon-user"></i>PROFILE DATA</h3>
 			<i class="icon-down-big"></i>
 		</button>
-		<div id="insertion0" class="collapse formular p-3 ownShadow bg-lightgreen {% if profileChangeErrors is defined %} show {% endif %}">
+		<div id="insertion0" class="collapse formular p-3 ownShadow bg-lightgreen {% if profileSettingsErrors is defined %} show {% endif %}">
 			<ul class="list-inline">
 			  <li class="list-inline-item">Your current name: <strong>{{ userData.name }}</strong></li>
 			  <li class="list-inline-item">Your current email: <strong>{{ userData.email }}</strong></li>
 			</ul>
 			<form class="mx-auto mb-2" action="/Settings/changeName" method="post" novalidate>
 				<label>
-					<input type="text" name="newName" placeholder="New name" value="{{ post['newName'] }}" required/>
+					<input type="text" name="newUserName" placeholder="New name" value="{{ post['newUserName'] }}" required/>
 				</label>
 				<button type="submit" class="btn btn-success ml-2 font-weight-bold"><i class="icon-arrows-cw"></i> Change name </button>
-				{% if profileChangeErrors['invalidName'] is defined %}
-					<span class="error">{{ profileChangeErrors['invalidName'] }}</span>
+				{% if profileSettingsErrors['invalidName'] is defined %}
+					<span class="error">{{ profileSettingsErrors['invalidName'] }}</span>
 				{% endif %}
 			</form>
 			<form class="mx-auto mb-2" action="/Settings/changeEmail" method="post" novalidate>
@@ -59,8 +59,8 @@
 					<input type="email" name="newEmail" placeholder="New e-mail" value="{{ post['newEmail'] }}" required/>
 				</label>
 				<button type="submit" class="btn btn-success ml-2 font-weight-bold"><i class="icon-arrows-cw"></i> Change email </button>
-				{% if profileChangeErrors['invalidEmail'] is defined %}
-					<span class="error">{{ profileChangeErrors['invalidEmail'] }}</span>
+				{% if profileSettingsErrors['invalidEmail'] is defined %}
+					<span class="error">{{ profileSettingsErrors['invalidEmail'] }}</span>
 				{% endif %}
 			</form>
 			<form class="mx-auto mb-2" action="/Settings/changePassword" method="post" novalidate>
@@ -71,8 +71,8 @@
 					<label>
 						<input type="password" name="newPasswordConfirmation" placeholder="Repeat new password" minlength="8" required />
 					</label>
-					{% if profileChangeErrors['invalidPassword'] is defined %}
-						<span class="error">{{ profileChangeErrors['invalidPassword'] }}</span>
+					{% if profileSettingsErrors['invalidPassword'] is defined %}
+						<span class="error">{{ profileSettingsErrors['invalidPassword'] }}</span>
 					{% endif %}
 				</div>
 				<button type="submit" class="btn btn-success font-weight-bold"><i class="icon-arrows-cw"></i> Change password </button>
@@ -80,49 +80,59 @@
 		</div>
 		
 		<!-- SECTION OF MANAGING INCOMES CATEGORY -->
-		<button id="option1" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="" data-target="#insertion1">
+		<button id="option1" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="{% if incomeSettingsErrors is defined %} true {% endif %}" data-target="#insertion1">
 			<i class="icon-down-big"></i>
 			<h3 class="font-weight-bold mb-0 p-3"><i class="icon-th-list-outline"></i>INCOMES CATEGORY MANAGER</h3>
 			<i class="icon-down-big"></i>
 		</button>
-		<div id="insertion1" class="collapse formular p-3 ownShadow bg-lightgreen">
+		<div id="insertion1" class="collapse formular p-3 ownShadow bg-lightgreen {% if incomeSettingsErrors is defined %} show {% endif %}">
 			<div class="my-2">
 				<label for="incomeCategoryManager"><i class="icon-list-alt"></i> Choose action: </label> 
 				<select id="incomeCategoryManager" class="form-select">
 					<option value="none">...</option>
-					<option value="add">Add new</option>
-					<option value="modify">Modify</option>
+					<option value="add" {% if addIncomeCategoryErrors is defined %} selected {% endif %}>Add new</option>
+					<option value="modify" {% if modifyIncomeCategoryErrors is defined %} selected {% endif %}>Modify</option>
 					<option value="delete">Delete</option>
 				</select>
 			</div>
-			<form id="addNewIncomeCategory" class="mx-auto">
+			<form id="addNewIncomeCategory" class="mx-auto" action="/Settings/addIncomeCategory" method="post" 
+			style="{% if addIncomeCategoryErrors is defined %} display: block; {% endif %}"novalidate>
 				<label>
-					<input type="text" name="newIncomeName" placeholder="New category name" value="" required />
+					<input type="text" name="newName" placeholder="New category name" 
+					value="{% if addIncomeCategoryErrors is defined %}{{ post['newName'] }}{% endif %}" required />
 				</label>
 				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"><i class="icon-ok"></i> Add </button>
+				{% if addIncomeCategoryErrors['invalidName'] is defined %}
+					<span class="error">{{ addIncomeCategoryErrors['invalidName'] }}</span>
+				{% endif %}
 			</form>
-			<form id="modifyIncomeCategory" class="mx-auto">
+			<form id="modifyIncomeCategory" class="mx-auto" action="/Settings/modifyIncomeCategory" method="post" 
+			style="{% if modifyIncomeCategoryErrors is defined %} display: block; {% endif %}"novalidate>
 				<div>
-					<label for="incomeCategoryToModify"><i class="icon-list-alt"></i> Choose category to modify: </label> 
-					<select id="incomeCategoryToModify" name="incomeCategoryToModify">
+					<label for="categoryToModify"><i class="icon-list-alt"></i> Choose category to modify: </label> 
+					<select id="categoryToModify" name="categoryToModify">
 						{% for category in userData.incomesCategory %}
-							<option name="{{ category['name'] }}"> {{ category['name'] }}</option>
+							<option {% if post['categoryToModify'] == category['name'] %} selected {% endif %}>{{ category['name'] }}</option>
 						{% endfor %}
 					</select>
 				</div>
 				<label>
-					<input type="text" name="changeIncomeName" placeholder="New category name" value="" required />
+					<input type="text" name="newName" placeholder="New category name" 
+					value="{% if modifyIncomeCategoryErrors is defined %}{{ post['newName'] }}{% endif %}" required />
 				</label>
 				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"><i class="icon-ok"></i> Set </button>
+				{% if modifyIncomeCategoryErrors['invalidName'] is defined %}
+					<span class="error">{{ modifyIncomeCategoryErrors['invalidName'] }}</span>
+				{% endif %}
 			</form>
-			<form id="deleteIncomeCategory" class="mx-auto">
+			<form id="deleteIncomeCategory" class="mx-auto" action="/Settings/deleteIncomeCategory" method="post" novalidate>
 				<div class="alert alert-danger">
 					<strong>CAUTION!!!</strong>Deleting income category will cause deleting all incomes in this category as well!!!
 				</div>
 				<label for="incomeCategoryToDelete"><i class="icon-list-alt"></i> Choose category to delete: </label> 
-				<select id="incomeCategoryToDelete" name="incomeCategoryToDelete">
+				<select id="incomeCategoryToDelete" name="categoryToDelete">
 					{% for category in userData.incomesCategory %}
-						<option name="{{ category['name'] }}"> {{ category['name'] }}</option>
+						<option>{{ category['name'] }}</option>
 					{% endfor %}
 				</select>
 				<button type="submit" class="btn bg-danger my-2 font-weight-bold ml-2"><i class="icon-cancel"></i> Delete </button>
@@ -130,55 +140,88 @@
 		</div>
 		
 		<!-- SECTION OF MANAGING EXPENSES CATEGORY -->
-		<button id="option2" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="" data-target="#insertion2">
+		<button id="option2" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="{% if expenseSettingsErrors is defined %} true {% endif %}" data-target="#insertion2">
 			<i class="icon-down-big"></i>
 			<h3 class="font-weight-bold mb-0 p-3"><i class="icon-th-list-outline"></i>EXPENSES CATEGORY MANAGER</h3>
 			<i class="icon-down-big"></i>
 		</button>
-		<div id="insertion2" class="collapse formular p-3 ownShadow bg-lightgreen">
+		<div id="insertion2" class="collapse formular p-3 ownShadow bg-lightgreen {% if expenseSettingsErrors is defined %} show {% endif %}">
 			<div class="my-2">
 				<label for="expenseCategoryManager"><i class="icon-list-alt"></i> Choose action: </label> 
-				<select id="expenseCategoryManager" name="expenseCategoryManager">
+				<select id="expenseCategoryManager">
 					<option value="none">...</option>
-					<option value="add">Add new</option>
-					<option value="modify">Modify</option>
+					<option value="add" {% if addExpenseCategoryErrors is defined %} selected {% endif %}>Add new</option>
+					<option value="modifyName" {% if modifyExpenseCategoryNameErrors is defined %} selected {% endif %}>Modify name</option>
+					<option value="modifyLimit" {% if modifyExpenseCategoryLimitErrors is defined %} selected {% endif %}>Modify limit</option>
 					<option value="delete">Delete</option>
 				</select>
 			</div>
-			<form id="addNewExpenseCategory" class="mx-auto">
+			<form id="addNewExpenseCategory" class="mx-auto" action="/Settings/addExpenseCategory" method="post" 
+			style="{% if addExpenseCategoryErrors is defined %} display: block; {% endif %}" novalidate>
 				<label>
-					<input type="text" name="newExpenseName" placeholder="New category name" value="" required />
+					<input type="text" name="newName" placeholder="New category name"
+					value="{% if addExpenseCategoryErrors is defined %}{{ post['newName'] }}{% endif %}" required />
 				</label>
 				<label>
-					<input type="number" name="newExpenseLimit" placeholder="Expense limit" min="0" step="1" value="" />
+					<input type="number" name="newLimit" placeholder="Expense limit" min="0" step="1" 
+					value="{% if addExpenseCategoryErrors is defined %}{{ post['newLimit'] }}{% endif %}" />
 				</label>
 				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"><i class="icon-ok"></i> Add </button>
+				{% if addExpenseCategoryErrors['invalidName'] is defined %}
+					<span class="error">{{ addExpenseCategoryErrors['invalidName'] }}</span>
+				{% elseif addExpenseCategoryErrors['invalidAmount'] is defined %}
+					<span class="error">{{ addExpenseCategoryErrors['invalidAmount'] }}</span>
+				{% endif %}
 			</form>
-			<form id="modifyExpenseCategory" class="mx-auto">
+			<form id="modifyExpenseCategoryName" class="mx-auto" action="/Settings/modifyExpenseCategoryName" method="post" 
+			style="{% if modifyExpenseCategoryNameErrors is defined %} display: block; {% endif %}" novalidate>
 				<div>
-					<label for="expenseCategoryToModify"><i class="icon-list-alt"></i> Choose category to modify: </label> 
-					<select id="expenseCategoryToModify" name="expenseCategoryToModify">
+					<label for="expenseCategoryNameToModify"><i class="icon-list-alt"></i> Choose category to modify: </label> 
+					<select id="expenseCategoryNameToModify" name="categoryToModify">
 						{% for category in userData.expensesCategory %}
-							<option name="{{ category['name'] }}"> {{ category['name'] }}</option>
+							<option {% if post['categoryToModify'] == category['name'] %} selected {% endif %}>{{ category['name'] }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<label> 
+					<input type="text" name="newName" placeholder="New category name" 
+					value="{% if modifyExpenseCategoryNameErrors is defined %}{{ post['newName'] }}{% endif %}" required />
+				</label>
+				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"><i class="icon-ok"></i> Set </button>
+				{% if modifyExpenseCategoryNameErrors['invalidName'] is defined %}
+					<span class="error">{{ modifyExpenseCategoryNameErrors['invalidName'] }}</span>
+				{% endif %}
+			</form>
+			<form id="modifyExpenseCategoryLimit" class="mx-auto" action="/Settings/modifyExpenseCategoryLimit" method="post" 
+			style="{% if modifyExpenseCategoryLimitErrors is defined %} display: block; {% endif %}" novalidate>
+				<div class="alert alert-info">
+					<strong>Information.</strong> If you would like to reset expense limit please insert 0 or leave field empty.
+				</div>
+				<div>
+					<label for="expenseCategoryLimitToModify"><i class="icon-list-alt"></i> Choose category to modify: </label> 
+					<select id="expenseCategoryLimitToModify" name="categoryToModify">
+						{% for category in userData.expensesCategory %}
+							<option {% if post['categoryToModify'] == category['name'] %} selected {% endif %}>{{ category['name'] }}</option>
 						{% endfor %}
 					</select>
 				</div>
 				<label>
-					<input type="text" name="changeExpenseName" placeholder="New category name" value="" />
-				</label>
-				<label>
-					<input type="number" name="changeExpenseLimit" placeholder="New expense limit" min="0" step="1" value="" />
+					<input type="number" name="newLimit" placeholder="New expense limit" min="0" step="1" 
+					value="{% if modifyExpenseCategoryLimitErrors is defined %}{{ post['newLimit'] }}{% endif %}" />
 				</label>
 				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"><i class="icon-ok"></i> Set </button>
+				{% if modifyExpenseCategoryLimitErrors['invalidAmount'] is defined %}
+					<span class="error">{{ modifyExpenseCategoryLimitErrors['invalidAmount'] }}</span>
+				{% endif %}
 			</form>
-			<form id="deleteExpenseCategory" class="mx-auto">
+			<form id="deleteExpenseCategory" class="mx-auto" action="/Settings/deleteExpenseCategory" method="post" novalidate>
 				<div class="alert alert-danger">
 					<strong>CAUTION!!!</strong>Deleting expense category will cause deleting all expenses in this category as well!!!
 				</div>
 				<label for="expenseCategoryToDelete"><i class="icon-list-alt"></i> Choose category to delete: </label> 
-				<select id="expenseCategoryToDelete" name="expenseCategoryToDelete">
+				<select id="expenseCategoryToDelete" name="categoryToDelete">
 					{% for category in userData.expensesCategory %}
-						<option name="{{ category['name'] }}"> {{ category['name'] }}</option>
+						<option>{{ category['name'] }}</option>
 					{% endfor %}
 				</select>
 				<button type="submit" class="btn bg-danger my-2 font-weight-bold ml-2"><i class="icon-cancel"></i> Delete </button>
@@ -252,6 +295,63 @@
 	</div>
 	{% if modalController['changeLoginSuccess'] == true %}
 		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#changeLoginSuccess").modal("show");} );</script>
+	{% endif %}	
+	
+	<!-- Modal confirms that change name was successfull -->
+	<div class="modal" id="addCategorySuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center"> New category was added sucessfully.</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<form class="p-0" method="get" action="/settings">
+						<button type="submit" class="btn btn-success mt-0" >Come back to settings</button>
+					</form>
+				 </div>
+			</div>
+		</div>
+	</div>
+	{% if modalController['addCategorySuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#addCategorySuccess").modal("show");} );</script>
+	{% endif %}	
+	
+	<!-- Modal confirms that change name was successfull -->
+	<div class="modal" id="modifyCategorySuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center">Category was modified successfully.</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<form class="p-0" method="get" action="/settings">
+						<button type="submit" class="btn btn-success mt-0" >Come back to settings</button>
+					</form>
+				 </div>
+			</div>
+		</div>
+	</div>
+	{% if modalController['modifyCategorySuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#modifyCategorySuccess").modal("show");} );</script>
+	{% endif %}	
+	
+	<!-- Modal confirms that change name was successfull -->
+	<div class="modal" id="deleteCategorySuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center">Category was deleted successfully.</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<form class="p-0" method="get" action="/settings">
+						<button type="submit" class="btn btn-success mt-0" >Come back to settings</button>
+					</form>
+				 </div>
+			</div>
+		</div>
+	</div>
+	{% if modalController['deleteCategorySuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#deleteCategorySuccess").modal("show");} );</script>
 	{% endif %}	
 	
 {% endblock %}

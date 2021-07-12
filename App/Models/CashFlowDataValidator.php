@@ -38,10 +38,10 @@ class CashFlowDataValidator
 	 */
 	public function validateLimit( $amount ) {
 		
-		 if (!filter_var( $amount, FILTER_VALIDATE_INT )) {
-			 $this -> validationErrors['invalidAmount'] = "Amount has to be integer number!";
-		 } elseif ($amount < 0) {
-			  $this -> validationErrors['invalidAmount'] = "Limit can't have negative value!";
+		 if ($amount < 0) {
+			$this -> validationErrors['invalidAmount'] = "Limit has to be positive integer number!";
+		 }  elseif (!filter_var( $amount, FILTER_VALIDATE_INT )) {
+			$this -> validationErrors['invalidAmount'] = "Amount has to be integer number!";
 		 }
 		 
 	}
@@ -72,6 +72,49 @@ class CashFlowDataValidator
 			 $this -> validationErrors['invalidCategory'] = "Please choose category!";
 		 } 
 		 
+	}
+	
+	/**
+	 * Checking whether name for cashflow category is correct . If not, set info to validationErrors array
+	 * 
+	 * @return void
+	 */
+	public function validateCategoryName( $categoryName ) {
+		
+		 if (strlen( $categoryName ) == 0) {
+			 $this -> validationErrors['invalidName'] = "Category name is required!";
+		 } 
+		 
+	}
+	
+	/**
+	 * Checking whether name for income category is not already in DB . If is, set info to validationErrors array
+	 * 
+	 * @return void
+	 */
+	public function validateIncomeNameAvailability( $categoryName ) {
+		
+		$checkAvailability = Income::findIncomeCategoryId( $categoryName );
+		
+		if ($checkAvailability) {
+			$this -> validationErrors['invalidName'] = "You have already that category!";
+		}
+		
+	}
+	
+	/**
+	 * Checking whether name for expense category is not already in DB . If is, set info to validationErrors array
+	 * 
+	 * @return void
+	 */
+	public function validateExpenseNameAvailability( $categoryName ) {
+		
+		$checkAvailability = Expense::findExpenseCategoryId( $categoryName );
+		
+		if ($checkAvailability) {
+			$this -> validationErrors['invalidName'] = "You have already that category!";
+		}
+		
 	}
 	
 	/**

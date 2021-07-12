@@ -60,29 +60,45 @@ document.getElementById("expenseCategoryManager").addEventListener(  "input", fu
 	switch( this.value ) {
 		case "add":
 			$("#deleteExpenseCategory").fadeOut("slow", function() {
-				$("#modifyExpenseCategory").fadeOut("slow", function() {
-					$("#addNewExpenseCategory").fadeIn("slow");
+				$("#modifyExpenseCategoryName").fadeOut("slow", function() {
+					$("#modifyExpenseCategoryLimit").fadeOut("slow", function() {
+						$("#addNewExpenseCategory").fadeIn("slow");
+					});
 				});
 			});
 			break;
 		case"delete":
 			$("#addNewExpenseCategory").fadeOut("slow", function() {
-				$("#modifyExpenseCategory").fadeOut("slow", function() {
-					$("#deleteExpenseCategory").fadeIn("slow");
+				$("#modifyExpenseCategoryName").fadeOut("slow", function() {
+					$("#modifyExpenseCategoryLimit").fadeOut("slow", function() {
+						$("#deleteExpenseCategory").fadeIn("slow");
+					});	
 				});
 			});
 			break;
-		case "modify":
+		case "modifyName":
 		$("#addNewExpenseCategory").fadeOut("slow", function() {
 				$("#deleteExpenseCategory").fadeOut("slow", function() {
-					$("#modifyExpenseCategory").fadeIn("slow");
+					$("#modifyExpenseCategoryLimit").fadeOut("slow", function() {
+						$("#modifyExpenseCategoryName").fadeIn("slow");
+					});
+				});
+			});
+			break;
+		case "modifyLimit":
+			$("#addNewExpenseCategory").fadeOut("slow", function() {
+				$("#deleteExpenseCategory").fadeOut("slow", function() {
+					$("#modifyExpenseCategoryName").fadeOut("slow", function() {
+						$("#modifyExpenseCategoryLimit").fadeIn("slow");
+					});
 				});
 			});
 			break;
 		default:
 			$("#addNewExpenseCategory").fadeOut("slow");
 			$("#deleteExpenseCategory").fadeOut("slow");
-			$("#modifyExpenseCategory").fadeOut("slow");
+			$("#modifyExpenseCategoryName").fadeOut("slow");
+			$("#modifyExpenseCategoryLimit").fadeOut("slow");
 	}
 	
 } );

@@ -87,7 +87,7 @@ class Income extends CashFlow
 		
 		$sql = "INSERT INTO incomes VALUES( NULL, :userId, :catId, :amount, :date, :comment )";
 		
-		$catId = $this -> findIncomeCategoryId();
+		$catId = static::findIncomeCategoryId( $this -> category );
 		
 		$db = static::getDB();
 		$stmt = $db -> prepare($sql);
@@ -103,11 +103,29 @@ class Income extends CashFlow
 	}
 	
 	/**
+	 * Deleting user incomes from incomes table in DB
+	 *
+	 * @return true if success, false otherwise
+	 */
+	public static function deleteIncomesFromDB( $categoryId ) {
+		
+		$sql = "DELETE FROM incomes WHERE income_category_assigned_to_user_id = :categoryToDeleteId";
+		
+		$db = static::getDB();
+		$stmt = $db -> prepare($sql);
+		
+		$stmt -> bindValue( ":categoryToDeleteId", $categoryId, PDO::PARAM_INT );
+		
+		return $stmt -> execute();
+		
+	}
+	
+	/**
 	 * Finding income category id from incomes_category_assigned_to_users table in DB
 	 *
 	 * @return custom object if found or false otherwise
 	 */
-	private function findIncomeCategoryId() {
+	public static function findIncomeCategoryId( $categoryName ) {
 		
 		$sql = "SELECT id FROM  incomes_category_assigned_to_users WHERE user_id = :userId AND name = :catName";
 		
@@ -115,7 +133,7 @@ class Income extends CashFlow
 		$stmt = $db -> prepare($sql);
 		
 		$stmt -> bindValue( ":userId", $_SESSION["userId"], PDO::PARAM_INT );
-		$stmt -> bindValue( ":catName", $this -> category, PDO::PARAM_STR );
+		$stmt -> bindValue( ":catName", $categoryName, PDO::PARAM_STR );
 		
 		$stmt -> execute();
 		
