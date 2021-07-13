@@ -38,7 +38,7 @@ class Income extends CashFlow
 	}
 	
 	/**
-	 * Fetchinn user's incomes from given period from DB
+	 * Fetching user's incomes from given period from DB
 	 *
 	 * @param string $begDate Date which begins period
 	 * @param string $endDate Date which ends period

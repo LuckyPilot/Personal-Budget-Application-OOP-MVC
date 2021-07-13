@@ -71,7 +71,7 @@ class IncomeSettings extends CashFlowSettings
 	 public function deleteIncomeCategory() {
 		 
 		 // First we are deleting all incomes with id of category to delete
-		$categoryToDelete = Income::findIncomeCategoryInDB $this -> categoryToDelete );
+		$categoryToDelete = Income::findIncomeCategoryInDB( $this -> categoryToDelete );
 		Income::deleteIncomesFromDB( $categoryToDelete -> id );
 		
 		// Than we are deleting category
@@ -96,7 +96,7 @@ class IncomeSettings extends CashFlowSettings
 		 
 		$inputValidation = new CashFlowDataValidator();
 		 
-		$inputValidation -> validateCategoryName( $this -> newName );
+		$inputValidation -> validateName( $this -> newName );
 		$inputValidation -> validateIncomeNameAvailability( $this -> newName );
 	 
 		return $inputValidation -> validationErrors;

@@ -6,7 +6,7 @@ use \Core\View;
 use \App\FlashModals;
 use \App\Models\Income;
 use \App\Models\Expense;
-use \App\Models\LimitInformator;
+use \App\Models\ExpenseLimitInformator;
 use \App\Models\BalanceGenerator;
 use \App\Models\Logout;
 

@@ -115,7 +115,7 @@ class Expense extends CashFlow
 		$sql = "INSERT INTO expenses VALUES( NULL, :userId, :catId, :payId, :amount, :date, :comment )";
 		
 		$catId = $this -> findExpenseCategoryInDB( $this -> category );
-		$payId = $this -> findPaymentMethodInDB();
+		$payId = $this -> findPaymentMethodInDB( $this -> method );
 		
 		$db = static::getDB();
 		$stmt = $db -> prepare($sql);
@@ -132,11 +132,11 @@ class Expense extends CashFlow
 	}
 	
 	/**
-	 * Deleting user expenses from expenses table in DB
+	 * Deleting user expenses from expenses table in DB by expense category id
 	 *
 	 * @return true if success, false otherwise
 	 */
-	public static function deleteExpensesFromDB( $categoryId ) {
+	public static function deleteExpensesByCategoryFromDB( $categoryId ) {
 		
 		$sql = "DELETE FROM expenses WHERE expense_category_assigned_to_user_id = :categoryToDeleteId";
 		
@@ -144,6 +144,24 @@ class Expense extends CashFlow
 		$stmt = $db -> prepare($sql);
 		
 		$stmt -> bindValue( ":categoryToDeleteId", $categoryId, PDO::PARAM_INT );
+		
+		return $stmt -> execute();
+		
+	}
+	
+	/**
+	 * Deleting user expenses from expenses table in DB by payment methods id
+	 *
+	 * @return true if success, false otherwise
+	 */
+	public static function deleteExpensesByMethodFromDB( $methodId ) {
+		
+		$sql = "DELETE FROM expenses WHERE payment_method_assigned_to_user_id = :methodToDeleteId";
+		
+		$db = static::getDB();
+		$stmt = $db -> prepare($sql);
+		
+		$stmt -> bindValue( ":methodToDeleteId", $methodId, PDO::PARAM_INT );
 		
 		return $stmt -> execute();
 		
@@ -175,15 +193,15 @@ class Expense extends CashFlow
 	 *
 	 * @return custom object if found or false otherwise
 	 */
-	private function findPaymentMethodInDB() {
+	public static function findPaymentMethodInDB( $methodName ) {
 		
-		$sql = "SELECT * FROM  payment_methods_assigned_to_users WHERE user_id = :userId AND name = :catName";
+		$sql = "SELECT * FROM  payment_methods_assigned_to_users WHERE user_id = :userId AND name = :methodName";
 		
 		$db = static::getDB();
 		$stmt = $db -> prepare($sql);
 		
 		$stmt -> bindValue( ":userId", $_SESSION["userId"], PDO::PARAM_INT );
-		$stmt -> bindValue( ":catName", $this -> method, PDO::PARAM_STR );
+		$stmt -> bindValue( ":methodName", $methodName, PDO::PARAM_STR );
 		
 		$stmt -> execute();
 		

@@ -84,7 +84,7 @@ class Settings extends Authenticated
 		 
 	 }
 	 
-	 /**
+	/**
      * Adding new income category for user
      *
      * @return void
@@ -103,7 +103,7 @@ class Settings extends Authenticated
 		 
 	 }
 	 
-	 /**
+	/**
      * Adding new expense category for user
      *
      * @return void
@@ -208,6 +208,61 @@ class Settings extends Authenticated
 		 
 		 if ($result === true) {
 			FlashModals::addModal( "deleteCategorySuccess" );
+		 } 
+		 
+		 $this -> redirect( "/settings" ); 
+	 }
+	 
+	/**
+     * Adding new payment method for user
+     *
+     * @return void
+     */
+	 public function addPaymentMethodAction() {
+		 
+		 $addPaymentMethod = new ExpenseSettings( $_POST );
+		 $result = $addPaymentMethod -> addPaymentMethod();
+		 
+		 if ($result === true) {
+			FlashModals::addModal( "addMethodSuccess" );
+			$this -> redirect( "/settings" );
+		 } else {
+			 View::renderTemplate( "Settings/settings.html", ["userData" => $this -> userData, "paymentMethodsErrors" => true, "addPaymentMethodErrors" => $result] );
+		 }
+		 
+	 }
+	 
+	/**
+     * Modifying payment method for user
+     *
+     * @return void
+     */
+	 public function modifyPaymentMethodAction() {
+		 
+		 $modifyPaymentMethod = new ExpenseSettings( $_POST );
+		 $result = $modifyPaymentMethod -> modifyPaymentMethod();
+		 
+		 if ($result === true) {
+			FlashModals::addModal( "modifyMethodSuccess" );
+			$this -> redirect( "/settings" );
+		 } else {
+			 View::renderTemplate( "Settings/settings.html", ["userData" => $this -> userData, "paymentMethodsErrors" => true, "modifyPaymentMethodErrors" => $result] );
+		 }
+		 
+	 }
+	 
+	/**
+     * Deleting payment method for user
+     *
+     * @return void
+     */
+	 public function deletePaymentMethodAction() {
+		 
+		 $deletePaymentMethod = new ExpenseSettings( $_POST );
+		 $result = $deletePaymentMethod -> deletePaymentMethod();
+		 
+		 if ($result === true) {
+			FlashModals::addModal( "deleteMethodSuccess" );
 		 } 
 		 
 		 $this -> redirect( "/settings" ); 

@@ -79,7 +79,7 @@ class CashFlowDataValidator
 	 * 
 	 * @return void
 	 */
-	public function validateCategoryName( $categoryName ) {
+	public function validateName( $categoryName ) {
 		
 		 if (strlen( $categoryName ) == 0) {
 			 $this -> validationErrors['invalidName'] = "Category name is required!";
@@ -94,7 +94,7 @@ class CashFlowDataValidator
 	 */
 	public function validateIncomeNameAvailability( $categoryName ) {
 		
-		$checkAvailability = Income::findIncomeCategoryId( $categoryName );
+		$checkAvailability = Income::findIncomeCategoryInDB( $categoryName );
 		
 		if ($checkAvailability) {
 			$this -> validationErrors['invalidName'] = "You have already that category!";
@@ -109,10 +109,25 @@ class CashFlowDataValidator
 	 */
 	public function validateExpenseNameAvailability( $categoryName ) {
 		
-		$checkAvailability = Expense::findExpenseCategoryId( $categoryName );
+		$checkAvailability = Expense::findExpenseCategoryInDB( $categoryName );
 		
 		if ($checkAvailability) {
 			$this -> validationErrors['invalidName'] = "You have already that category!";
+		}
+		
+	}
+	
+	/**
+	 * Checking whether name for payment method is not already in DB . If is, set info to validationErrors array
+	 * 
+	 * @return void
+	 */
+	public function validateMethodNameAvailability( $categoryName ) {
+		
+		$checkAvailability = Expense::findPaymentMethodInDB( $categoryName );
+		
+		if ($checkAvailability) {
+			$this -> validationErrors['invalidName'] = "You have already that method!";
 		}
 		
 	}

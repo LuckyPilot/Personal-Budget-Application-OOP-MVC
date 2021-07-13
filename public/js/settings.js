@@ -2,6 +2,7 @@
 document.getElementById("option0").addEventListener(  "click", function() { displayFormular( 0 ); } );
 document.getElementById("option1").addEventListener(  "click", function() { displayFormular( 1 ); } );
 document.getElementById("option2").addEventListener(  "click", function() { displayFormular( 2 ); } );
+document.getElementById("option3").addEventListener(  "click", function() { displayFormular( 3 ); } );
 
 // Function responsible for changing button's arrows and bottom corners 
 function displayFormular( option ) {
@@ -20,6 +21,39 @@ function displayFormular( option ) {
 	}
 	
 }
+
+// Event responsible for drop down menu with different formular in profile data manager
+document.getElementById("profileDataManager").addEventListener(  "input", function() { 
+
+	switch( this.value ) {
+		case "changePassword":
+			$("#changeName").fadeOut("slow", function() {
+				$("#changeEmail").fadeOut("slow", function() {
+					$("#changePassword").fadeIn("slow");
+				});
+			});
+			break;
+		case"changeEmail":
+			$("#changeName").fadeOut("slow", function() {
+				$("#changePassword").fadeOut("slow", function() {
+					$("#changeEmail").fadeIn("slow");
+				});
+			});
+			break;
+		case "changeName":
+		$("#changeEmail").fadeOut("slow", function() {
+				$("#changePassword").fadeOut("slow", function() {
+					$("#changeName").fadeIn("slow");
+				});
+			});
+			break;
+		default:
+			$("#changeEmail").fadeOut("slow");
+			$("#changePassword").fadeOut("slow");
+			$("#changeName").fadeOut("slow");
+	}
+	
+} );
 
 // Event responsible for drop down menu with different formular in income category manager
 document.getElementById("incomeCategoryManager").addEventListener(  "input", function() { 
@@ -99,6 +133,39 @@ document.getElementById("expenseCategoryManager").addEventListener(  "input", fu
 			$("#deleteExpenseCategory").fadeOut("slow");
 			$("#modifyExpenseCategoryName").fadeOut("slow");
 			$("#modifyExpenseCategoryLimit").fadeOut("slow");
+	}
+	
+} );
+
+// Event responsible for drop down menu with different formular in payment method manager
+document.getElementById("paymentMethodManager").addEventListener(  "input", function() { 
+
+	switch( this.value ) {
+		case "add":
+			$("#deletePaymentMethod").fadeOut("slow", function() {
+				$("#modifyPaymentMethod").fadeOut("slow", function() {
+					$("#addNewPaymentMethod").fadeIn("slow");
+				});
+			});
+			break;
+		case"delete":
+			$("#addNewPaymentMethod").fadeOut("slow", function() {
+				$("#modifyPaymentMethod").fadeOut("slow", function() {
+					$("#deletePaymentMethod").fadeIn("slow");
+				});
+			});
+			break;
+		case "modify":
+		$("#addNewPaymentMethod").fadeOut("slow", function() {
+				$("#deletePaymentMethod").fadeOut("slow", function() {
+					$("#modifyPaymentMethod").fadeIn("slow");
+				});
+			});
+			break;
+		default:
+			$("#addNewPaymentMethod").fadeOut("slow");
+			$("#deletePaymentMethod").fadeOut("slow");
+			$("#modifyPaymentMethod").fadeOut("slow");
 	}
 	
 } );

@@ -1,4 +1,4 @@
-/* Ustawienia tabel */
+/* TABLES SETTINGS */
 table {
 	margin: 1rem auto;
 }
@@ -8,12 +8,17 @@ table {
 	border-radius: 10px;
 }
 
-/* Ustawienia piechart */
+/* PIECHART SETTINGS */
 #piechart {
 	min-height: 400px;
 }
 
-/* Ustawienia bocznego paska reklamy */
+/* ADDITIONAL BOOTSTRAP ALERT SETTINGS */
+.alert {
+	margin-top: 1rem;
+}
+
+/* ASIDE ADDS SETTINGS */
 aside img {
 	position: sticky;
 	top: 110px;

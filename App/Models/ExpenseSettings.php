@@ -109,7 +109,7 @@ class ExpenseSettings extends CashFlowSettings
 		 
 		// First we are deleting all expenses with id of category to delete
 		$categoryToDelete = Expense::findExpenseCategoryInDB( $this -> categoryToDelete );
-		Expense::deleteExpensesFromDB( $categoryToDelete -> id );
+		Expense::deleteExpensesByCategoryFromDB( $categoryToDelete -> id );
 		
 		// Than we are deleting category
 		$sql = "DELETE FROM expenses_category_assigned_to_users WHERE name = :currentName AND user_id = :userId";
@@ -118,6 +118,81 @@ class ExpenseSettings extends CashFlowSettings
 		
 		$stmt = $db -> prepare( $sql );
 		$stmt -> bindValue( ":currentName", $this -> categoryToDelete, PDO::PARAM_STR );
+		$stmt -> bindValue( ":userId", $_SESSION["userId"], PDO::PARAM_INT );
+		
+		return $stmt -> execute();	
+		
+	 }
+	 
+	/**
+	 * Adding payment method for user to DB
+	 *
+	 * @return array $validationErrors Errors messages during validation process or true if name successfully changed
+	 */
+	 public function addPaymentMethod() {
+		
+		$validationErrors = $this -> validatePaymentMethodInput();
+		
+		if (empty( $validationErrors )) {
+			$sql = "INSERT INTO payment_methods_assigned_to_users VALUES(NULL, :userId, :newName)";
+			 
+			$db = static::getDB();
+			
+			$stmt = $db -> prepare( $sql );
+			$stmt -> bindValue( ":userId", $_SESSION["userId"], PDO::PARAM_INT );
+			$stmt -> bindValue( ":newName", $this -> newName, PDO::PARAM_STR );
+			
+			return $stmt -> execute();	
+		}
+		
+		return $validationErrors;
+		
+	 }
+	 
+	/**
+	 * Modifying payment method for user in DB
+	 *
+	 * @return array $validationErrors Errors messages during validation process or true if name successfully changed
+	 */
+	 public function modifyPaymentMethod() {
+
+		$validationErrors = $this -> validatePaymentMethodInput();
+		
+		if (empty( $validationErrors )) {
+			$sql = "UPDATE payment_methods_assigned_to_users SET name = :newName WHERE name = :currentName AND user_id = :userId";
+
+			$db = static::getDB();
+			
+			$stmt = $db -> prepare( $sql );
+			$stmt -> bindValue( ":newName", $this -> newName, PDO::PARAM_STR );
+			$stmt -> bindValue( ":currentName", $this -> methodToModify, PDO::PARAM_STR );
+			$stmt -> bindValue( ":userId", $_SESSION["userId"], PDO::PARAM_INT );
+			
+			return $stmt -> execute();	
+		}
+		
+		return $validationErrors;
+		
+	 }
+	 
+	/**
+	 * Deleting payment method for user in DB
+	 *
+	 * @return true if success, false otherwise
+	 */
+	 public function deletePaymentMethod() {
+		 
+		// First we are deleting all expenses with id of category to delete
+		$methodToDelete = Expense::findPaymentMethodInDB( $this -> methodToDelete );
+		Expense::deleteExpensesByMethodFromDB( $methodToDelete -> id );
+		
+		// Than we are deleting category
+		$sql = "DELETE FROM payment_methods_assigned_to_users WHERE name = :currentName AND user_id = :userId";
+
+		$db = static::getDB();
+		
+		$stmt = $db -> prepare( $sql );
+		$stmt -> bindValue( ":currentName", $this -> methodToDelete, PDO::PARAM_STR );
 		$stmt -> bindValue( ":userId", $_SESSION["userId"], PDO::PARAM_INT );
 		
 		return $stmt -> execute();	
@@ -134,7 +209,7 @@ class ExpenseSettings extends CashFlowSettings
 		$inputValidation = new CashFlowDataValidator();
 		 
 		if (isset( $this -> newName )) {
-			$inputValidation -> validateCategoryName( $this -> newName );
+			$inputValidation -> validateName( $this -> newName );
 			$inputValidation -> validateExpenseNameAvailability( $this -> newName );
 		}
 		
@@ -144,6 +219,22 @@ class ExpenseSettings extends CashFlowSettings
 	 
 		return $inputValidation -> validationErrors;
 		
+	 }
+	 
+	/**
+	 * Validating payment method inputs
+	 *
+	 * @return array $inputValidation Errors messages during validation process
+	 */
+	 private function validatePaymentMethodInput() {
+		 
+		 $inputValidation = new CashFlowDataValidator();
+		 
+		 $inputValidation -> validateName( $this -> newName );
+		 $inputValidation -> validateMethodNameAvailability( $this -> newName );
+		 
+		 return $inputValidation -> validationErrors;
+		 
 	 }
 
 }

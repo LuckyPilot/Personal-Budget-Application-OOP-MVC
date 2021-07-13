@@ -68,7 +68,7 @@
 			</div>
 			<div class="my-2">
 				<fieldset class="d-flex flex-wrap justify-content-center p-2">
-					<legend><i class="icon-book"></i>  Category: </legend>
+					<legend><i class="icon-book-1"></i>  Category: </legend>
 					{% for category in userData.incomesCategory %}
 						{% if loop.first %}
 							<div class="custom-control custom-radio custom-control-inline">
@@ -91,10 +91,13 @@
 				<label><i class="icon-comment"></i>Comment (optional max. 42 chars): <textarea name="comment" maxlength="42"></textarea>
 				</label>
 			</div>
-			
 			<div class="my-2">
-				<button type="submit" class="btn bg-success my-2 font-weight-bold"><i class="icon-ok"></i> Add income </button>
+				<button type="submit" class="btn bg-success my-2 font-weight-bold"{% if userData.incomesCategory is empty %} disabled 
+				{% endif %}><i class="icon-ok"></i> Add income </button>
 			</div>
+			{% if userData.incomesCategory is empty %}
+				<div class="alert alert-info">You deleted all incomes category! Adding income without category is not allowed. Please add new income category first in settings.</div>
+			{% endif %}
 		</form>
 	</div>
 	
@@ -123,7 +126,7 @@
 			</div>
 			<div class="my-2">
 				<fieldset class="d-flex flex-wrap justify-content-center p-2">
-					<legend><i class="icon-book"></i>  Payment method: </legend>
+					<legend><i class="icon-book-1"></i>  Payment method: </legend>
 					{% for method in userData.paymentMethods %}
 						{% if loop.first %}
 							<div class="custom-control custom-radio custom-control-inline">
@@ -145,7 +148,7 @@
 			</div>
 			<div class="my-2">
 				<fieldset class="d-flex flex-wrap justify-content-center p-2" name="expenseCategoryRadios">
-					<legend><i class="icon-book"></i>  Category: </legend>
+					<legend><i class="icon-book-1"></i>  Category: </legend>
 					{% for category in userData.expensesCategory %}
 						{% if loop.first %}
 							<div class="custom-control custom-radio custom-control-inline">
@@ -169,15 +172,21 @@
 				</label>
 			</div>
 			<div class="my-2">
-				<button type="submit" class="btn bg-success my-2 font-weight-bold"><i class="icon-ok"></i> Add expense </button>
+				<button type="submit" class="btn bg-success my-2 font-weight-bold"{% if userData.expensesCategory is empty or userData.paymentMethods is empty %} disabled {% endif %}><i class="icon-ok"></i> Add expense </button>
 			</div>
+			{% if userData.expensesCategory is empty %}
+				<div class="alert alert-info">You deleted all expenses category! Adding expense without category is not allowed. Please add new expense category first in settings.</div>
+			{% endif %}
+			{% if userData.paymentMethods is empty %}
+				<div class="alert alert-info">You deleted all payment methods! Adding expense without payment method is not allowed. Please add new payment method first in settings.</div>
+			{% endif %}
 		</form>
 	</div>
 	
 	<!-- SECTION OF CREATING OVERVIEW/BALANCE -->
 	<button id="option2" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="{% if balanceErrors is defined %} true {% endif %}" data-target="#insertion2">
 		<i class="icon-down-big" ></i>
-		<h3 class="font-weight-bold mb-0 p-3"><i class="icon-th-list-outline"></i> CREATE BALANCE </h3>
+		<h3 class="font-weight-bold mb-0 p-3"><i class="icon-chart-pie"></i> CREATE BALANCE </h3>
 		<i class="icon-down-big"></i>
 	</button>
 	<div id="insertion2" class="collapse formular p-3 ownShadow bg-lightgreen {% if balanceErrors is defined %} show {% endif %}">

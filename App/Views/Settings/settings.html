@@ -41,11 +41,20 @@
 			<i class="icon-down-big"></i>
 		</button>
 		<div id="insertion0" class="collapse formular p-3 ownShadow bg-lightgreen {% if profileSettingsErrors is defined %} show {% endif %}">
-			<ul class="list-inline">
+			<ul class="alert alert-info list-inline">
 			  <li class="list-inline-item">Your current name: <strong>{{ userData.name }}</strong></li>
 			  <li class="list-inline-item">Your current email: <strong>{{ userData.email }}</strong></li>
 			</ul>
-			<form class="mx-auto mb-2" action="/Settings/changeName" method="post" novalidate>
+			<div class="my-2">
+				<label for="profileDataManager"><i class="icon-list-alt"></i> Choose action: </label> 
+				<select id="profileDataManager" class="form-select">
+					<option value="none">...</option>
+					<option value="changeName" {% if profileSettingsErrors['invalidName'] is defined %} selected {% endif %}>Change name</option>
+					<option value="changeEmail" {% if profileSettingsErrors['invalidEmail'] is defined %} selected {% endif %}>Change e-mail</option>
+					<option value="changePassword" {% if profileSettingsErrors['invalidPassword'] is defined %} selected {% endif %}>Change password</option>
+				</select>
+			</div>
+			<form id="changeName" class="mx-auto mb-2" action="/Settings/changeName" method="post" novalidate>
 				<label>
 					<input type="text" name="newUserName" placeholder="New name" value="{{ post['newUserName'] }}" required/>
 				</label>
@@ -54,7 +63,7 @@
 					<span class="error">{{ profileSettingsErrors['invalidName'] }}</span>
 				{% endif %}
 			</form>
-			<form class="mx-auto mb-2" action="/Settings/changeEmail" method="post" novalidate>
+			<form id="changeEmail" class="mx-auto mb-2" action="/Settings/changeEmail" method="post" novalidate>
 				<label>
 					<input type="email" name="newEmail" placeholder="New e-mail" value="{{ post['newEmail'] }}" required/>
 				</label>
@@ -63,7 +72,7 @@
 					<span class="error">{{ profileSettingsErrors['invalidEmail'] }}</span>
 				{% endif %}
 			</form>
-			<form class="mx-auto mb-2" action="/Settings/changePassword" method="post" novalidate>
+			<form id="changePassword" class="mx-auto mb-2" action="/Settings/changePassword" method="post" novalidate>
 				<div>
 					<label>
 						<input type="password" name="newPassword" placeholder="New password" minlength="8" required />
@@ -120,7 +129,7 @@
 					<input type="text" name="newName" placeholder="New category name" 
 					value="{% if modifyIncomeCategoryErrors is defined %}{{ post['newName'] }}{% endif %}" required />
 				</label>
-				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"><i class="icon-ok"></i> Set </button>
+				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"{% if userData.incomesCategory is empty %} disabled {% endif %}><i class="icon-ok"></i> Set </button>
 				{% if modifyIncomeCategoryErrors['invalidName'] is defined %}
 					<span class="error">{{ modifyIncomeCategoryErrors['invalidName'] }}</span>
 				{% endif %}
@@ -135,7 +144,7 @@
 						<option>{{ category['name'] }}</option>
 					{% endfor %}
 				</select>
-				<button type="submit" class="btn bg-danger my-2 font-weight-bold ml-2"><i class="icon-cancel"></i> Delete </button>
+				<button type="submit" class="btn bg-danger my-2 font-weight-bold ml-2"{% if userData.incomesCategory is empty %} disabled {% endif %}><i class="icon-cancel"></i> Delete </button>
 			</form>
 		</div>
 		
@@ -187,7 +196,7 @@
 					<input type="text" name="newName" placeholder="New category name" 
 					value="{% if modifyExpenseCategoryNameErrors is defined %}{{ post['newName'] }}{% endif %}" required />
 				</label>
-				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"><i class="icon-ok"></i> Set </button>
+				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"{% if userData.expensesCategory is empty %} disabled {% endif %}><i class="icon-ok"></i> Set </button>
 				{% if modifyExpenseCategoryNameErrors['invalidName'] is defined %}
 					<span class="error">{{ modifyExpenseCategoryNameErrors['invalidName'] }}</span>
 				{% endif %}
@@ -209,7 +218,7 @@
 					<input type="number" name="newLimit" placeholder="New expense limit" min="0" step="1" 
 					value="{% if modifyExpenseCategoryLimitErrors is defined %}{{ post['newLimit'] }}{% endif %}" />
 				</label>
-				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"><i class="icon-ok"></i> Set </button>
+				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"{% if userData.expensesCategory is empty %} disabled {% endif %}><i class="icon-ok"></i> Set </button>
 				{% if modifyExpenseCategoryLimitErrors['invalidAmount'] is defined %}
 					<span class="error">{{ modifyExpenseCategoryLimitErrors['invalidAmount'] }}</span>
 				{% endif %}
@@ -224,7 +233,67 @@
 						<option>{{ category['name'] }}</option>
 					{% endfor %}
 				</select>
-				<button type="submit" class="btn bg-danger my-2 font-weight-bold ml-2"><i class="icon-cancel"></i> Delete </button>
+				<button type="submit" class="btn bg-danger my-2 font-weight-bold ml-2"{% if userData.expensesCategory is empty %} disabled {% endif %}><i class="icon-cancel"></i> Delete </button>
+			</form>
+		</div>
+		
+		<!-- SECTION OF MANAGING PAYMENT METHODS -->
+		<button id="option3" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" aria-expanded="{% if paymentMethodsErrors is defined %} true {% endif %}" data-target="#insertion3">
+			<i class="icon-down-big"></i>
+			<h3 class="font-weight-bold mb-0 p-3"><i class="icon-th-list-outline"></i>PAYMENT METHODS MANAGER</h3>
+			<i class="icon-down-big"></i>
+		</button>
+		<div id="insertion3" class="collapse formular p-3 ownShadow bg-lightgreen {% if paymentMethodsErrors is defined %} show {% endif %}">
+			<div class="my-2">
+				<label for="paymentMethodManager"><i class="icon-list-alt"></i> Choose action: </label> 
+				<select id="paymentMethodManager" class="form-select">
+					<option value="none">...</option>
+					<option value="add" {% if addPaymentMethodErrors is defined %} selected {% endif %}>Add new</option>
+					<option value="modify" {% if modifyPaymentMethodErrors is defined %} selected {% endif %}>Modify</option>
+					<option value="delete">Delete</option>
+				</select>
+			</div>
+			<form id="addNewPaymentMethod" class="mx-auto" action="/Settings/addPaymentMethod" method="post" 
+			style="{% if addPaymentMethodErrors is defined %} display: block; {% endif %}"novalidate>
+				<label>
+					<input type="text" name="newName" placeholder="New method name" 
+					value="{% if addPaymentMethodErrors is defined %}{{ post['newName'] }}{% endif %}" required />
+				</label>
+				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"><i class="icon-ok"></i> Add </button>
+				{% if addPaymentMethodErrors['invalidName'] is defined %}
+					<span class="error">{{ addPaymentMethodErrors['invalidName'] }}</span>
+				{% endif %}
+			</form>
+			<form id="modifyPaymentMethod" class="mx-auto" action="/Settings/modifyPaymentMethod" method="post" 
+			style="{% if modifyPaymentMethodErrors is defined %} display: block; {% endif %}"novalidate>
+				<div>
+					<label for="methodToModify"><i class="icon-list-alt"></i> Choose method to modify: </label> 
+					<select id="methodToModify" name="methodToModify">
+						{% for method in userData.paymentMethods %}
+							<option {% if post['methodToModify'] == method['name'] %} selected {% endif %}>{{ method['name'] }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<label>
+					<input type="text" name="newName" placeholder="New method name" 
+					value="{% if modifyPaymentMethodErrors is defined %}{{ post['newName'] }}{% endif %}" required />
+				</label>
+				<button type="submit" class="btn bg-success my-2 font-weight-bold ml-2"{% if userData.paymentMethods is empty %} disabled {% endif %}><i class="icon-ok"></i> Set </button>
+				{% if modifyPaymentMethodErrors['invalidName'] is defined %}
+					<span class="error">{{ modifyPaymentMethodErrors['invalidName'] }}</span>
+				{% endif %}
+			</form>
+			<form id="deletePaymentMethod" class="mx-auto" action="/Settings/deletePaymentMethod" method="post" novalidate>
+				<div class="alert alert-danger">
+					<strong>CAUTION!!!</strong>Deleting payment method will cause deleting all expenses with this payment method as well!!!
+				</div>
+				<label for="paymentMethodToDelete"><i class="icon-list-alt"></i> Choose method to delete: </label> 
+				<select id="paymentMethodToDelete" name="methodToDelete">
+					{% for method in userData.paymentMethods %}
+						<option>{{ method['name'] }}</option>
+					{% endfor %}
+				</select>
+				<button type="submit" class="btn bg-danger my-2 font-weight-bold ml-2"{% if userData.paymentMethods is empty %} disabled {% endif %}><i class="icon-cancel"></i> Delete </button>
 			</form>
 		</div>
 	
@@ -297,7 +366,7 @@
 		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#changeLoginSuccess").modal("show");} );</script>
 	{% endif %}	
 	
-	<!-- Modal confirms that change name was successfull -->
+	<!-- Modal confirms that adding category was successfull -->
 	<div class="modal" id="addCategorySuccess">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
@@ -316,7 +385,7 @@
 		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#addCategorySuccess").modal("show");} );</script>
 	{% endif %}	
 	
-	<!-- Modal confirms that change name was successfull -->
+	<!-- Modal confirms that change category was successfull -->
 	<div class="modal" id="modifyCategorySuccess">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
@@ -335,7 +404,7 @@
 		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#modifyCategorySuccess").modal("show");} );</script>
 	{% endif %}	
 	
-	<!-- Modal confirms that change name was successfull -->
+	<!-- Modal confirms that deleting category was successfull -->
 	<div class="modal" id="deleteCategorySuccess">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
@@ -352,6 +421,63 @@
 	</div>
 	{% if modalController['deleteCategorySuccess'] == true %}
 		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#deleteCategorySuccess").modal("show");} );</script>
+	{% endif %}	
+	
+	<!-- Modal confirms that adding method was successfull -->
+	<div class="modal" id="addMethodSuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center"> New method was added sucessfully.</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<form class="p-0" method="get" action="/settings">
+						<button type="submit" class="btn btn-success mt-0" >Come back to settings</button>
+					</form>
+				 </div>
+			</div>
+		</div>
+	</div>
+	{% if modalController['addMethodSuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#addMethodSuccess").modal("show");} );</script>
+	{% endif %}	
+	
+	<!-- Modal confirms that change category was successfull -->
+	<div class="modal" id="modifyMethodSuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center">Method was modified successfully.</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<form class="p-0" method="get" action="/settings">
+						<button type="submit" class="btn btn-success mt-0" >Come back to settings</button>
+					</form>
+				 </div>
+			</div>
+		</div>
+	</div>
+	{% if modalController['modifyMethodSuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#modifyMethodSuccess").modal("show");} );</script>
+	{% endif %}	
+	
+	<!-- Modal confirms that deleting category was successfull -->
+	<div class="modal" id="deleteMethodSuccess">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title w-100 text-center">Method was deleted successfully.</h4>
+				 </div>
+				<div class="modal-footer justify-content-center">
+					<form class="p-0" method="get" action="/settings">
+						<button type="submit" class="btn btn-success mt-0" >Come back to settings</button>
+					</form>
+				 </div>
+			</div>
+		</div>
+	</div>
+	{% if modalController['deleteMethodSuccess'] == true %}
+		<script>document.addEventListener( "DOMContentLoaded" ,function() {$("#deleteMethodSuccess").modal("show");} );</script>
 	{% endif %}	
 	
 {% endblock %}

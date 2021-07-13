@@ -62,59 +62,72 @@
 			<!-- INCOME TABLE -->
 			<div class="col-md-6 p-1">
 				<h3 class="font-weight-bold">Incomes</h3>
-				<table class="table table-bordered table-striped bg-light">
-					<thead class="table-success">
-						<tr>
-							<th>Category</th>
-							<th>Amount[zł]</th>
-						</tr>
-					</thead>
-					<tbody>
-					{% set incomesSum = 0 %}
-					{% for income in balance.incomes %}
-						<tr><th> {{ income['name'] }}  </th><td> {{ income['sum'] }} </td></tr>
-						{% set incomesSum = incomesSum + income['sum'] %}
-					{% endfor %}
-					<tr><th> SUM: </th><td> {{ incomesSum }} </td></tr>
-					</tbody>
-				</table>
 				{% if balance.incomes is empty %}
-					<span> You don't have any incomes in this period...</span>
+					<div class="alert alert-info">You don't have any incomes in this period...</div>
+				{% else %}
+					<table class="table table-bordered table-striped bg-light">
+						<thead class="table-success">
+							<tr>
+								<th>Category</th>
+								<th>Amount[zł]</th>
+							</tr>
+						</thead>
+						<tbody>
+						{% set incomesSum = 0 %}
+						{% for income in balance.incomes %}
+							<tr><th> {{ income['name'] }}  </th><td> {{ income['sum'] }} </td></tr>
+							{% set incomesSum = incomesSum + income['sum'] %}
+						{% endfor %}
+						<tr><th> SUM: </th><td> {{ incomesSum }} </td></tr>
+						</tbody>
+					</table>
 				{% endif %}
 			</div>
 			<!-- EXPENSE TABLE -->
 			<div class="col-md-6 p-1">
 				<h3 class="font-weight-bold">Expenses</h3>
-				<table class="table table-bordered table-striped bg-light">
-					<thead class="table-success">
-						<tr>
-							<th>Category</th>
-							<th>Amount[zł]</th>
-						</tr>
-					</thead>
-					<tbody>
-					{% set expensesSum = 0 %}
-					{% for expense in balance.expenses %}
-						<tr><th> {{ expense['name'] }}  </th><td> {{ expense['sum'] }} </td></tr>
-						{% set expensesSum = expensesSum + expense['sum'] %}
-					{% endfor %}
-					<tr><th> SUM: </th><td> {{ expensesSum }} </td></tr>
-					</tbody>
-				</table>
 				{% if balance.expenses is empty %}
-					<span> You don't have any expenses in this period...</span>
+					<div class="alert alert-info">You don't have any expenses in this period...</div>
+				{% else %}
+					<table class="table table-bordered table-striped bg-light">
+						<thead class="table-success">
+							<tr>
+								<th>Category</th>
+								<th>Amount[zł]</th>
+							</tr>
+						</thead>
+						<tbody>
+						{% set expensesSum = 0 %}
+						{% for expense in balance.expenses %}
+							<tr><th> {{ expense['name'] }}  </th><td> {{ expense['sum'] }} </td></tr>
+							{% set expensesSum = expensesSum + expense['sum'] %}
+						{% endfor %}
+						<tr><th> SUM: </th><td> {{ expensesSum }} </td></tr>
+						</tbody>
+					</table>
 				{% endif %}
 			</div>
 		</section>
-		{% if incomesSum - expensesSum < 0 %}
-			<span class="error"> BE CAREFUL!!! YOU ARE FALLING INTO DEBT!!!</span>
-		{% endif %}
+		
+		<!-- SECTION OF FALLING INTO DEBT WARNING -->
+		<section class="row mx-auto">
+			{% if incomesSum - expensesSum < 0 %}
+				<div class="alert alert-danger mx-auto">
+					<span class="error"> BE CAREFUL!!! YOU ARE FALLING INTO DEBT!!!</span>
+				</div>
+			{% endif %}
+		</section>
+		
 		
 		<!-- SECTION OF PIE CHART -->
 		<section class="row mt-2 mb-4 p-1">
 			<div class="col-md-10 bg-lightgreen ownBorder ownShadow mx-auto p-1">
 				<h3 class="font-weight-bold">Expenses Chart</h3>
-				<div id="piechart" class="overflow-hidden"></div>
+				{% if balance.expenses is empty %}
+					<div class="alert alert-info"> You don't have any expenses in this period.</div>
+				{% else %}
+					<div id="piechart" class="overflow-hidden"></div>
+				{% endif %}
 			</div>
 		</section>
 	

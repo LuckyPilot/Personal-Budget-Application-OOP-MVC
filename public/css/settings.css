@@ -38,6 +38,7 @@ button:hover, button:focus {
 
 /* HIDDEN FORMULARS */
 
-#addNewIncomeCategory, #addNewExpenseCategory, #modifyExpenseCategoryName, #modifyExpenseCategoryLimit, #modifyIncomeCategory, #deleteIncomeCategory, #deleteExpenseCategory {
+#addNewIncomeCategory, #addNewExpenseCategory, #modifyExpenseCategoryName, #modifyExpenseCategoryLimit, #modifyIncomeCategory, #deleteIncomeCategory, #deleteExpenseCategory, #modifyPaymentMethod, #addNewPaymentMethod, #deletePaymentMethod, #changeName, 
+#changeEmail, #changePassword {
 	display: none;
 }
