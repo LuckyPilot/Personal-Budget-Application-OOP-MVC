@@ -45,7 +45,7 @@ class Income extends CashFlow
 	 *
 	 * @return array 
 	 */
-	public function fetchIncomesFromDB( $begDate, $endDate ) {
+	public function fetchAllIncomesFromDB( $begDate, $endDate ) {
 		
 		$sql ="SELECT incomes_category.name,  SUM(incomes.amount) AS sum FROM incomes INNER JOIN incomes_category_assigned_to_users AS incomes_category ON incomes.income_category_assigned_to_user_id = incomes_category.id WHERE incomes.user_id = :userId AND incomes.date_of_income BETWEEN :begDate AND :endDate GROUP BY incomes_category.name ORDER BY SUM(incomes.amount) DESC";
 		
@@ -87,7 +87,7 @@ class Income extends CashFlow
 		
 		$sql = "INSERT INTO incomes VALUES( NULL, :userId, :catId, :amount, :date, :comment )";
 		
-		$catId = static::findIncomeCategoryId( $this -> category );
+		$catId = static::findIncomeCategoryInDB( $this -> category );
 		
 		$db = static::getDB();
 		$stmt = $db -> prepare($sql);
@@ -125,9 +125,9 @@ class Income extends CashFlow
 	 *
 	 * @return custom object if found or false otherwise
 	 */
-	public static function findIncomeCategoryId( $categoryName ) {
+	public static function findIncomeCategoryInDB( $categoryName ) {
 		
-		$sql = "SELECT id FROM  incomes_category_assigned_to_users WHERE user_id = :userId AND name = :catName";
+		$sql = "SELECT * FROM  incomes_category_assigned_to_users WHERE user_id = :userId AND name = :catName";
 		
 		$db = static::getDB();
 		$stmt = $db -> prepare($sql);

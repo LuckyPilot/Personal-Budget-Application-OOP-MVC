@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>1161</x>
-      <y>1098</y>
+      <y>1116</y>
       <w>171</w>
       <h>126</h>
     </coordinates>
@@ -24,7 +24,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>900</x>
-      <y>1359</y>
+      <y>1377</y>
       <w>225</w>
       <h>81</h>
     </coordinates>
@@ -40,7 +40,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>891</x>
-      <y>1143</y>
+      <y>1161</y>
       <w>225</w>
       <h>81</h>
     </coordinates>
@@ -56,7 +56,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>891</x>
-      <y>981</y>
+      <y>999</y>
       <w>225</w>
       <h>63</h>
     </coordinates>
@@ -71,7 +71,7 @@
     <id>Relation</id>
     <coordinates>
       <x>1116</x>
-      <y>1215</y>
+      <y>1233</y>
       <w>90</w>
       <h>180</h>
     </coordinates>
@@ -82,7 +82,7 @@
     <id>Relation</id>
     <coordinates>
       <x>1107</x>
-      <y>1143</y>
+      <y>1161</y>
       <w>72</w>
       <h>27</h>
     </coordinates>
@@ -93,7 +93,7 @@
     <id>Relation</id>
     <coordinates>
       <x>1107</x>
-      <y>990</y>
+      <y>1008</y>
       <w>99</w>
       <h>126</h>
     </coordinates>
@@ -104,7 +104,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>288</x>
-      <y>1440</y>
+      <y>1458</y>
       <w>135</w>
       <h>63</h>
     </coordinates>
@@ -119,7 +119,7 @@ _+ deleteCookie():bool_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>909</x>
-      <y>720</y>
+      <y>738</y>
       <w>135</w>
       <h>54</h>
     </coordinates>
@@ -133,7 +133,7 @@ _+ sendEmail():bool_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1260</x>
-      <y>774</y>
+      <y>792</y>
       <w>135</w>
       <h>63</h>
     </coordinates>
@@ -148,7 +148,7 @@ _+getModals():string_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>522</x>
-      <y>864</y>
+      <y>882</y>
       <w>297</w>
       <h>234</h>
     </coordinates>
@@ -178,7 +178,7 @@ _+getModals():string_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>522</x>
-      <y>720</y>
+      <y>738</y>
       <w>297</w>
       <h>108</h>
     </coordinates>
@@ -197,7 +197,7 @@ _+getModals():string_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>252</x>
-      <y>1179</y>
+      <y>1197</y>
       <w>198</w>
       <h>153</h>
     </coordinates>
@@ -218,7 +218,7 @@ _+getModals():string_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>1179</y>
+      <y>1197</y>
       <w>198</w>
       <h>135</h>
     </coordinates>
@@ -238,7 +238,7 @@ _+getModals():string_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>189</x>
-      <y>1224</y>
+      <y>1242</y>
       <w>81</w>
       <h>27</h>
     </coordinates>
@@ -249,7 +249,7 @@ _+getModals():string_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>261</x>
-      <y>1008</y>
+      <y>1026</y>
       <w>189</w>
       <h>135</h>
     </coordinates>
@@ -269,7 +269,7 @@ _+getModals():string_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>522</x>
-      <y>1530</y>
+      <y>1548</y>
       <w>297</w>
       <h>63</h>
     </coordinates>
@@ -284,7 +284,7 @@ _+getModals():string_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>522</x>
-      <y>1359</y>
+      <y>1377</y>
       <w>297</w>
       <h>153</h>
     </coordinates>
@@ -306,7 +306,7 @@ _+getModals():string_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>522</x>
-      <y>1116</y>
+      <y>1134</y>
       <w>297</w>
       <h>225</h>
     </coordinates>
@@ -332,7 +332,7 @@ _+getModals():string_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>198</x>
-      <y>747</y>
+      <y>765</y>
       <w>279</w>
       <h>171</h>
     </coordinates>
@@ -355,7 +355,7 @@ _+getModals():string_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>819</x>
-      <y>207</y>
+      <y>225</y>
       <w>243</w>
       <h>162</h>
     </coordinates>
@@ -378,7 +378,7 @@ _+getModals():string_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>864</x>
-      <y>378</y>
+      <y>396</y>
       <w>162</w>
       <h>117</h>
     </coordinates>
@@ -397,29 +397,31 @@ _+getModals():string_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1107</x>
-      <y>207</y>
-      <w>216</w>
-      <h>144</h>
+      <y>225</y>
+      <w>261</w>
+      <h>162</h>
     </coordinates>
     <panel_attributes>Expense
 --
 + inputValidationErrors:array
 --
 + addExpense():mixed bool/array
-+ fetchExpensesFromDB():array
++ fetchAllExpensesFromDB():array
 - validateExpenseInputs():array
 - addExpenseToDB():bool
+- findPaymentMethodInDB():cstObject
+_+ fetchExpensesByCategoryFromDB():array_
 _+ deleteExpensesFromDB():bool_
-_+ findExpenseCategoryId():cstObject_
-- findPaymentMethodId():cstObject</panel_attributes>
+_+ findExpenseCategoryInDB():cstObject_
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>558</x>
-      <y>207</y>
-      <w>216</w>
+      <y>225</y>
+      <w>225</w>
       <h>135</h>
     </coordinates>
     <panel_attributes>Income
@@ -427,18 +429,18 @@ _+ findExpenseCategoryId():cstObject_
 + inputValidationErrors:array
 --
 + addIncome():mixed bool/array
-+ fetchIncomesFromDB():array
++ fetchAllIncomesFromDB():array
 - validateIncomeInputs():array
 - addIncomeToDB():bool
 _+ deleteIncomesFromDB():bool_
-_+ findIncomeCategoryId():cstObject_</panel_attributes>
+_+ findIncomeCategoryInDB():cstObject_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>729</x>
-      <y>333</y>
+      <y>351</y>
       <w>153</w>
       <h>90</h>
     </coordinates>
@@ -449,7 +451,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>846</x>
-      <y>513</y>
+      <y>531</y>
       <w>207</w>
       <h>153</h>
     </coordinates>
@@ -470,7 +472,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>441</x>
-      <y>1008</y>
+      <y>1026</y>
       <w>99</w>
       <h>27</h>
     </coordinates>
@@ -481,7 +483,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>342</x>
-      <y>1134</y>
+      <y>1152</y>
       <w>27</w>
       <h>63</h>
     </coordinates>
@@ -492,7 +494,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>441</x>
-      <y>1044</y>
+      <y>1062</y>
       <w>99</w>
       <h>162</h>
     </coordinates>
@@ -503,7 +505,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>441</x>
-      <y>1233</y>
+      <y>1251</y>
       <w>99</w>
       <h>27</h>
     </coordinates>
@@ -514,7 +516,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>387</x>
-      <y>1323</y>
+      <y>1341</y>
       <w>153</w>
       <h>72</h>
     </coordinates>
@@ -525,7 +527,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>441</x>
-      <y>1125</y>
+      <y>1143</y>
       <w>99</w>
       <h>27</h>
     </coordinates>
@@ -536,7 +538,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>810</x>
-      <y>1359</y>
+      <y>1377</y>
       <w>108</w>
       <h>27</h>
     </coordinates>
@@ -547,7 +549,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>810</x>
-      <y>981</y>
+      <y>999</y>
       <w>99</w>
       <h>27</h>
     </coordinates>
@@ -558,7 +560,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>810</x>
-      <y>783</y>
+      <y>801</y>
       <w>117</w>
       <h>216</h>
     </coordinates>
@@ -569,7 +571,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>810</x>
-      <y>1431</y>
+      <y>1449</y>
       <w>135</w>
       <h>126</h>
     </coordinates>
@@ -580,7 +582,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>657</x>
-      <y>819</y>
+      <y>837</y>
       <w>27</w>
       <h>63</h>
     </coordinates>
@@ -591,7 +593,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>342</x>
-      <y>909</y>
+      <y>927</y>
       <w>27</w>
       <h>117</h>
     </coordinates>
@@ -602,7 +604,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>810</x>
-      <y>1143</y>
+      <y>1161</y>
       <w>99</w>
       <h>27</h>
     </coordinates>
@@ -613,7 +615,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>414</x>
-      <y>1440</y>
+      <y>1458</y>
       <w>126</w>
       <h>27</h>
     </coordinates>
@@ -624,7 +626,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>396</x>
-      <y>1494</y>
+      <y>1512</y>
       <w>144</w>
       <h>63</h>
     </coordinates>
@@ -635,7 +637,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>468</x>
-      <y>828</y>
+      <y>846</y>
       <w>72</w>
       <h>306</h>
     </coordinates>
@@ -646,7 +648,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>810</x>
-      <y>720</y>
+      <y>738</y>
       <w>117</w>
       <h>27</h>
     </coordinates>
@@ -657,7 +659,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>810</x>
-      <y>747</y>
+      <y>765</y>
       <w>117</w>
       <h>387</h>
     </coordinates>
@@ -668,7 +670,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1035</x>
-      <y>360</y>
+      <y>378</y>
       <w>27</w>
       <h>171</h>
     </coordinates>
@@ -678,19 +680,19 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>765</x>
-      <y>216</y>
-      <w>72</w>
+      <x>774</x>
+      <y>234</y>
+      <w>63</w>
       <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>567</x>
-      <y>72</y>
+      <y>90</y>
       <w>297</w>
       <h>90</h>
     </coordinates>
@@ -709,7 +711,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>819</x>
-      <y>153</y>
+      <y>171</y>
       <w>27</w>
       <h>72</h>
     </coordinates>
@@ -719,19 +721,19 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>765</x>
-      <y>288</y>
-      <w>72</w>
+      <x>774</x>
+      <y>306</y>
+      <w>63</w>
       <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>864</x>
-      <y>0</y>
+      <y>18</y>
       <w>135</w>
       <h>54</h>
     </coordinates>
@@ -746,7 +748,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1026</x>
-      <y>54</y>
+      <y>72</y>
       <w>297</w>
       <h>117</h>
     </coordinates>
@@ -767,7 +769,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1035</x>
-      <y>162</y>
+      <y>180</y>
       <w>27</w>
       <h>63</h>
     </coordinates>
@@ -778,7 +780,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>810</x>
-      <y>9</y>
+      <y>27</y>
       <w>72</w>
       <h>81</h>
     </coordinates>
@@ -789,7 +791,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>990</x>
-      <y>9</y>
+      <y>27</y>
       <w>72</w>
       <h>63</h>
     </coordinates>
@@ -800,7 +802,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>693</x>
-      <y>153</y>
+      <y>171</y>
       <w>27</w>
       <h>72</h>
     </coordinates>
@@ -811,7 +813,7 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1170</x>
-      <y>162</y>
+      <y>180</y>
       <w>27</w>
       <h>63</h>
     </coordinates>
@@ -822,18 +824,18 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1017</x>
-      <y>342</y>
+      <y>378</y>
       <w>135</w>
-      <h>81</h>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;70.0;130.0;70.0;130.0;10.0</additional_attributes>
+    <additional_attributes>10.0;50.0;130.0;50.0;130.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>639</x>
-      <y>333</y>
+      <y>351</y>
       <w>225</w>
       <h>234</h>
     </coordinates>
@@ -844,18 +846,18 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1044</x>
-      <y>342</y>
+      <y>378</y>
       <w>216</w>
-      <h>225</h>
+      <h>207</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;230.0;220.0;230.0;220.0;10.0</additional_attributes>
+    <additional_attributes>10.0;210.0;220.0;210.0;220.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>1053</x>
-      <y>216</y>
+      <y>234</y>
       <w>72</w>
       <h>27</h>
     </coordinates>
@@ -866,11 +868,45 @@ _+ findIncomeCategoryId():cstObject_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1053</x>
-      <y>297</y>
+      <y>315</y>
       <w>72</w>
       <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1413</x>
+      <y>225</y>
+      <w>225</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>ExpenseLimitInformator
+--
+- expenseAmount:float
+- expenseLimit:int
+- expenseCategory:string
+- expenseCategoryId:int
+--
++ ExpenseLimitInformator()
++ controlExpenseLimit():void
+- prepareNoLimitExpense():string
+- prepareExceedLimitExpense():string
+- prepareLimitExpense():string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1359</x>
+      <y>279</y>
+      <w>72</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black</panel_attributes>
     <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
   </element>
 </diagram>

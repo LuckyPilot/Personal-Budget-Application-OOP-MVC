@@ -62,10 +62,10 @@ class BalanceGenerator
 		  
 		  if (empty( $this -> userInputsValidationErrors )) {
 			  $userIncomes = new Income();
-			  $this -> incomes = $userIncomes -> fetchIncomesFromDB( $this -> begDate, $this -> endDate );
+			  $this -> incomes = $userIncomes -> fetchAllIncomesFromDB( $this -> begDate, $this -> endDate );
 			  
 			  $userExpenses = new Expense();
-			  $this -> expenses = $userExpenses -> fetchExpensesFromDB( $this -> begDate, $this -> endDate );
+			  $this -> expenses = $userExpenses -> fetchAllExpensesFromDB( $this -> begDate, $this -> endDate );
 		  }
 		  
 		  return $this;

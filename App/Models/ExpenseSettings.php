@@ -108,7 +108,7 @@ class ExpenseSettings extends CashFlowSettings
 	 public function deleteExpenseCategory() {
 		 
 		// First we are deleting all expenses with id of category to delete
-		$categoryToDelete = Expense::findExpenseCategoryId( $this -> categoryToDelete );
+		$categoryToDelete = Expense::findExpenseCategoryInDB( $this -> categoryToDelete );
 		Expense::deleteExpensesFromDB( $categoryToDelete -> id );
 		
 		// Than we are deleting category

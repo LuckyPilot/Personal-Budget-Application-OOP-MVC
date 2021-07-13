@@ -10,6 +10,7 @@
 
 {% block scripts %}
 	<script src="/js/menu.js" defer></script>
+	<script src="/js/ajax.js" defer></script>
 {% endblock %}
 
 {% block header %}
@@ -104,10 +105,8 @@
 		<i class="icon-down-big"></i>
 	</button>
 	<div id="insertion1" class="collapse formular p-3 ownShadow bg-lightgreen {% if expenseResult is defined %} show {% endif %}">
-		<div class="alert alert-success">
-			Tutaj ma byc ajax
-		</div>
-		<form action="/add-expense" method="post" novalidate>
+		<div id="ajaxLimit"></div>
+		<form id="expenseForm" action="/add-expense" method="post" novalidate>
 			<div class="my-2">
 				<label><i class="icon-money"></i> Enter amount: <input type="number" name="amount" min="0" step="0.01" 
 				value="{{ expenseResult.amount }}" required /></label>
@@ -145,7 +144,7 @@
 				{% endif %}
 			</div>
 			<div class="my-2">
-				<fieldset class="d-flex flex-wrap justify-content-center p-2">
+				<fieldset class="d-flex flex-wrap justify-content-center p-2" name="expenseCategoryRadios">
 					<legend><i class="icon-book"></i>  Category: </legend>
 					{% for category in userData.expensesCategory %}
 						{% if loop.first %}

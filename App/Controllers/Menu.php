@@ -6,6 +6,7 @@ use \Core\View;
 use \App\FlashModals;
 use \App\Models\Income;
 use \App\Models\Expense;
+use \App\Models\LimitInformator;
 use \App\Models\BalanceGenerator;
 use \App\Models\Logout;
 
@@ -65,6 +66,18 @@ class Menu extends Authenticated
 			View::renderTemplate( "Usermenu/menu.html", ["userData" => $this -> userData, "expenseResult" => $result] );
 		}
 		 
+	}
+	
+	/**
+     * Preparing data when user adding expense and showing modals with expense limit information
+     *
+     * @return void
+     */
+	public function informAboutLimitAction() {
+		
+		$limitController = new ExpenseLimitInformator( $_POST );
+		$limitController -> controlExpenseLimit();
+		
 	}
 	
 	/**

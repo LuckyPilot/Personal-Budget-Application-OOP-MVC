@@ -19,7 +19,7 @@ class Expense extends CashFlow
 	 public $inputValidationErrors = [];
 	 
 	/**
-	 * Adding new expense do DB
+	 * Adding new expense to DB
 	 *
 	 * @return true if new expense was added or Expense object otherwise
 	 */
@@ -38,14 +38,14 @@ class Expense extends CashFlow
 	}
 	
 	/**
-	 * Fetchinn user's expenses from given period from DB
+	 * Fetching user's expenses from given period from DB
 	 *
 	 * @param string $begDate Date which begins period
 	 * @param string $endDate Date which ends period
 	 *
 	 * @return array 
 	 */
-	public function fetchExpensesFromDB( $begDate, $endDate ) {
+	public function fetchAllExpensesFromDB( $begDate, $endDate ) {
 		
 		$sql ="SELECT expense_category.name,  SUM(expenses.amount) AS sum FROM expenses INNER JOIN expenses_category_assigned_to_users AS expense_category ON expenses.expense_category_assigned_to_user_id = expense_category.id WHERE expenses.user_id = :userId AND expenses.date_of_expense BETWEEN :begDate AND :endDate GROUP BY expense_category.name ORDER BY SUM(expenses.amount) DESC";
 		
@@ -59,6 +59,32 @@ class Expense extends CashFlow
 		$stmt -> execute();
 		
 		return $stmt -> fetchAll( PDO::FETCH_ASSOC );
+	}
+	
+	/**
+	 * Fetching user's expenses from current month and given category from DB
+	 *
+	 * @param string $catId Id of expense category to fetch
+	 *
+	 * @return array 
+	 */
+	public static function fetchExpensesByCategoryFromDB( $userCatId ) {
+		
+		$sql ="SELECT SUM(expenses.amount) AS sum FROM expenses WHERE expense_category_assigned_to_user_id = :catId AND expenses.date_of_expense BETWEEN :begDate AND :endDate GROUP BY expenses.expense_category_assigned_to_user_id";
+		
+		$begDate = date( "Y-m-01" );
+		$endDate = date( "Y-m-t" );
+		
+		$db = static::getDB();
+		$stmt = $db -> prepare($sql);
+		
+		$stmt -> bindValue( ":catId", $userCatId, PDO::PARAM_INT );
+		$stmt -> bindValue( ":begDate", $begDate, PDO::PARAM_STR );
+		$stmt -> bindValue( ":endDate", $endDate, PDO::PARAM_STR );
+		
+		$stmt -> execute();
+		
+		return $stmt -> fetch( PDO::FETCH_ASSOC );
 	}
 	
 	/**
@@ -88,8 +114,8 @@ class Expense extends CashFlow
 		
 		$sql = "INSERT INTO expenses VALUES( NULL, :userId, :catId, :payId, :amount, :date, :comment )";
 		
-		$catId = $this -> findExpenseCategoryId( $this -> category );
-		$payId = $this -> findPaymentMethodId();
+		$catId = $this -> findExpenseCategoryInDB( $this -> category );
+		$payId = $this -> findPaymentMethodInDB();
 		
 		$db = static::getDB();
 		$stmt = $db -> prepare($sql);
@@ -128,9 +154,9 @@ class Expense extends CashFlow
 	 *
 	 * @return custom object if found or false otherwise
 	 */
-	public static function findExpenseCategoryId( $categoryName ) {
+	public static function findExpenseCategoryInDB( $categoryName ) {
 		
-		$sql = "SELECT id FROM  expenses_category_assigned_to_users WHERE user_id = :userId AND name = :catName";
+		$sql = "SELECT * FROM  expenses_category_assigned_to_users WHERE user_id = :userId AND name = :catName";
 		
 		$db = static::getDB();
 		$stmt = $db -> prepare($sql);
@@ -149,9 +175,9 @@ class Expense extends CashFlow
 	 *
 	 * @return custom object if found or false otherwise
 	 */
-	private function findPaymentMethodId() {
+	private function findPaymentMethodInDB() {
 		
-		$sql = "SELECT id FROM  payment_methods_assigned_to_users WHERE user_id = :userId AND name = :catName";
+		$sql = "SELECT * FROM  payment_methods_assigned_to_users WHERE user_id = :userId AND name = :catName";
 		
 		$db = static::getDB();
 		$stmt = $db -> prepare($sql);
