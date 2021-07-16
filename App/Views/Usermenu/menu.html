@@ -51,7 +51,7 @@
 		<i class="icon-down-big"></i>
 	</button>
 	<div id="insertion0" class="collapse formular p-3 ownShadow bg-lightgreen {% if incomeResult is defined %} show {% endif %}">
-		<form action="/add-income" method="post" novalidate>
+		<form action="/add-income" method="post">
 			<div class="my-2">
 				<label><i class="icon-money"></i> Enter amount: <input type="number" name="amount" min="0" step="0.01" 
 				value="{{ incomeResult.amount }}" required /></label>
@@ -109,7 +109,7 @@
 	</button>
 	<div id="insertion1" class="collapse formular p-3 ownShadow bg-lightgreen {% if expenseResult is defined %} show {% endif %}">
 		<div id="ajaxLimit"></div>
-		<form id="expenseForm" action="/add-expense" method="post" novalidate>
+		<form id="expenseForm" action="/add-expense" method="post">
 			<div class="my-2">
 				<label><i class="icon-money"></i> Enter amount: <input type="number" name="amount" min="0" step="0.01" 
 				value="{{ expenseResult.amount }}" required /></label>
@@ -190,7 +190,7 @@
 		<i class="icon-down-big"></i>
 	</button>
 	<div id="insertion2" class="collapse formular p-3 ownShadow bg-lightgreen {% if balanceErrors is defined %} show {% endif %}">
-		<form action="/generate-balance" name="overviewForm" method="post" target="_blank" novalidate>
+		<form action="/generate-balance" name="overviewForm" method="post" target="_blank">
 			<div class="my-2">
 				<label for="period"><i class="icon-list-alt"></i> Choose period: </label> 
 				<select id="period" name="period">
@@ -215,17 +215,16 @@
 		</form>
 	</div>
 	
-	<!-- SECTION OF DELETING INCOMES/EXPENSES -->
+	<!-- For future development SECTION OF DELETING INCOMES/EXPENSES 
 	<button id="option3" type="button" class="btn bg-success mt-3 d-flex w-100 justify-content-between align-items-center" data-toggle="collapse" data-target="#insertion3">
 		<i class="icon-down-big"></i>
 		<h3 class="font-weight-bold mb-0 p-3"><i class="icon-cancel-outline"></i> DELETE INCOME/EXPENSE </h3>
 		<i class="icon-down-big"></i>
 	</button>
-	<div id="insertion3" class="collapse formular p-3 ownShadow bg-lightgreen">
-		
-	</div>
+	<div id="insertion3" class="collapse formular p-3 ownShadow bg-lightgreen"></div>-->
 	
 </section>
+
 {% endblock %}
 
 {% block rightaside %}

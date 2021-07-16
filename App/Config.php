@@ -4,6 +4,7 @@ namespace App;
 
 /**
  * Application configuration
+ * All data with empty "" should be fulfilled own data:)
  *
  * PHP version 7.4
  */
@@ -26,39 +27,37 @@ class Config
      * Database user
      * @var string
      */
-    const DB_USER = 'lukaszm2_budgetAdmin';
+    const DB_USER = '';
 
     /**
      * Database password
      * @var string
      */
-    const DB_PASSWORD = 'lakiluk163g16';
+    const DB_PASSWORD = '';
 
     /**
      * Show or hide error messages on screen
      * @var boolean
      */
-    const SHOW_ERRORS = true;
+    const SHOW_ERRORS = false;
 	
 	/**
      * Secret key for hashing tokens
      * @var string
      */
-	 const SECRET_TOKEN_KEY = '61jSg0jqwXaCfeAdjfAIKHcpcRm0A5KT';
+	 const SECRET_TOKEN_KEY = '';
 	 
 	 /**
      * Secret key for RECAPTCHA
      * @var string
      */
-	 const SECRET_RECAPTCHA_KEY = '6LcgSBQbAAAAAIVPk3oaooKUjS3qO3bY3eLoQJgf';
-	 		//  6LcgSBQbAAAAAIVPk3oaooKUjS3qO3bY3eLoQJgf secret code do recaptchy serwerowej
-			//  6LcVpuMaAAAAAO3UAn-mt-fChaxmGW8Sg-yPX2Vi secret code do recaptchy localhostowej
+	 const SECRET_RECAPTCHA_KEY = '';
 	 
 	/**
      * Name for smtp server
      * @var string
      */
-	 const SMTP_HOST = 'mail.lukaszmackow.pl';
+	 const SMTP_HOST = '';
 	 
 	/**
      * Login for smtp server
@@ -70,7 +69,7 @@ class Config
      * Password for smtp server
      * @var string
      */
-	 const SMTP_PASSWORD = 'lakiluk163g16';
+	 const SMTP_PASSWORD = '';
 }
 
 ?>

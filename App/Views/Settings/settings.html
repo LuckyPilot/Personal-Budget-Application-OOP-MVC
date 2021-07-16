@@ -54,7 +54,7 @@
 					<option value="changePassword" {% if profileSettingsErrors['invalidPassword'] is defined %} selected {% endif %}>Change password</option>
 				</select>
 			</div>
-			<form id="changeName" class="mx-auto mb-2" action="/Settings/changeName" method="post" novalidate>
+			<form id="changeName" class="mx-auto mb-2" action="/Settings/changeName" method="post">
 				<label>
 					<input type="text" name="newUserName" placeholder="New name" value="{{ post['newUserName'] }}" required/>
 				</label>
@@ -63,7 +63,7 @@
 					<span class="error">{{ profileSettingsErrors['invalidName'] }}</span>
 				{% endif %}
 			</form>
-			<form id="changeEmail" class="mx-auto mb-2" action="/Settings/changeEmail" method="post" novalidate>
+			<form id="changeEmail" class="mx-auto mb-2" action="/Settings/changeEmail" method="post">
 				<label>
 					<input type="email" name="newEmail" placeholder="New e-mail" value="{{ post['newEmail'] }}" required/>
 				</label>
@@ -72,7 +72,7 @@
 					<span class="error">{{ profileSettingsErrors['invalidEmail'] }}</span>
 				{% endif %}
 			</form>
-			<form id="changePassword" class="mx-auto mb-2" action="/Settings/changePassword" method="post" novalidate>
+			<form id="changePassword" class="mx-auto mb-2" action="/Settings/changePassword" method="post">
 				<div>
 					<label>
 						<input type="password" name="newPassword" placeholder="New password" minlength="8" required />
@@ -105,7 +105,7 @@
 				</select>
 			</div>
 			<form id="addNewIncomeCategory" class="mx-auto" action="/Settings/addIncomeCategory" method="post" 
-			style="{% if addIncomeCategoryErrors is defined %} display: block; {% endif %}"novalidate>
+			style="{% if addIncomeCategoryErrors is defined %} display: block; {% endif %}">
 				<label>
 					<input type="text" name="newName" placeholder="New category name" 
 					value="{% if addIncomeCategoryErrors is defined %}{{ post['newName'] }}{% endif %}" required />
@@ -116,7 +116,7 @@
 				{% endif %}
 			</form>
 			<form id="modifyIncomeCategory" class="mx-auto" action="/Settings/modifyIncomeCategory" method="post" 
-			style="{% if modifyIncomeCategoryErrors is defined %} display: block; {% endif %}"novalidate>
+			style="{% if modifyIncomeCategoryErrors is defined %} display: block; {% endif %}">
 				<div>
 					<label for="categoryToModify"><i class="icon-list-alt"></i> Choose category to modify: </label> 
 					<select id="categoryToModify" name="categoryToModify">
@@ -134,7 +134,7 @@
 					<span class="error">{{ modifyIncomeCategoryErrors['invalidName'] }}</span>
 				{% endif %}
 			</form>
-			<form id="deleteIncomeCategory" class="mx-auto" action="/Settings/deleteIncomeCategory" method="post" novalidate>
+			<form id="deleteIncomeCategory" class="mx-auto" action="/Settings/deleteIncomeCategory" method="post">
 				<div class="alert alert-danger">
 					<strong>CAUTION!!!</strong>Deleting income category will cause deleting all incomes in this category as well!!!
 				</div>
@@ -166,7 +166,7 @@
 				</select>
 			</div>
 			<form id="addNewExpenseCategory" class="mx-auto" action="/Settings/addExpenseCategory" method="post" 
-			style="{% if addExpenseCategoryErrors is defined %} display: block; {% endif %}" novalidate>
+			style="{% if addExpenseCategoryErrors is defined %} display: block; {% endif %}">
 				<label>
 					<input type="text" name="newName" placeholder="New category name"
 					value="{% if addExpenseCategoryErrors is defined %}{{ post['newName'] }}{% endif %}" required />
@@ -183,7 +183,7 @@
 				{% endif %}
 			</form>
 			<form id="modifyExpenseCategoryName" class="mx-auto" action="/Settings/modifyExpenseCategoryName" method="post" 
-			style="{% if modifyExpenseCategoryNameErrors is defined %} display: block; {% endif %}" novalidate>
+			style="{% if modifyExpenseCategoryNameErrors is defined %} display: block; {% endif %}">
 				<div>
 					<label for="expenseCategoryNameToModify"><i class="icon-list-alt"></i> Choose category to modify: </label> 
 					<select id="expenseCategoryNameToModify" name="categoryToModify">
@@ -202,7 +202,7 @@
 				{% endif %}
 			</form>
 			<form id="modifyExpenseCategoryLimit" class="mx-auto" action="/Settings/modifyExpenseCategoryLimit" method="post" 
-			style="{% if modifyExpenseCategoryLimitErrors is defined %} display: block; {% endif %}" novalidate>
+			style="{% if modifyExpenseCategoryLimitErrors is defined %} display: block; {% endif %}">
 				<div class="alert alert-info">
 					<strong>Information.</strong> If you would like to reset expense limit please insert 0 or leave field empty.
 				</div>
@@ -223,7 +223,7 @@
 					<span class="error">{{ modifyExpenseCategoryLimitErrors['invalidAmount'] }}</span>
 				{% endif %}
 			</form>
-			<form id="deleteExpenseCategory" class="mx-auto" action="/Settings/deleteExpenseCategory" method="post" novalidate>
+			<form id="deleteExpenseCategory" class="mx-auto" action="/Settings/deleteExpenseCategory" method="post">
 				<div class="alert alert-danger">
 					<strong>CAUTION!!!</strong>Deleting expense category will cause deleting all expenses in this category as well!!!
 				</div>
@@ -254,7 +254,7 @@
 				</select>
 			</div>
 			<form id="addNewPaymentMethod" class="mx-auto" action="/Settings/addPaymentMethod" method="post" 
-			style="{% if addPaymentMethodErrors is defined %} display: block; {% endif %}"novalidate>
+			style="{% if addPaymentMethodErrors is defined %} display: block; {% endif %}">
 				<label>
 					<input type="text" name="newName" placeholder="New method name" 
 					value="{% if addPaymentMethodErrors is defined %}{{ post['newName'] }}{% endif %}" required />
@@ -265,7 +265,7 @@
 				{% endif %}
 			</form>
 			<form id="modifyPaymentMethod" class="mx-auto" action="/Settings/modifyPaymentMethod" method="post" 
-			style="{% if modifyPaymentMethodErrors is defined %} display: block; {% endif %}"novalidate>
+			style="{% if modifyPaymentMethodErrors is defined %} display: block; {% endif %}">
 				<div>
 					<label for="methodToModify"><i class="icon-list-alt"></i> Choose method to modify: </label> 
 					<select id="methodToModify" name="methodToModify">
@@ -283,7 +283,7 @@
 					<span class="error">{{ modifyPaymentMethodErrors['invalidName'] }}</span>
 				{% endif %}
 			</form>
-			<form id="deletePaymentMethod" class="mx-auto" action="/Settings/deletePaymentMethod" method="post" novalidate>
+			<form id="deletePaymentMethod" class="mx-auto" action="/Settings/deletePaymentMethod" method="post">
 				<div class="alert alert-danger">
 					<strong>CAUTION!!!</strong>Deleting payment method will cause deleting all expenses with this payment method as well!!!
 				</div>
