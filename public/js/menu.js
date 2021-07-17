@@ -2,7 +2,6 @@
 document.getElementById("option0").addEventListener(  "click", function() { displayFormular( 0 ); } );
 document.getElementById("option1").addEventListener(  "click", function() { displayFormular( 1 ); } );
 document.getElementById("option2").addEventListener(  "click", function() { displayFormular( 2 ); } );
-document.getElementById("option3").addEventListener(  "click", function() { displayFormular( 3 ); } );
 
 // Function responsible for changing button's arrows and bottom corners 
 function displayFormular( option ) {
